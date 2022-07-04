@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FitTrack</string>
+    <string name="statsDayTitle">Calorie tracker</string>
 </resources>
