@@ -57,6 +57,84 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:progress="60" />
+    <ProgressBar
+        android:id="@+id/pb_proteins"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="false"
 
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="30dp"
+        tools:progress="40"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@id/pb_carbs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pb_goal" />
+    <ProgressBar
+        android:id="@+id/pb_carbs"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="false"
+
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintStart_toStartOf="@+id/pb_proteins"
+        app:layout_constraintTop_toBottomOf="@+id/pb_proteins"
+        app:layout_constraintBottom_toTopOf="@id/pb_fat"/>
+    <ProgressBar
+        android:id="@+id/pb_fat"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:layout_marginBottom="30dp"
+        android:indeterminateOnly="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/pb_proteins"
+        app:layout_constraintTop_toBottomOf="@+id/pb_carbs" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/proteins"
+        app:layout_constraintBottom_toTopOf="@+id/pb_proteins"
+        app:layout_constraintStart_toStartOf="@+id/pb_proteins" />
+    <TextView
+        android:id="@+id/tv_proteinsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/pb_proteins"
+        app:layout_constraintTop_toBottomOf="@+id/pb_proteins"
+        tools:text="0/250" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/carbs"
+        app:layout_constraintBottom_toTopOf="@+id/pb_carbs"
+        app:layout_constraintStart_toStartOf="@+id/pb_carbs" />
+    <TextView
+        android:id="@+id/tv_carbsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/pb_carbs"
+        app:layout_constraintTop_toBottomOf="@+id/pb_carbs"
+        tools:text="0/250" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fat"
+        app:layout_constraintBottom_toTopOf="@+id/pb_fat"
+        app:layout_constraintStart_toStartOf="@+id/pb_fat" />
+    <TextView
+        android:id="@+id/tv_fatLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/pb_fat"
+        app:layout_constraintTop_toBottomOf="@+id/pb_fat"
+        tools:text="0/250" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
