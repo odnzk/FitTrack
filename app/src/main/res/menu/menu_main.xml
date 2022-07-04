@@ -14,6 +14,11 @@
         android:enabled="true" />
 
     <item
+        android:id="@+id/placeholder"
+        android:title=""
+        />
+
+    <item
         android:id="@+id/statsDayFragment"
         android:title="@string/calorie_tracker"
         android:icon="@drawable/ic_baseline_monitoring"
