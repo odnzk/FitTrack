@@ -21,11 +21,6 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         with (binding) {
-            // fix background
-            bottomNavigationView.background = null
-            // Placeholder
-            bottomNavigationView.menu.getItem(2).isEnabled = false
-
             controller = (supportFragmentManager.findFragmentById(R.id.container)
                     as NavHostFragment).navController
             bottomNavigationView.setupWithNavController(controller)
