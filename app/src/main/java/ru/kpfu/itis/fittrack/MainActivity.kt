@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
@@ -26,12 +27,12 @@ class MainActivity : AppCompatActivity() {
             bottomNavigationView.setupWithNavController(controller)
 
             fab.setOnClickListener {
-                onButtonClick(ProductsAndRecipesFragment())
+                navigateToFragment(ProductsAndRecipesFragment())
             }
         }
     }
 
-    private fun onButtonClick(fragment: Fragment) {
+    private fun navigateToFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
             .addToBackStack(null)
