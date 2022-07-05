@@ -39,10 +39,10 @@
         android:text="Proteins: 100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintHorizontal_bias="0.673"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_calories"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintVertical_bias="0.026" />
 
     <TextView
         android:id="@+id/tv_fats"
@@ -51,17 +51,17 @@
         android:text="Fats: 100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintHorizontal_bias="0.626"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_proteins"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintVertical_bias="0.017" />
 
     <ImageView
         android:id="@+id/iv_picture"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
+        android:layout_width="102dp"
+        android:layout_height="96dp"
         android:layout_marginTop="84dp"
-        android:src="@drawable/pizza"
+        android:src="@drawable/cherry1135469"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Pizza"
+        android:text="Cherry"
 
         android:textSize="30dp"
         android:textStyle="bold"
@@ -89,10 +89,10 @@
         android:text="Calories: 100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.353"
         app:layout_constraintStart_toEndOf="@+id/iv_picture"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183" />
+        app:layout_constraintVertical_bias="0.127" />
 
     <TextView
         android:id="@+id/tv_carbo"
@@ -101,22 +101,10 @@
         android:text="Carbo: 100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.355"
+        app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toEndOf="@+id/iv_picture"
         app:layout_constraintTop_toBottomOf="@+id/tv_fats"
-        app:layout_constraintVertical_bias="0.044" />
-
-    <TextView
-        android:id="@+id/tv_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_picture"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.04" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

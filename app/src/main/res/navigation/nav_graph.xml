@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_productsAndRecipesFragment_to_recipeDescriptionFragment2"
             app:destination="@id/recipeDescriptionFragment" />
+        <action
+            android:id="@+id/action_productsAndRecipesFragment_to_productDescriptionFragment"
+            app:destination="@id/productDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -58,6 +61,14 @@
         tools:layout="@layout/fragment_recipe_description" >
         <action
             android:id="@+id/action_recipeDescriptionFragment_to_productsAndRecipesFragment"
+            app:destination="@id/productsAndRecipesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDescriptionFragment"
+        android:name="ru.kpfu.itis.fittrack.fragments.ProductDescriptionFragment"
+        android:label="ProductDescriptionFragment" >
+        <action
+            android:id="@+id/action_productDescriptionFragment_to_productsAndRecipesFragment"
             app:destination="@id/productsAndRecipesFragment" />
     </fragment>
 </navigation>

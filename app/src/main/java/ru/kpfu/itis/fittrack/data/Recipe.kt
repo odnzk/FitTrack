@@ -2,10 +2,10 @@ package ru.kpfu.itis.fittrack.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
-@Entity(indices = [Index(value = ["id_recipe", "title_recipe"], unique = true)])
+@Entity
 data class Recipe (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_recipe")
@@ -23,4 +23,4 @@ data class Recipe (
     @ColumnInfo(name = "fats_recipe")
     var fats: Float,
     @ColumnInfo(name = "carbohydrates")
-    var carbohydrates: Float): Activity(id, title, calories)
+    var carbohydrates: Float): BaseEntity(id, title, calories), Serializable
