@@ -10,7 +10,7 @@ import androidx.room.Query
 interface ProductDao {
     @Query("SELECT * from Product ORDER BY id_product ASC")
     fun getAllProducts(): LiveData<List<Product>>
-
+//TODO: функция удаления элемента из бд
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun add(product: Product)
 

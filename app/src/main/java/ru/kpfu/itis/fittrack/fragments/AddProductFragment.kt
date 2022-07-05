@@ -63,6 +63,7 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
         }
     }
 
+    //TODO: нормальная проверка для продуктов
     private fun inputCheck(
         title: String,
         calories: Int,

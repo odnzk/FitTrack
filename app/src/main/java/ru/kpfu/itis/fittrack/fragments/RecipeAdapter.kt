@@ -12,7 +12,7 @@ class RecipeAdapter(
     private val onItemClick: (Recipe) -> Unit
 ) : RecyclerView.Adapter<RecipeHolder>() {
 
-    private var recipeList = emptyList<Recipe>()
+    var recipeList = emptyList<Recipe>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeHolder {
         return RecipeHolder(

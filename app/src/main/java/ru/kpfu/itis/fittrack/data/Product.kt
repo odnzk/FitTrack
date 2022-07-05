@@ -4,7 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-
+//TODO: решить проблему дубликатов в бд
+//TODO: заполнить бд для продуктов и рецептов, но сделать такие элементы, которые нельзя удалить
 @Entity(indices = [Index(value = ["id_product", "title_product"], unique = true)])
 data class Product (
     @PrimaryKey(autoGenerate = true)

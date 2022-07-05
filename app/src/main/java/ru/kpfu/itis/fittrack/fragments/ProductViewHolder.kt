@@ -2,12 +2,12 @@ package ru.kpfu.itis.fittrack.fragments
 
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
-import ru.kpfu.itis.fittrack.data.Product
 import com.bumptech.glide.RequestManager
 import ru.kpfu.itis.fittrack.R
+import ru.kpfu.itis.fittrack.data.Product
 import ru.kpfu.itis.fittrack.databinding.ItemProductBinding
 
-class ProductViewHolder (
+class ProductViewHolder(
     var binding: ItemProductBinding,
     private var glide: RequestManager,
     private var onItemClick: (Product) -> Unit
@@ -16,6 +16,7 @@ class ProductViewHolder (
     fun onBind(a: Product) {
         with(binding) {
             binding.ivProduct.setImageURI(a.picture.toUri())
+            binding.tvProductName.text = a.title
             root.setOnClickListener {
                 onItemClick(a)
             }
