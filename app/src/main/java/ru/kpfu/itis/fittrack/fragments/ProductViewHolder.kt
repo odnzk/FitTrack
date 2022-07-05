@@ -1,5 +1,6 @@
 package ru.kpfu.itis.fittrack.fragments
 
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import ru.kpfu.itis.fittrack.data.Product
 import com.bumptech.glide.RequestManager
@@ -14,6 +15,7 @@ class ProductViewHolder (
 
     fun onBind(a: Product) {
         with(binding) {
+            binding.ivProduct.setImageURI(a.picture.toUri())
             root.setOnClickListener {
                 onItemClick(a)
             }

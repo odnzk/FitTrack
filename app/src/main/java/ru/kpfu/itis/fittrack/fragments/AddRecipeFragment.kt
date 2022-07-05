@@ -1,19 +1,14 @@
 package ru.kpfu.itis.fittrack.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ru.kpfu.itis.fittrack.R
-import ru.kpfu.itis.fittrack.data.Product
-import ru.kpfu.itis.fittrack.data.ProductViewModel
 import ru.kpfu.itis.fittrack.data.Recipe
 import ru.kpfu.itis.fittrack.data.RecipeViewModel
-import ru.kpfu.itis.fittrack.databinding.FragmentAddBinding
 import ru.kpfu.itis.fittrack.databinding.FragmentAddRecipeBinding
 
 class AddRecipeFragment : Fragment(R.layout.fragment_add_recipe) {
@@ -37,9 +32,10 @@ class AddRecipeFragment : Fragment(R.layout.fragment_add_recipe) {
         var proteins = 0f
         var fats = 0f
         var carbohydrates = 0f
-        var description =""
+        var description = ""
         with(binding) {
             title = etTitle.text.toString()
+            picture = etLink.text.toString()
             calories = etCalories.text.toString().toInt()
             proteins = etProteins.text.toString().toFloat()
             fats = etFats.text.toString().toFloat()

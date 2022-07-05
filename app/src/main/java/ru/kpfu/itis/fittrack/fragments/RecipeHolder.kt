@@ -15,6 +15,7 @@ class RecipeHolder  (
 
     fun onBind(a: Recipe) {
         with(binding) {
+            tvRecipe.text = a.title
             root.setOnClickListener {
                 onItemClick(a)
             }

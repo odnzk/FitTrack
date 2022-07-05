@@ -1,4 +1,4 @@
-package ru.kpfu.itis.fittrack
+package ru.kpfu.itis.fittrack.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -6,18 +6,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.data.Product
 import ru.kpfu.itis.fittrack.data.ProductViewModel
-import ru.kpfu.itis.fittrack.databinding.FragmentAddBinding
+import ru.kpfu.itis.fittrack.databinding.FragmentAddProductBinding
 
-class AddFragment : Fragment(R.layout.fragment_add) {
-    private var _binding: FragmentAddBinding? = null
+class AddProductFragment : Fragment(R.layout.fragment_add_product) {
+    private var _binding: FragmentAddProductBinding? = null
     private val binding get() = _binding!!
     private lateinit var mProductViewModel: ProductViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentAddBinding.bind(view)
+        _binding = FragmentAddProductBinding.bind(view)
         mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
         binding.addProductBtn.setOnClickListener {
             insertDataToDatabase()
@@ -26,12 +27,14 @@ class AddFragment : Fragment(R.layout.fragment_add) {
 
     private fun insertDataToDatabase() {
         var title = ""
+        var picture = ""
         var calories = 0
         var proteins = 0f
         var fats = 0f
         var carbohydrates = 0f
         with(binding) {
             title = etTitle.text.toString()
+            picture = etLink.text.toString()
             calories = etCalories.text.toString().toInt()
             proteins = etProteins.text.toString().toFloat()
             fats = etFats.text.toString().toFloat()
@@ -43,6 +46,7 @@ class AddFragment : Fragment(R.layout.fragment_add) {
             val p = Product(
                 0,
                 title = title,
+                picture = picture,
                 calories = calories,
                 proteins = proteins,
                 fats = fats,

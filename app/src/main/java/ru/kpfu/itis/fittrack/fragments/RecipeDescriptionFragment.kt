@@ -18,6 +18,7 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentRecipeDescriptionBinding.bind(view)
         val id: Int = arguments?.getInt(ARG_TEXT)?.or(0)!!
+
     }
 
     companion object {

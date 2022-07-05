@@ -2,7 +2,6 @@ package ru.kpfu.itis.fittrack.fragments
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import ru.kpfu.itis.fittrack.data.Product
@@ -33,8 +32,7 @@ class ProductAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val currentItem = productList[position]
-        holder.binding.tvProduct.text = currentItem.proteins.toString()
-        holder.binding.ivProduct.setImageURI(currentItem.picture.toUri())
+        holder.onBind(currentItem)
     }
 
     fun setData(p: List<Product>) {

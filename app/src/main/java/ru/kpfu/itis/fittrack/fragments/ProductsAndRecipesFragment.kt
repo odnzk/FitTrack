@@ -2,6 +2,7 @@ package ru.kpfu.itis.fittrack.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,7 +24,9 @@ class ProductsAndRecipesFragment : Fragment(R.layout.fragment_products_and_recip
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentProductsAndRecipesBinding.bind(view)
-        var adapter = ProductAdapter(Glide.with(this), {})
+        var adapter = ProductAdapter(Glide.with(this), {
+            Toast.makeText(requireContext(), it.calories.toString(), Toast.LENGTH_SHORT).show()
+        })
         var recipeAdapter = RecipeAdapter(Glide.with(this), {
             findNavController().navigate(
             R.id.action_productsAndRecipesFragment_to_recipeDescriptionFragment,
@@ -31,8 +34,8 @@ class ProductsAndRecipesFragment : Fragment(R.layout.fragment_products_and_recip
         })
         binding.rvProduct.adapter = adapter
         binding.rvRecipe.adapter = recipeAdapter
-        binding.rvProduct.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvRecipe.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvProduct.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRecipe.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
         mRecipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
         mProductViewModel.getAllProducts.observe(viewLifecycleOwner, Observer { a ->
