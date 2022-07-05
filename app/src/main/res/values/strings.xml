@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FitTrack</string>
+
+    <string name="products_recipes">Day list</string>
+    <string name="settings">Settings</string>
+    <string name="calorie_tracker">Calorie tracker</string>
+    <string name="stats">Stats</string>
 </resources>
