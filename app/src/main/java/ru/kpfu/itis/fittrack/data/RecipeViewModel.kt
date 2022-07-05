@@ -18,9 +18,16 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
         getAllRecipes = repository.getAllRecipes
     }
 
-    fun addProduct(recipe: Recipe){
+    fun addRecipe(recipe: Recipe){
         viewModelScope.launch(Dispatchers.IO) {
             repository.addRecipe(recipe)
         }
     }
+
+    fun deleteRecipe(recipe: Recipe) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteRecipe(recipe)
+        }
+    }
+
 }

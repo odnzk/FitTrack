@@ -1,9 +1,10 @@
-package ru.kpfu.itis.fittrack.fragments
+package ru.kpfu.itis.fittrack
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
+import ru.kpfu.itis.fittrack.RecipeHolder
 import ru.kpfu.itis.fittrack.data.Recipe
 import ru.kpfu.itis.fittrack.databinding.ItemRecipeBinding
 

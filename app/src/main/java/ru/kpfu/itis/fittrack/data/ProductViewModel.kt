@@ -22,4 +22,11 @@ class ProductViewModel(application: Application): AndroidViewModel(application) 
             repository.addProduct(product)
         }
     }
+
+    fun deleteProduct(product: Product) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteProduct(product)
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-package ru.kpfu.itis.fittrack.fragments
+package ru.kpfu.itis.fittrack
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

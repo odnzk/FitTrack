@@ -1,4 +1,4 @@
-package ru.kpfu.itis.fittrack.fragments
+package ru.kpfu.itis.fittrack
 
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
