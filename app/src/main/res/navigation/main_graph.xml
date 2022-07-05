@@ -25,4 +25,9 @@
         tools:layout="@layout/fragment_stats_week"
         android:name="ru.kpfu.itis.fittrack.fragments.StatsWeekFragment"
         android:label="StatsWeekFragment" />
+    <fragment
+        android:id="@+id/productsAndRecipesFragment"
+        tools:layout="@layout/fragment_products_and_recipes"
+        android:name="ru.kpfu.itis.fittrack.fragments.ProductsAndRecipesFragment"
+        android:label="ProductsAndRecipesFragment" />
 </navigation>
