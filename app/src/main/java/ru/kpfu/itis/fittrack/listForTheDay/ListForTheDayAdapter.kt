@@ -4,17 +4,17 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.kpfu.itis.fittrack.databinding.ListForTheDayItemBinding
+import ru.kpfu.itis.fittrack.databinding.TrainingFoodForTheDayItemBinding
 
 class ListForTheDayAdapter(
     private val list: MutableList<ItemForTheDay>,
-    private val onItemClick: (Pair<ItemForTheDay, ListForTheDayItemBinding>) -> Unit
+    private val onItemClick: (Pair<ItemForTheDay, TrainingFoodForTheDayItemBinding>) -> Unit
 ) : RecyclerView.Adapter<ListForTheDayViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListForTheDayViewHolder =
         ListForTheDayViewHolder(
-            ListForTheDayItemBinding.inflate(
+            TrainingFoodForTheDayItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

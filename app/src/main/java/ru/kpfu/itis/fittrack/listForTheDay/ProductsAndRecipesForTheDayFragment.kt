@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.kpfu.itis.fittrack.databinding.FragmentListForTheDayBinding
 
 
-class ListForTheDayFragment : Fragment() {
+class ProductsAndRecipesForTheDayFragment : Fragment() {
 
     private var _binding: FragmentListForTheDayBinding? = null
     private val binding get() = _binding!!
@@ -45,37 +45,20 @@ class ListForTheDayFragment : Fragment() {
         list.sortBy(selector)
         list.reverse()
 
-
-
-
         layoutManager = LinearLayoutManager(binding.root.context)
         adapter = ListForTheDayAdapter(
             list
         ) { it ->
             //todo navigation will be here instead of Toast
-            Toast.makeText(binding.root.context, it.first.name.toString(), Toast.LENGTH_LONG).show()
+            Toast.makeText(binding.root.context, it.first.name, Toast.LENGTH_LONG).show()
         }
 
         itemSectionDecoration = ItemSectionDecoration(binding.root.context) {
             adapter.getItemList().toMutableList()
         }
         binding.rvDayList.addItemDecoration(itemSectionDecoration)
-
-        val swipeGesture = object : SwipeGesture(binding.root.context){
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                when(direction) {
-                    ItemTouchHelper.LEFT -> {
-                        adapter.deleteItem(viewHolder.adapterPosition)
-                    }
-                    ItemTouchHelper.RIGHT -> {
-                        adapter.deleteItem(viewHolder.adapterPosition)
-                    }
-                }
-            }
-        }
-        val touchHelper = ItemTouchHelper(swipeGesture)
+        val touchHelper = ItemTouchHelper(this.addSwipeGesture(binding, adapter))
         touchHelper.attachToRecyclerView(binding.rvDayList)
-
 
         binding.rvDayList.layoutManager = layoutManager
         binding.rvDayList.adapter = adapter

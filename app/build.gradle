@@ -50,5 +50,6 @@ dependencies {
 
     //dependency for deletion on swipe
     implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'
+    implementation 'me.relex:circleindicator:2.1.6'
 
 }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".listForTheDay.ListForTheDayFragment">
+    tools:context=".listForTheDay.ProductsAndRecipesForTheDayFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_dayList"
@@ -17,5 +17,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="3"
-        tools:listitem="@layout/list_for_the_day_item" />
+        tools:listitem="@layout/training_food_for_the_day_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>
