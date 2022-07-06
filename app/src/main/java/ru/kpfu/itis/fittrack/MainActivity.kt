@@ -1,28 +1,41 @@
 package ru.kpfu.itis.fittrack
 
-import android.content.Context
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupWithNavController
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
-import ru.kpfu.itis.fittrack.viewpager.ReceivingInformationFragment
-import ru.kpfu.itis.fittrack.viewpager.ViewPagerAdapter
+import ru.kpfu.itis.fittrack.fragments.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var controller: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        with (binding) {
+            controller = (supportFragmentManager.findFragmentById(R.id.container)
+                    as NavHostFragment).navController
+            bottomNavigationView.setupWithNavController(controller)
 
-
-        // открываем viewpager2 только один раз
-        val sharedPref = this.getSharedPreferences(getString(R.string.preferenceFileKey_UserData), Context.MODE_PRIVATE)
-        if(sharedPref.getBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, true)){
-            binding.viewPager2.adapter = ViewPagerAdapter(this, this)
-            binding.viewPager2.visibility = View.VISIBLE
-            sharedPref.edit().putBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, false).apply()
+            fab.setOnClickListener {
+                controller.navigate(R.id.productsAndRecipesFragment)
+            }
         }
+    }
 
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }
