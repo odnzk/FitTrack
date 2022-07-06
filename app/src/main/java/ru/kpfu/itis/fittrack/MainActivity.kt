@@ -2,14 +2,18 @@ package ru.kpfu.itis.fittrack
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.kpfu.itis.fittrack.listForTheDay.PlaceHolderFragment
-import ru.kpfu.itis.fittrack.listForTheDay.ProductsAndRecipesForTheDayFragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.hide()
-        supportFragmentManager.beginTransaction().add(R.id.container, PlaceHolderFragment()).commit()
+        setupActionBarWithNavController(findNavController(R.id.container))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.container)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
