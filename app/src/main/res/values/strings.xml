@@ -8,4 +8,9 @@
     <string name="settings">Settings</string>
     <string name="calorie_tracker">Calorie tracker</string>
     <string name="stats">Stats</string>
+    <string name="category_notifications">Notifications</string>
+    <string name="notif_daily_recipe">Daily recipe</string>
+    <string name="notif_daily_recipe_desc">Daily notification with an arbitrary recipe from the application directory</string>
+    <string name="notif_reminder">Daily reminder</string>
+    <string name="notif_reminder_desc">A daily notification reminding you to fill out the food log</string>
 </resources>

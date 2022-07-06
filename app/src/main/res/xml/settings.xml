@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/category_notifications">
+
+    <SwitchPreferenceCompat
+        android:key="switchDailyRecipe"
+        android:title="@string/notif_daily_recipe"
+        android:summary="@string/notif_daily_recipe_desc"/>
+
+    <SwitchPreferenceCompat
+        android:key="switchReminder"
+        android:title="@string/notif_reminder"
+        android:summary="@string/notif_reminder_desc"/>
+    </PreferenceCategory>
+</androidx.preference.PreferenceScreen>
