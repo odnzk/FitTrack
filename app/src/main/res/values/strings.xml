@@ -10,4 +10,13 @@
         <item name="breakfast">Breakfast</item>
         <item name="dinner">Dinner</item>
     </string-array>
+
+    <string name="statsDayTitle">Calorie tracker</string>
+    <string name="proteins">Proteins</string>
+    <string name="carbs">Carbs</string>
+    <string name="fat">Fat</string>
+    <string name="products_recipes">Day list</string>
+    <string name="settings">Settings</string>
+    <string name="calorie_tracker">Calorie tracker</string>
+    <string name="stats">Stats</string>
 </resources>

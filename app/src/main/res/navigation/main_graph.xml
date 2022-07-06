@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/listForTheDayFragment">
+
+    <fragment
+        android:id="@+id/listForTheDayFragment"
+        tools:layout="@layout/fragment_list_for_the_day"
+        android:name="ru.kpfu.itis.fittrack.fragments.ListForTheDayFragment"
+        android:label="ListForTheDayFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        tools:layout="@layout/fragment_settings"
+        android:name="ru.kpfu.itis.fittrack.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/statsDayFragment"
+        tools:layout="@layout/fragment_stats_day"
+        android:name="ru.kpfu.itis.fittrack.fragments.StatsDayFragment"
+        android:label="StatsDayFragment" />
+    <fragment
+        android:id="@+id/statsWeekFragment"
+        tools:layout="@layout/fragment_stats_week"
+        android:name="ru.kpfu.itis.fittrack.fragments.StatsWeekFragment"
+        android:label="StatsWeekFragment" />
+    <fragment
+        android:id="@+id/productsAndRecipesFragment"
+        tools:layout="@layout/fragment_products_and_recipes"
+        android:name="ru.kpfu.itis.fittrack.fragments.ProductsAndRecipesFragment"
+        android:label="ProductsAndRecipesFragment" />
+</navigation>
