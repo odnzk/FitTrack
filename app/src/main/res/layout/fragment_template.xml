@@ -44,19 +44,22 @@
             android:id="@+id/rb_1"
             style="@style/vp_rbBlackStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
         <RadioButton
             android:id="@+id/rb_2"
             style="@style/vp_rbBlackStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/rb_3"
             style="@style/vp_rbBlackStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

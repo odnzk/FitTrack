@@ -1,9 +1,9 @@
 package ru.kpfu.itis.fittrack
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
 import ru.kpfu.itis.fittrack.viewpager.ReceivingInformationFragment
 import ru.kpfu.itis.fittrack.viewpager.ViewPagerAdapter
@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        // открываем viewpager2 только один раз
         val sharedPref = this.getSharedPreferences(getString(R.string.preferenceFileKey_UserData), Context.MODE_PRIVATE)
         if(sharedPref.getBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, true)){
             binding.viewPager2.adapter = ViewPagerAdapter(this, this)

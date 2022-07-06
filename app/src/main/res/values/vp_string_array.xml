@@ -5,4 +5,16 @@
         <item>Use the convenient recipe guides, discover new dishes for yourself</item>
         <item>Track the quantity and quality of calories consumed per week using the statistics screen</item>
     </string-array>
+
+    <string-array name="vp_spinner_goal">
+        <item>lose weight</item>
+        <item>keep the same</item>
+        <item>gain weight</item>
+    </string-array>
+
+    <string-array name="vp_spinner_activeness">
+        <item>minimum</item>
+        <item>average</item>
+        <item>maximum</item>
+    </string-array>
 </resources>

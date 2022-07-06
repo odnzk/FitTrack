@@ -26,11 +26,10 @@
         android:id="@+id/materialButtonToggleGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="@id/btnSaveUser"
         app:layout_constraintEnd_toEndOf="@id/etAge"
         app:layout_constraintStart_toStartOf="@id/etAge"
-        app:layout_constraintTop_toBottomOf="@+id/etAge"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_goal"
         app:singleSelection="true">
 
         <Button
@@ -88,7 +87,7 @@
         android:hint="@string/vp_riTvAge"
         android:inputType="number"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@id/materialButtonToggleGroup"
+        app:layout_constraintBottom_toTopOf="@id/spinner_activeness"
         app:layout_constraintEnd_toEndOf="@+id/etWeight"
         app:layout_constraintStart_toStartOf="@+id/etWeight"
         app:layout_constraintTop_toBottomOf="@+id/etWeight" />
@@ -102,7 +101,27 @@
         app:layout_constraintEnd_toEndOf="@+id/materialButtonToggleGroup"
         app:layout_constraintStart_toStartOf="@+id/materialButtonToggleGroup"
         app:layout_constraintTop_toBottomOf="@id/materialButtonToggleGroup"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_activeness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/spinner_goal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etAge" />
+
+    <Spinner
+        android:id="@+id/spinner_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/materialButtonToggleGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_activeness" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
