@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">FitTrack</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lunch">Lunch</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="dinner">Dinner</string>
+
+    <string-array name="food_categories">
+        <item name="lunch">Lunch__</item>
+        <item name="breakfast">Breakfast</item>
+        <item name="dinner">Dinner</item>
+    </string-array>
 </resources>

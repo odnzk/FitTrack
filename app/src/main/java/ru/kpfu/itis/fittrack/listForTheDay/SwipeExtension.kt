@@ -16,10 +16,10 @@ fun Fragment.addSwipeGesture(
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             when (direction) {
                 ItemTouchHelper.LEFT -> {
-                    adapter.deleteItem(viewHolder.bindingAdapterPosition)
+                    context?.let { adapter.deleteItem(viewHolder.bindingAdapterPosition, it) }
                 }
                 ItemTouchHelper.RIGHT -> {
-                    adapter.deleteItem(viewHolder.bindingAdapterPosition)
+                    context?.let { adapter.deleteItem(viewHolder.bindingAdapterPosition, it) }
                 }
             }
         }

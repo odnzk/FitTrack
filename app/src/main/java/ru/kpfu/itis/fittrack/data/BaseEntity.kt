@@ -4,4 +4,7 @@ abstract class BaseEntity (
     open var id: Int,
     open var title: String,
     open var calories: Int,
-)
+    open var category: String
+) {
+
+}

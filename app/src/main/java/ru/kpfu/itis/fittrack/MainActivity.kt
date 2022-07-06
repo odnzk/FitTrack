@@ -9,11 +9,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setupActionBarWithNavController(findNavController(R.id.container))
+        setupActionBarWithNavController(findNavController(R.id.container_nav))
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.container)
+        val navController = findNavController(R.id.container_nav)
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

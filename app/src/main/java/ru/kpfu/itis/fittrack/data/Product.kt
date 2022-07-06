@@ -24,4 +24,4 @@ data class Product (
     var fats: Float,
     @ColumnInfo(name = "carbohydrates_product")
     var carbohydrates: Float
-): BaseEntity(id, title, calories), Serializable
+): BaseEntity(id, title, calories, ""), Serializable

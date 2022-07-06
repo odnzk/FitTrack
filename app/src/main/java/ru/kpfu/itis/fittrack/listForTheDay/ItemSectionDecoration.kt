@@ -7,12 +7,14 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ru.kpfu.itis.fittrack.data.BaseEntity
 
 class ItemSectionDecoration(
     private val context: Context,
-    private val getItemList:() -> MutableList<ItemForTheDay>
+    private val getItemList:() -> MutableList<BaseEntity>
 ): RecyclerView.ItemDecoration() {
 
     private val dividerHeight = dipToPx(context, 0.8f)
@@ -130,3 +132,5 @@ class ItemSectionDecoration(
         return outMetrics.widthPixels
     }
 }
+
+

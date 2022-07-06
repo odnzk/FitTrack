@@ -25,18 +25,18 @@ class ProductsAndRecipesFragment : Fragment(R.layout.fragment_products_and_recip
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentProductsAndRecipesBinding.bind(view)
 //            TODO: добавление в список на день по долгому нажатию
-        var adapter = ProductAdapter(Glide.with(this), {
+        val adapter = ProductAdapter(Glide.with(this)) {
             findNavController().navigate(
                 R.id.action_productsAndRecipesFragment_to_productDescriptionFragment,
                 ProductDescriptionFragment.createProduct(it)
             )
-        })
-        var recipeAdapter = RecipeAdapter(Glide.with(this), {
+        }
+        val recipeAdapter = RecipeAdapter(Glide.with(this)) {
             findNavController().navigate(
                 R.id.action_productsAndRecipesFragment_to_recipeDescriptionFragment,
                 RecipeDescriptionFragment.createRecipe(it)
             )
-        })
+        }
 
         binding.rvProduct.adapter = adapter
         binding.rvRecipe.adapter = recipeAdapter
@@ -49,8 +49,8 @@ class ProductsAndRecipesFragment : Fragment(R.layout.fragment_products_and_recip
         mProductViewModel.getAllProducts.observe(viewLifecycleOwner, Observer { a ->
             adapter.setData(a) })
         mRecipeViewModel.getAllRecipes.observe(
-            viewLifecycleOwner,
-            { a -> recipeAdapter.setData(a) })
+            viewLifecycleOwner
+        ) { a -> recipeAdapter.setData(a) }
 
         binding.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_productsAndRecipesFragment_to_addFragment)
@@ -58,6 +58,12 @@ class ProductsAndRecipesFragment : Fragment(R.layout.fragment_products_and_recip
 
         binding.btnAddRecipe.setOnClickListener {
             findNavController().navigate(R.id.action_productsAndRecipesFragment_to_addRecipeFragment)
+        }
+
+
+        // todo this solution is temporary
+        binding.btnNavigateToDayList.setOnClickListener {
+            findNavController().navigate(R.id.action_productsAndRecipesFragment_to_placeHolderFragment)
         }
     }
 

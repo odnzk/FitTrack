@@ -11,4 +11,8 @@ class RecipeRepository(private val recipeDao: RecipeDao) {
     suspend fun deleteRecipe(recipe: Recipe) {
         recipeDao.deleteRecipe(recipe)
     }
+
+    fun getRecipe(id: Int) :LiveData<Recipe>{
+        return recipeDao.getRecipe(id)
+    }
 }

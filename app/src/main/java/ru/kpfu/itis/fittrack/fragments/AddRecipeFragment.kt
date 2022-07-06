@@ -56,6 +56,7 @@ class AddRecipeFragment : Fragment(R.layout.fragment_add_recipe) {
             )
             // Add Data to Database
             mRecipeViewModel.addRecipe(p)
+
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
             // Navigate Back
             findNavController().navigate(R.id.action_addRecipeFragment_to_productsAndRecipesFragment)

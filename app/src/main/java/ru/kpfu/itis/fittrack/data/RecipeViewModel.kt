@@ -2,6 +2,8 @@ package ru.kpfu.itis.fittrack.data
 
 
 import android.app.Application
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -29,5 +31,9 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
             repository.deleteRecipe(recipe)
         }
     }
+    fun getRecipe(id:Int) : LiveData<Recipe> {
+        return repository.getRecipe(id)
+    }
+
 
 }

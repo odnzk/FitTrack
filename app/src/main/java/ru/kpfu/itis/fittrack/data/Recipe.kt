@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity
-data class Recipe (
+data class Recipe(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_recipe")
     override var id: Int,
@@ -23,4 +23,4 @@ data class Recipe (
     @ColumnInfo(name = "fats_recipe")
     var fats: Float,
     @ColumnInfo(name = "carbohydrates")
-    var carbohydrates: Float): BaseEntity(id, title, calories), Serializable
+    var carbohydrates: Float): BaseEntity(id, title, calories, ""), Serializable
