@@ -28,6 +28,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         const val SEC_IN_HOUR = 3600
         const val SEC_IN_MINUTE = 60
         const val SEC_IN_DAY = 86400
+        const val MIN_VALUE = 1
+        const val MAX_VALUE = 250
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -35,12 +37,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         findPreference<EditTextPreference>("et_height")
             ?.setOnPreferenceChangeListener { _, newValue ->
-                true
+                isValid(newValue.toString())
             }
 
+        findPreference<EditTextPreference>("et_weight")
+            ?.setOnPreferenceChangeListener { _, newValue ->
+                isValid(newValue.toString())
+            }
 
-//        Log.d("HELP",activity?.getSharedPreferences("settings",Context.MODE_PRIVATE)?.contains("et_height").toString() )
-//        Log.d("HELP", activity?.getPreferences(Context.MODE_PRIVATE)?.contains("et_height").toString() )
+        findPreference<EditTextPreference>("et_age")
+            ?.setOnPreferenceChangeListener { _, newValue ->
+                isValid(newValue.toString())
+            }
+
 
         findPreference<SwitchPreferenceCompat>("switchDailyRecipe")
             ?.setOnPreferenceChangeListener { _, newValue ->
@@ -85,6 +94,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             (hours - calendar.get(Calendar.HOUR_OF_DAY)) * SEC_IN_HOUR + (minute - calendar.get(
                 Calendar.MINUTE
             )) * SEC_IN_MINUTE - calendar.get(Calendar.SECOND)
+
         if (delayInSeconds < 0) {
             delayInSeconds += SEC_IN_DAY
         }
@@ -150,4 +160,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         createChannelIfItIsNotCreated()
         showDialogTimePicker(flag)
     }
+
+    private fun isValid(newValue: String):Boolean = newValue.isNotEmpty() && newValue.toInt() in MIN_VALUE..MAX_VALUE
+
 }

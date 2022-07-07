@@ -24,7 +24,7 @@ class DailyRecipeWorker(appContext: Context, workerParams: WorkerParameters) :
         )
             .setSmallIcon(R.drawable.ic_baseline_menu_book)
             .setContentTitle(context.resources.getString(R.string.notif_daily_recipe))
-            // ПОЛУЧАЕМ РЕЦЕПТ ИЗ БАЗЫ ДАННЫХ: ДОПИСАТЬ КОГДА БУДЕТ БД
+            // ПОЛУЧАЕМ РЕЦЕПТ ИЗ БАЗЫ ДАННЫХ и сеттим его в контент текст: смогу дописать, когда будет бд
             .setContentText(context.resources.getString(R.string.notif_reminder_content))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
