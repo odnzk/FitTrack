@@ -1,6 +1,7 @@
 package ru.kpfu.itis.fittrack.fragments
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -10,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.data.Recipe
 import ru.kpfu.itis.fittrack.data.RecipeViewModel
@@ -81,7 +81,7 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
 
 
         binding.btnAddItem.setOnClickListener {
-
+            changeSharedPref()
             val sharedPreferencesStorage = SharedPreferencesStorage(binding.root.context)
             if (category != null) {
                 val type = "Recipe"
@@ -99,6 +99,27 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
         }
     }
 
+    private fun changeSharedPref(){
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.preferenceFileKey_UserData),
+            Context.MODE_PRIVATE
+        )
+        var eatenCalories = sharedPref?.getInt(ProductDescriptionFragment.EATEN_CALORIES, 0)
+        var eatenProteins = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f)
+        var eatenCarbs = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f)
+        var eatenFats = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_FATS, 0f)
+        val editor = sharedPref?.edit()
+
+        eatenCalories = eatenCalories?.plus(curRecipe?.calories!!)
+        eatenProteins = eatenProteins?.plus(curRecipe?.proteins!!)
+        eatenCarbs = eatenCarbs?.plus(curRecipe?.carbohydrates!!)
+        eatenFats = eatenFats?.plus(curRecipe?.fats!!)
+
+        editor?.putInt(ProductDescriptionFragment.EATEN_CALORIES, eatenCalories!!)?.apply()
+        editor?.putFloat(ProductDescriptionFragment.EATEN_PROTEINS, eatenProteins!!)?.apply()
+        editor?.putFloat(ProductDescriptionFragment.EATEN_CARBS, eatenCarbs!!)?.apply()
+        editor?.putFloat(ProductDescriptionFragment.EATEN_FATS, eatenFats!!)?.apply()
+    }
 
     companion object {
         private const val ARG_TEXT = "recipe"
