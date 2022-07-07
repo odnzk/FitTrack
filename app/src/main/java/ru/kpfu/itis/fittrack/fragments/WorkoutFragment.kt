@@ -3,6 +3,7 @@ package ru.kpfu.itis.fittrack.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,8 +19,10 @@ class WorkoutFragment : Fragment(R.layout.fragment_workout) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentWorkoutBinding.bind(view)
         val adapter = WorkoutAdapter(Glide.with(this)) {
-            //TODO: логика добавления по нажатию на элемент рекуклера, будет диалоговое окно
-            //добавить в список на день? Да нет
+            findNavController().navigate(
+                R.id.action_workoutFragment_to_workoutDescriptionFragment,
+                WorkoutDescriptionFragment.create(it)
+            )
         }
         binding.rvList.adapter = adapter
         binding.rvList.layoutManager =

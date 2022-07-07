@@ -132,11 +132,23 @@
         <action
             android:id="@+id/action_workoutFragment_to_trainingsForTheDayFragment"
             app:destination="@id/trainingsForTheDayFragment" />
+        <action
+            android:id="@+id/action_workoutFragment_to_workoutDescriptionFragment"
+            app:destination="@id/workoutDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/trainingsForTheDayFragment"
         android:name="ru.kpfu.itis.fittrack.listForTheDay.TrainingsForTheDayFragment"
         android:label="fragment_trainings_for_the_day"
         tools:layout="@layout/fragment_trainings_for_the_day" />
+    <fragment
+        android:id="@+id/workoutDescriptionFragment"
+        android:name="ru.kpfu.itis.fittrack.fragments.WorkoutDescriptionFragment"
+        android:label="fragment_workout_description"
+        tools:layout="@layout/fragment_workout_description" >
+        <action
+            android:id="@+id/action_workoutDescriptionFragment_to_workoutFragment"
+            app:destination="@id/workoutFragment" />
+    </fragment>
 
 </navigation>
