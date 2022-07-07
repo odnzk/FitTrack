@@ -138,16 +138,16 @@ class ReceivingInformationFragment : Fragment() {
         editor?.putInt(AGE_KEY, age)
         editor?.putString(ACTIVENESS_KEY, activeness)
         editor?.putString(GOAL_KEY, goal)
-        editor?.commit()
+        editor?.apply()
     }
 
     companion object PreferencesKeysForSavingUserDataAndIsColdBoot {
-        const val GENDER_KEY = "vp-gender"
-        const val HEIGHT_KEY = "vp-height"
-        const val WEIGHT_KEY = "vp-weight"
-        const val ACTIVENESS_KEY = "vp-activeness"
-        const val GOAL_KEY = "vp-goal"
-        const val AGE_KEY = "vp-age"
+        const val GENDER_KEY = "list_gender"
+        const val HEIGHT_KEY = "et_height"
+        const val WEIGHT_KEY = "et_weight"
+        const val ACTIVENESS_KEY = "dropdown_activeness"
+        const val GOAL_KEY = "dropdown_goal"
+        const val AGE_KEY = "et_age"
         const val IS_FIRST_TIME_RUNNING = "isFirstTimeRunning"
     }
 }
