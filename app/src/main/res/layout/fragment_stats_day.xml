@@ -52,6 +52,7 @@
         android:layout_height="200dp"
         android:indeterminateOnly="false"
         android:progressDrawable="@drawable/circle_pb"
+        android:progress="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,10 +61,9 @@
     <ProgressBar
         android:id="@+id/pb_proteins"
         style="?android:progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/square_pb"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:indeterminateOnly="false"
-
+        android:layout_height="5dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="30dp"
         tools:progress="40"
@@ -73,25 +73,26 @@
         app:layout_constraintTop_toTopOf="@+id/pb_goal" />
     <ProgressBar
         android:id="@+id/pb_carbs"
+        android:progressDrawable="@drawable/square_pb"
         style="?android:progressBarStyleHorizontal"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:indeterminateOnly="false"
-
+        android:layout_height="5dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
+        tools:progress="50"
         app:layout_constraintStart_toStartOf="@+id/pb_proteins"
         app:layout_constraintTop_toBottomOf="@+id/pb_proteins"
         app:layout_constraintBottom_toTopOf="@id/pb_fat"/>
     <ProgressBar
         android:id="@+id/pb_fat"
         style="?android:progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/square_pb"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="5dp"
         android:layout_marginTop="20dp"
-
         android:layout_marginBottom="30dp"
-        android:indeterminateOnly="false"
+        android:animationResolution="100"
+        tools:progress="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/pb_proteins"
         app:layout_constraintTop_toBottomOf="@+id/pb_carbs" />
