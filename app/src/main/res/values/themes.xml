@@ -13,4 +13,14 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="vp_edCustom" parent="Widget.AppCompat.EditText">
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:ems">10</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+    <style name="vp_tvDescriptionStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

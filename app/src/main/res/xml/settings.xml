@@ -23,17 +23,20 @@
             android:key="et_height"
             android:title="@string/vp_riTvHeight"
             app:useSimpleSummaryProvider="true"
-            android:dialogTitle="@string/Change"/>
+            android:dialogTitle="@string/Change"
+            android:dialogLayout="@layout/preference_edit_text_number"/>
         <EditTextPreference
             android:key="et_weight"
             android:title="@string/vp_riTvWeight"
             app:useSimpleSummaryProvider="true"
-            android:dialogTitle="@string/Change"/>
+            android:dialogTitle="@string/Change"
+            android:dialogLayout="@layout/preference_edit_text_weight"/>
         <EditTextPreference
             android:key="et_age"
             android:title="@string/vp_riTvAge"
             app:useSimpleSummaryProvider="true"
-            android:dialogTitle="@string/Change"/>
+            android:dialogTitle="@string/Change"
+            android:dialogLayout="@layout/preference_edit_text_number"/>
         <DropDownPreference
             android:key="dropdown_activeness"
             android:title="@string/activeness"
