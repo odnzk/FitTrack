@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.databinding.FragmentStatsWeekBinding
+import ru.kpfu.itis.fittrack.util.BarChartProcessor
 
 
 class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
@@ -15,35 +17,43 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
     private var _binding: FragmentStatsWeekBinding? = null
     private val binding get() = _binding!!
 
-    private var graphLabel: String = ""
+    private lateinit var processor: BarChartProcessor
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentStatsWeekBinding.bind(view)
-
-        graphLabel = "Calories"
-
-        setGraphData(arrayListOf(1f, 2f, 3f, 4f, 5f, 6f, 7f), graphLabel)
-
-    }
-
-    private fun setGraphData(list: List<Float>, label: String) {
-        with(binding) {
-            barGraph.data = BarData(
-                createDataSetFromList(list, label)
-            )
-            barGraph.animateXY(1000, 1000)
+        processor = BarChartProcessor(binding.barGraph)
+        with(binding.barGraph) {
+            setScaleEnabled(false)
+            description.text = ""
         }
-    }
 
-    private fun createDataSetFromList(list: List<Float>, label: String): BarDataSet {
-        val entryList = ArrayList<BarEntry>()
-        var i = 0f
-        list.forEach {
-            entryList.add(
-                BarEntry(i++, it)
-            )
+        val graphLabel = "Calories"
+        val data = arrayListOf(
+            1f,
+            2f,
+            3f,
+            4f,
+            5f,
+            6f,
+            7f
+        )
+        val strings = arrayListOf(
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+        )
+
+        with(processor) {
+            setGraphDataFromList(data, graphLabel)
+            setStringFields(strings)
         }
-        return BarDataSet(entryList, label)
+
+
     }
 
     override fun onDestroyView() {
