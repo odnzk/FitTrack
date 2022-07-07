@@ -1,24 +1,28 @@
 package ru.kpfu.itis.fittrack
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import ru.kpfu.itis.fittrack.data.ProductViewModel
 import ru.kpfu.itis.fittrack.data.RecipeViewModel
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
+import ru.kpfu.itis.fittrack.fragments.deleteFromSharedPreferences
 import ru.kpfu.itis.fittrack.viewpager.ReceivingInformationFragment
 import ru.kpfu.itis.fittrack.viewpager.ViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding:ActivityMainBinding
-
     private lateinit var mProductViewModel: ProductViewModel
     private lateinit var mRecipeViewModel: RecipeViewModel
     private lateinit var prefFirstLaunch: SharedPreferences
@@ -47,7 +51,16 @@ class MainActivity : AppCompatActivity() {
             bottomNavigationView.setupWithNavController(controller)
 
             fab.setOnClickListener {
-                controller.navigate(R.id.productsAndRecipesFragment)
+                val builder = AlertDialog.Builder(this@MainActivity)
+                builder.setPositiveButton("Food") { _, _ ->
+                    controller.navigate(R.id.productsAndRecipesFragment)
+                }
+                builder.setNegativeButton("Workout") { _, _ ->
+                    controller.navigate(R.id.workoutFragment)
+                }
+                builder.setTitle("Select an action")
+                builder.setMessage("What do you want to add?")
+                builder.create().show()
             }
         }
 

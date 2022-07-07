@@ -4,4 +4,6 @@ data class Workout(
     override var id: Int,
     override var title: String,
     override var calories: Int,
-): BaseEntity(id, title, calories, "", "")
+    var picture: String,
+    override var category: String
+): BaseEntity(id, title, calories, category, "workout")
