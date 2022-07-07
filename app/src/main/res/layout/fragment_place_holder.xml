@@ -7,7 +7,6 @@
     tools:context=".listForTheDay.PlaceHolderFragment">
 
    <me.relex.circleindicator.CircleIndicator3
-       style="@style/vp_rbBlackStyle"
        app:ci_width="10dp"
        app:ci_height="10dp"
        app:ci_drawable="@color/black"

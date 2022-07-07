@@ -19,8 +19,6 @@ class TrainingsForTheDayFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: ListForTheDayAdapter
 
-
-
     private val list: MutableList<BaseEntity> = mutableListOf()
 
 
@@ -44,12 +42,12 @@ class TrainingsForTheDayFragment : Fragment() {
 
         // this is just a temporary solution
 
-
         adapter = ListForTheDayAdapter(
             list
         ) { it ->
             //todo navigation will be here instead of Toast
-            Toast.makeText(binding.root.context, it.first.title, Toast.LENGTH_LONG).show()
+
+
         }
 
         itemSectionDecoration = ItemSectionDecoration(binding.root.context) {

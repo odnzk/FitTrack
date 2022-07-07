@@ -4,14 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.kpfu.itis.fittrack.data.BaseEntity
 import ru.kpfu.itis.fittrack.databinding.TrainingFoodForTheDayItemBinding
 
 class ListForTheDayAdapter(
     private val list: MutableList<BaseEntity>,
-    private val onItemClick: (Pair<BaseEntity, TrainingFoodForTheDayItemBinding>) -> Unit
+    private val onItemClick: (BaseEntity) -> Unit
 ) : RecyclerView.Adapter<ListForTheDayViewHolder>() {
 
 
@@ -38,28 +37,33 @@ class ListForTheDayAdapter(
     fun deleteItem(id: Int, context: Context) {
         val item = list.get(id)
         val sharedPreferencesStorage = SharedPreferencesStorage(context)
-        val idSArr = sharedPreferencesStorage.loadFood()?.split(" ")?.toMutableList()
+        val idSArr = sharedPreferencesStorage.loadIDS()?.split(" ")?.toMutableList()
         val categories = sharedPreferencesStorage.loadCategories()?.split(" ")?.toMutableList()
-
+        val types = sharedPreferencesStorage.loadTypes()?.split(" ")?.toMutableList()
         var i = 0
+
         if (idSArr != null) {
             for (idd in idSArr) {
                 val category = categories?.get(i)
-                if (idd == (item.id - 2).toString() && category == item.category) {
+                val type = types?.get(i)
+                if (idd == (item.id - 1).toString() && category == item.category && type == item.type) {
                     break
                 }
+                i++
             }
-            i++
         }
         idSArr?.removeAt(i)
         categories?.removeAt(i)
+        types?.removeAt(i)
         sharedPreferencesStorage.clearAll()
         if (idSArr != null) {
             for ((s, k) in idSArr.withIndex()) {
                 val category = categories?.get(s)
-                if (!k.isNullOrBlank() && !category.isNullOrBlank()) {
+                val type = types?.get(s)
+                if (!k.isNullOrBlank() && !category.isNullOrBlank() && !type.isNullOrBlank()) {
                     sharedPreferencesStorage.addCategory(category)
-                    sharedPreferencesStorage.addFoodItem(k.toInt())
+                    sharedPreferencesStorage.addItemID(k.toInt())
+                    sharedPreferencesStorage.addType(type)
                 }
             }
         }
@@ -67,9 +71,14 @@ class ListForTheDayAdapter(
         notifyDataSetChanged()
     }
 
+
+
     @SuppressLint("NotifyDataSetChanged")
     fun addItem(i: Int, itemForTheDay: BaseEntity) {
         list.add(i, itemForTheDay)
+
+
+        //todo proper comparator should be implemented
         val selector: (BaseEntity) -> Int = { item -> item.category.length }
         list.sortBy(selector)
         list.reverse()

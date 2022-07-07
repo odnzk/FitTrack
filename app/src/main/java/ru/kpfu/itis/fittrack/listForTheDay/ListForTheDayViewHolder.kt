@@ -7,9 +7,9 @@ import ru.kpfu.itis.fittrack.data.BaseEntity
 import ru.kpfu.itis.fittrack.databinding.TrainingFoodForTheDayItemBinding
 import java.lang.ref.WeakReference
 
-class ListForTheDayViewHolder (
+class ListForTheDayViewHolder(
     private val binding: TrainingFoodForTheDayItemBinding,
-    private val onItemClick: (Pair<BaseEntity, TrainingFoodForTheDayItemBinding>) -> Unit,
+    private val onItemClick: (BaseEntity) -> Unit,
         ) : RecyclerView.ViewHolder (binding.root){
 
     fun onBind(itemForTheDay: BaseEntity) {
@@ -19,7 +19,7 @@ class ListForTheDayViewHolder (
             val kCal = itemForTheDay.calories
             tvCKal.text = "$kCal  cKal"
             root.setOnClickListener {
-                onItemClick.invoke(itemForTheDay to binding)
+                onItemClick.invoke(itemForTheDay)
             }
         }
 

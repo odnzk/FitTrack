@@ -38,19 +38,22 @@
             android:text="Title"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ti_title"
+            app:layout_constraintBottom_toTopOf="@+id/et_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_welcomeMessage" />
 
-        <com.google.android.material.textfield.TextInputLayout
 
-            android:id="@+id/ti_title"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <EditText
+
+            android:id="@+id/et_title"
+            style="@style/vp_edCustom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
 
+            android:inputType="text"
+            android:maxLength="50"
             app:layout_constraintBottom_toTopOf="@+id/tv_link"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -58,14 +61,8 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
             app:layout_constraintVertical_bias="0.1">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_title"
-                style="@style/Widget.AppCompat.EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:maxLength="50" />
-        </com.google.android.material.textfield.TextInputLayout>
+
+        </EditText>
 
         <TextView
             android:id="@+id/tv_link"
@@ -77,16 +74,18 @@
             android:text="Link"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ti_link"
+            app:layout_constraintBottom_toTopOf="@+id/et_link"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_title" />
+            app:layout_constraintTop_toBottomOf="@+id/et_title" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_link"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <EditText
+            android:id="@+id/et_link"
+            style="@style/vp_edCustom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+
+            android:inputType="textUri"
             android:layout_marginRight="20dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_calories"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,13 +94,8 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_link"
             app:layout_constraintVertical_bias="0.03">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_link"
-                style="@style/Widget.AppCompat.EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textUri" />
-        </com.google.android.material.textfield.TextInputLayout>
+
+        </EditText>
 
         <TextView
             android:id="@+id/tv_calories"
@@ -113,17 +107,18 @@
             android:text="Calories"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ti_calories"
+            app:layout_constraintBottom_toTopOf="@+id/et_calories"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_link" />
+            app:layout_constraintTop_toBottomOf="@+id/et_link" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_calories"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <EditText
+            android:id="@+id/et_calories"
+            style="@style/vp_edCustom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:inputType="number"
             app:layout_constraintBottom_toTopOf="@+id/tv_proteins"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -131,13 +126,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_calories"
             app:layout_constraintVertical_bias="0.03">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_calories"
-                style="@style/Widget.AppCompat.EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
+        </EditText>
 
         <TextView
             android:id="@+id/tv_proteins"
@@ -149,13 +138,13 @@
             android:text="Proteins"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ti_proteins"
+            app:layout_constraintBottom_toTopOf="@+id/et_proteins"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_calories" />
+            app:layout_constraintTop_toBottomOf="@+id/et_calories" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_proteins"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <EditText
+            android:id="@+id/et_proteins"
+            style="@style/vp_edCustom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -163,17 +152,12 @@
             app:layout_constraintBottom_toTopOf="@+id/tv_fats"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
+            android:inputType="numberDecimal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_proteins"
             app:layout_constraintVertical_bias="0.03">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_proteins"
-                style="@style/Widget.AppCompat.EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
-        </com.google.android.material.textfield.TextInputLayout>
+        </EditText>
 
         <TextView
             android:id="@+id/tv_fats"
@@ -185,32 +169,27 @@
             android:text="Fats"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ti_fats"
+            app:layout_constraintBottom_toTopOf="@+id/et_fats"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_proteins" />
+            app:layout_constraintTop_toBottomOf="@+id/et_proteins" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_fats"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <EditText
+            android:id="@+id/et_fats"
+            style="@style/vp_edCustom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-
             app:layout_constraintBottom_toTopOf="@+id/tv_carbohydrates"
             app:layout_constraintEnd_toEndOf="parent"
+            android:inputType="numberDecimal"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fats"
             app:layout_constraintVertical_bias="0.03">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_fats"
-                style="@style/Widget.AppCompat.EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
-        </com.google.android.material.textfield.TextInputLayout>
+
+        </EditText>
 
         <TextView
             android:id="@+id/tv_carbohydrates"
@@ -222,13 +201,13 @@
             android:text="Carbohydrates"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ti_carbohydrates"
+            app:layout_constraintBottom_toTopOf="@+id/et_carbohydrates"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_fats" />
+            app:layout_constraintTop_toBottomOf="@+id/et_fats" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_carbohydrates"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <EditText
+            android:id="@+id/et_carbohydrates"
+            style="@style/vp_edCustom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -236,16 +215,11 @@
             app:layout_constraintBottom_toTopOf="@+id/tv_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
+            android:inputType="numberDecimal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_carbohydrates">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_carbohydrates"
-                style="@style/Widget.AppCompat.EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
-        </com.google.android.material.textfield.TextInputLayout>
+        </EditText>
 
         <TextView
             android:id="@+id/tv_description"
@@ -257,12 +231,12 @@
             android:text="Description"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ti_description"
+            app:layout_constraintBottom_toTopOf="@+id/et_description"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_carbohydrates" />
+            app:layout_constraintTop_toBottomOf="@+id/et_carbohydrates" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_description"
+        <EditText
+            android:id="@+id/et_description"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -271,40 +245,34 @@
             app:layout_constraintBottom_toTopOf="@+id/add_recipe_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
+            android:inputType="textMultiLine"
+            android:lines="6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_description">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_description"
-                android:inputType="textMultiLine"
-                android:lines="6"
-                style="@style/Widget.AppCompat.EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+        </EditText>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/add_recipe_btn"
-            style="@style/Widget.AppCompat.Button"
+            style="@style/vp_btnCustomOutlineRed"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-
+            android:layout_marginBottom="88dp"
             android:fontFamily="monospace"
             android:text="Add"
             android:textSize="18sp"
             android:typeface="normal"
-            app:backgroundTint="#f6c87b"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_description" />
+            app:layout_constraintTop_toBottomOf="@+id/et_description" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+    

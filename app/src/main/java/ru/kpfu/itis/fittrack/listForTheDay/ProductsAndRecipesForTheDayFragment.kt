@@ -1,22 +1,22 @@
 package ru.kpfu.itis.fittrack.listForTheDay
 
-import android.content.Context
-import android.graphics.Canvas
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import ru.kpfu.itis.fittrack.data.BaseEntity
-import ru.kpfu.itis.fittrack.data.Recipe
-import ru.kpfu.itis.fittrack.data.RecipeViewModel
+import com.bumptech.glide.Glide
+import ru.kpfu.itis.fittrack.ProductAdapter
+import ru.kpfu.itis.fittrack.R
+import ru.kpfu.itis.fittrack.RecipeAdapter
+import ru.kpfu.itis.fittrack.data.*
 import ru.kpfu.itis.fittrack.databinding.FragmentListForTheDayBinding
+import ru.kpfu.itis.fittrack.fragments.ProductDescriptionFragment
+import ru.kpfu.itis.fittrack.fragments.RecipeDescriptionFragment
 
 
 class ProductsAndRecipesForTheDayFragment : Fragment() {
@@ -26,6 +26,7 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
     private lateinit var adapter: ListForTheDayAdapter
     private lateinit var itemSectionDecoration: ItemSectionDecoration
     private lateinit var mRecipeViewModel: RecipeViewModel
+    private lateinit var mProductViewModel: ProductViewModel
 
 
     override fun onCreateView(
@@ -47,33 +48,25 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
 
     fun initAdapter() {
         val list = mutableListOf<BaseEntity>()
-        // this is just a temporary solution
         adapter = ListForTheDayAdapter(
             list
         ) { it ->
-            //todo navigation will be here instead of Toast
-            Toast.makeText(binding.root.context, it.first.title, Toast.LENGTH_LONG).show()
-        }
-        val sharedPreferencesStorage = SharedPreferencesStorage(binding.root.context)
-        val ids = sharedPreferencesStorage.loadFood()
-        val categories = sharedPreferencesStorage.loadCategories()
-        mRecipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
-        mRecipeViewModel.getAllRecipes.observe(
-            viewLifecycleOwner
-        ) { food ->
-            val arrIds = ids?.split(" ")
-            var categoriesArr = categories?.split(" ")
-            if (arrIds != null) {
-                for (i in arrIds.indices) {
-                    val category = categoriesArr?.get(i)
-                    if (!arrIds[i].isBlank() && !category.isNullOrBlank()) {
-                        val foodItem = food.get(arrIds[i].toInt()).copy()
-                        foodItem.category = category
-                        adapter.addItem(0, foodItem)
-                    }
-                }
+            // navigating to appropriate description screen from day list
+            if (it is Product) {
+                findNavController().navigate(
+                    R.id.action_placeHolderFragment_to_productDescriptionFragment,
+                    ProductDescriptionFragment.createProduct(it)
+                )
+            }
+            if (it is Recipe) {
+                findNavController().navigate(
+                    R.id.action_placeHolderFragment_to_recipeDescriptionFragment2,
+                    RecipeDescriptionFragment.createRecipe(it)
+                )
             }
         }
+
+        passAppropriateItemsToAdapter()
         itemSectionDecoration = ItemSectionDecoration(binding.root.context) {
             adapter.getItemList().toMutableList()
         }
@@ -83,4 +76,53 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
         binding.rvDayList.adapter = adapter
 
     }
+
+
+
+    // тут всё просто костыль, простите...
+    private fun passAppropriateItemsToAdapter() {
+        mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+        mRecipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
+
+        val sharedPreferencesStorage = SharedPreferencesStorage(binding.root.context)
+        val arrIds = sharedPreferencesStorage.loadIDS()?.split(" ")
+        val categoriesArr = sharedPreferencesStorage.loadCategories()?.split(" ")
+        val typesArr = sharedPreferencesStorage.loadTypes()?.split(" ")
+
+        mRecipeViewModel.getAllRecipes.observe(
+            viewLifecycleOwner
+        ) { recipe ->
+            if (arrIds != null) {
+                for (i in arrIds.indices) {
+                    val category = categoriesArr?.get(i)
+                    val type = typesArr?.get(i)
+                    if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Recipe") {
+                        val recipeItem = recipe.get(arrIds[i].toInt()).copy()
+                        recipeItem.category = category
+                        recipeItem.type = type
+                        adapter.addItem(0, recipeItem)
+                    }
+                }
+            }
+        }
+
+
+        mProductViewModel.getAllProducts.observe(
+            viewLifecycleOwner
+        ) { product ->
+            if (arrIds != null) {
+                for (i in arrIds.indices) {
+                    val category = categoriesArr?.get(i)
+                    val type = typesArr?.get(i)
+                    if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Product") {
+                        val productItem = product.get(arrIds[i].toInt()).copy()
+                        productItem.category = category
+                        productItem.type = type
+                        adapter.addItem(0, productItem)
+                    }
+                }
+            }
+        }
+    }
+
 }

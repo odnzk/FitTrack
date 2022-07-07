@@ -2,6 +2,7 @@ package ru.kpfu.itis.fittrack.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -50,7 +51,10 @@ class ProductsAndRecipesFragment : Fragment(R.layout.fragment_products_and_recip
             adapter.setData(a) })
         mRecipeViewModel.getAllRecipes.observe(
             viewLifecycleOwner
-        ) { a -> recipeAdapter.setData(a) }
+        ) {
+                a -> recipeAdapter.setData(a)
+
+        }
 
         binding.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_productsAndRecipesFragment_to_addFragment)
@@ -60,11 +64,6 @@ class ProductsAndRecipesFragment : Fragment(R.layout.fragment_products_and_recip
             findNavController().navigate(R.id.action_productsAndRecipesFragment_to_addRecipeFragment)
         }
 
-
-        // todo this solution is temporary
-        binding.btnNavigateToDayList.setOnClickListener {
-            findNavController().navigate(R.id.action_productsAndRecipesFragment_to_placeHolderFragment)
-        }
     }
 
 }

@@ -9,6 +9,7 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.data.Recipe
@@ -22,6 +23,7 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
     private var _binding: FragmentRecipeDescriptionBinding? = null
     private val binding get() = _binding!!
     private var category: String? = null
+    private var deletedElementId: Int = 0
 
     //TODO: этому фрагменту требуется нормальная верстка
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,11 +37,13 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
         binding.tvCarbo.text = "Carbohydrates: ${curRecipe?.carbohydrates}"
         binding.tvTitle.text = curRecipe?.title
         binding.tvDescription.text = curRecipe?.description
+        Glide.with(this).load(curRecipe?.picture).into(binding.ivPicture)
         mRecipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
 
         binding.btnDeleteItem.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
             builder.setPositiveButton("Yes") { _, _ ->
+                deletedElementId = curRecipe?.id ?: 0
                 mRecipeViewModel.deleteRecipe(curRecipe!!)
                 findNavController().navigate(R.id.action_recipeDescriptionFragment_to_productsAndRecipesFragment)
                 Toast.makeText(
@@ -47,6 +51,7 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
                     "Successfully removed: ${curRecipe?.title}",
                     Toast.LENGTH_SHORT
                 ).show()
+                deleteFromSharedPreferences(deletedElementId, "Recipe", binding.root.context)
             }
             builder.setNegativeButton("No") { _, _ -> }
             builder.setTitle("Delete ${curRecipe?.title}?")
@@ -67,7 +72,7 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-               category = null
+                category = null
             }
 
         }
@@ -79,14 +84,21 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
 
             val sharedPreferencesStorage = SharedPreferencesStorage(binding.root.context)
             if (category != null) {
-                curRecipe?.let { it1 -> Integer.valueOf(it1.id) - 2 }
-                    ?.let { it2 -> sharedPreferencesStorage.addFoodItem(it2) }
+                val type = "Recipe"
+                curRecipe?.let { it1 -> Integer.valueOf(it1.id) - 1 }
+                    ?.let { it2 -> sharedPreferencesStorage.addItemID(it2) }
                 sharedPreferencesStorage.addCategory(category!!)
+                sharedPreferencesStorage.addType(type)
             }
 
-            Snackbar.make(view, curRecipe?.title+" has been added to the day list", Snackbar.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                curRecipe?.title + " has been added to the day list",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
+
 
     companion object {
         private const val ARG_TEXT = "recipe"

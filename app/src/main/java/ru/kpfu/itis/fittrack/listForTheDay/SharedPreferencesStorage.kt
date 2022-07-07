@@ -6,10 +6,13 @@ import android.content.SharedPreferences
 class SharedPreferencesStorage(private val context: Context) {
     private val KEY1 = "FOOD_IDS"
     private val KEY2 = "CATEGORIES"
-    private val ID_KEY = "ID"
+    private val KEY3 = "TYPES"
+    private val ID = "ID"
     private val ID_CATEGORY = "CATEGORY"
+    private val ID_TYPE = "TYPE"
     private var idsFoodList: String? = null
     private var categories: String? = null
+    private var types: String? = null
 
     private fun saveData(allKey: String, genKey:String, stringToSave:String?) {
         val sharedPreferences: SharedPreferences =
@@ -21,25 +24,28 @@ class SharedPreferencesStorage(private val context: Context) {
         }.apply()
     }
 
-    fun loadFood(): String? {
+    private fun loadData(keyPrimary: String,keySecondary:String) : String? {
         val sharedPreferences: SharedPreferences =
-            context.getSharedPreferences(KEY1, Context.MODE_PRIVATE)
-        return sharedPreferences.getString(ID_KEY, null)
+            context.getSharedPreferences(keyPrimary, Context.MODE_PRIVATE)
+        return sharedPreferences.getString(keySecondary, null)
     }
-
+    fun loadIDS(): String? {
+        return loadData(KEY1, ID)
+    }
     fun loadCategories(): String? {
-        val sharedPreferences: SharedPreferences =
-            context.getSharedPreferences(KEY2, Context.MODE_PRIVATE)
-        return sharedPreferences.getString(ID_CATEGORY, null)
+        return loadData(KEY2, ID_CATEGORY)
+    }
+    fun loadTypes(): String? {
+        return loadData(KEY3, ID_TYPE)
     }
 
-    fun addFoodItem(id: Int) {
-        if (loadFood().isNullOrBlank()) {
+    fun addItemID(id: Int) {
+        if (loadIDS().isNullOrBlank()) {
             idsFoodList = "$id "
-            saveData(KEY1, ID_KEY, idsFoodList)
+            saveData(KEY1, ID, idsFoodList)
         } else {
-            idsFoodList = (loadFood() + id.toString() + " ")
-            saveData(KEY1, ID_KEY, idsFoodList)
+            idsFoodList = (loadIDS() + id.toString() + " ")
+            saveData(KEY1, ID, idsFoodList)
         }
     }
     fun addCategory(category: String) {
@@ -51,9 +57,21 @@ class SharedPreferencesStorage(private val context: Context) {
             saveData(KEY2,ID_CATEGORY, categories)
         }
     }
+
+    fun addType(type: String) {
+        if (loadTypes().isNullOrBlank()) {
+            types = "$type "
+            saveData(KEY3,ID_TYPE, types)
+        } else {
+            types = (loadTypes() + type + " ")
+            saveData(KEY3,ID_TYPE, types)
+        }
+    }
+
     fun clearAll() {
-        saveData(KEY1, ID_KEY, idsFoodList)
+        saveData(KEY1, ID, idsFoodList)
         saveData(KEY2,ID_CATEGORY, categories)
+        saveData(KEY3,ID_TYPE, types)
     }
 
 }

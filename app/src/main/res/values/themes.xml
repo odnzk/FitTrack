@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.FitTrack" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary_greeny</item>
-        <item name="colorPrimaryVariant">@color/primary_dark_greeny</item>
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -32,12 +32,17 @@
     </style>
 
 
+    <style name="vp_btnCustomOutlineRed" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">@color/custom_selector_red</item>
+        <item name="strokeColor">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="textAllCaps">true</item>
+    </style>
 
-
-    <style name="vp_rbBlackStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="buttonTint">@color/black</item>
-        <item name="android:minHeight">0dp</item>
-        <item name="android:minWidth">0dp</item>
-        <item name="android:enabled">false</item>
+    <style name="vp_edCustom" parent="Widget.AppCompat.EditText">
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:ems">10</item>
+        <item name="android:layout_marginTop">10dp</item>
     </style>
 </resources>
+    
