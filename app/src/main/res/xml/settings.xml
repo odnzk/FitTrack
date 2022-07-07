@@ -2,6 +2,24 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
+        android:title="@string/category_user_infa">
+
+        <!-- 1) activeness: max, average, low
+             2) goal :
+             3) height, weight, age
+             4) gender
+             -->
+
+        <DropDownPreference
+            android:key="dropdown"
+            android:title="@string/title_dropdown_preference"
+            android:entries="@array/entries"
+            app:useSimpleSummaryProvider="true"
+            android:entryValues="@array/entry_values"/>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
         android:title="@string/category_notifications">
 
     <SwitchPreferenceCompat
@@ -14,4 +32,6 @@
         android:title="@string/notif_reminder"
         android:summary="@string/notif_reminder_desc"/>
     </PreferenceCategory>
+
+
 </androidx.preference.PreferenceScreen>

@@ -1,16 +1,11 @@
 package ru.kpfu.itis.fittrack
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
-import ru.kpfu.itis.fittrack.fragments.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
