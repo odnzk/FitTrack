@@ -1,25 +1,24 @@
 package ru.kpfu.itis.fittrack
 
-import android.app.Activity
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
+import ru.kpfu.itis.fittrack.data.ProductViewModel
+import ru.kpfu.itis.fittrack.data.RecipeViewModel
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
-import ru.kpfu.itis.fittrack.fragments.SettingsFragment
 import ru.kpfu.itis.fittrack.viewpager.ReceivingInformationFragment
 import ru.kpfu.itis.fittrack.viewpager.ViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
 
-    private var _binding: ActivityMainBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding:ActivityMainBinding
+
     private lateinit var mProductViewModel: ProductViewModel
     private lateinit var mRecipeViewModel: RecipeViewModel
     private lateinit var prefFirstLaunch: SharedPreferences
@@ -27,17 +26,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         val sharedPref = this.getSharedPreferences(getString(R.string.preferenceFileKey_UserData), Context.MODE_PRIVATE)
         if(sharedPref.getBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, true)){
             binding.viewPager2.adapter = ViewPagerAdapter(this, this)
+            binding.bottomAppBar.visibility = View.GONE
+            binding.fab.visibility = View.GONE
+            binding.bottomNavigationView.visibility = View.GONE
             binding.viewPager2.visibility = View.VISIBLE
             sharedPref.edit().putBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, false).apply()
         }
 
-
-
-        _binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         supportActionBar?.hide()
         with (binding) {
             controller = (supportFragmentManager.findFragmentById(R.id.container)
@@ -49,15 +51,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        prefFirstLaunch = getSharedPreferences( FIRST_LAUNCH, MODE_PRIVATE);
+        prefFirstLaunch = getSharedPreferences(FIRST_LAUNCH, MODE_PRIVATE)
         if (prefFirstLaunch.getBoolean(KEY_FIRST_LAUNCH, true)) {
             fillFirstTime()
             prefFirstLaunch.edit().putBoolean(KEY_FIRST_LAUNCH, false).apply()
         }
     }
     private fun fillFirstTime() {
-        mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
-        mRecipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
+        mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        mRecipeViewModel = ViewModelProvider(this)[RecipeViewModel::class.java]
         InitialProducts.list.forEach {
             mProductViewModel.addProduct(it)
         }
@@ -66,8 +68,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
+
+    companion object {
+        const val FIRST_LAUNCH = "firstLaunch"
+        const val KEY_FIRST_LAUNCH = "flKey"
     }
 }

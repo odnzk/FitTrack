@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.databinding.FragmentReceivingInformationBinding
 
@@ -65,6 +68,9 @@ class ReceivingInformationFragment : Fragment() {
                             binding.spinnerGoal.selectedItem.toString()
                         )
                         activity?.findViewById<ViewPager2>(R.id.view_pager2)?.visibility = View.GONE
+                        activity?.findViewById<BottomAppBar>(R.id.bottomAppBar)?.visibility = View.VISIBLE
+                        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.VISIBLE
+                        activity?.findViewById<FloatingActionButton>(R.id.fab)?.visibility = View.VISIBLE
                     }
                 }
             }
