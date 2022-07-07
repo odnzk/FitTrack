@@ -1,15 +1,12 @@
 package ru.kpfu.itis.fittrack.listForTheDay
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import ru.kpfu.itis.fittrack.data.BaseEntity
-
 import ru.kpfu.itis.fittrack.databinding.FragmentTrainingsForTheDayBinding
 
 
@@ -54,7 +51,7 @@ class TrainingsForTheDayFragment : Fragment() {
             adapter.getItemList().toMutableList()
         }
         binding.rvDayList.addItemDecoration(itemSectionDecoration)
-        val touchHelper = ItemTouchHelper(this.addSwipeGesture(binding, adapter))
+        val touchHelper = ItemTouchHelper(this.addSwipeGesture(binding, adapter, requireActivity()))
         touchHelper.attachToRecyclerView(binding.rvDayList)
         binding.rvDayList.adapter = adapter
     }
