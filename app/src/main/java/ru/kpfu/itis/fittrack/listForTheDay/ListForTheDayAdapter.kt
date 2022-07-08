@@ -49,7 +49,8 @@ class ListForTheDayAdapter(
                 val category = categories?.get(i)
                 val type = types?.get(i)
                 if (type == "Training") {
-                    if (idd == (item.id).toString() && category == item.category && type == item.type) {
+                    val calorie = calories?.get(i)?.toInt()
+                    if (idd == (item.id).toString() && category == item.category && type == item.type && item.calories == calorie) {
                         break
                     }
                 } else {
@@ -76,7 +77,7 @@ class ListForTheDayAdapter(
                     val category = categories?.get(s)
                     val type = types?.get(s)
                     val kCal = calories?.get(s) ?: ""
-                    if (!k.isNullOrBlank() && !category.isNullOrBlank() && !type.isNullOrBlank()) {
+                    if (k.isNotBlank() && !category.isNullOrBlank() && !type.isNullOrBlank()) {
                         sharedPreferencesStorage.addCategory(category)
                         sharedPreferencesStorage.addItemID(k.toInt())
                         sharedPreferencesStorage.addType(type)
@@ -92,43 +93,11 @@ class ListForTheDayAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun addItem(i: Int, itemForTheDay: BaseEntity, context: Context) {
-
-        checkForNewCalories(context, itemForTheDay)
         list.add(i, itemForTheDay)
-
-        //todo proper comparator should be implemented
-        val selector: (BaseEntity) -> Int = { item -> item.category.length }
-        list.sortBy(selector)
-        list.reverse()
+        list.sortWith(categoriesComparator())
         notifyDataSetChanged()
     }
 
-
-
-    private fun checkForNewCalories(
-        context: Context,
-        itemForTheDay: BaseEntity,
-    ) {
-
-        val sharedPreferencesStorage = SharedPreferencesStorage(context)
-        val arrIds = sharedPreferencesStorage.loadIDS()?.split(" ")
-        val typesArr = sharedPreferencesStorage.loadTypes()?.split(" ")
-        val categoriesArr = sharedPreferencesStorage.loadCategories()?.split(" ")
-        val caloriesArr = sharedPreferencesStorage.loadCalories()?.split(" ")
-        if (arrIds != null) {
-            for (i in arrIds.indices-1) {
-                val category = categoriesArr?.get(i)
-                val type = typesArr?.get(i)
-                val kCal = caloriesArr?.get(i)
-                val itemID = arrIds[i]
-                if(!itemID.isNullOrBlank()) {
-                    if (itemForTheDay.id.toString() == itemID && itemForTheDay.category == category && itemForTheDay.type == type) {
-                        itemForTheDay.calories = kCal?.toInt()!!
-                    }
-                }
-            }
-        }
-    }
 
     fun getItemList(): List<BaseEntity> {
         return list
@@ -136,4 +105,13 @@ class ListForTheDayAdapter(
 
     override fun getItemCount(): Int = list.size
 
+    private fun categoriesComparator() = Comparator<BaseEntity>{ a, b ->
+        when {
+            (b.category == "Dinner" && a.category == "Lunch") -> -1
+            (a.category == "Dinner" && b.category == "Lunch") -> 1
+            else -> b.category.length - a.category.length
+        }
+    }
+
 }
+

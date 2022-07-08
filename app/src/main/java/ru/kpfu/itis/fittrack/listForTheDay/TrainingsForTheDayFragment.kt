@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -37,7 +38,7 @@ class TrainingsForTheDayFragment : Fragment() {
         _binding = null
     }
 
-    fun initAdapter() {
+    private fun initAdapter() {
         val list = mutableListOf<BaseEntity>()
         adapter = ListForTheDayAdapter(
             list
@@ -45,7 +46,7 @@ class TrainingsForTheDayFragment : Fragment() {
             if (it is Training) {
                 findNavController().navigate(
                     R.id.action_placeHolderFragment_to_workoutDescriptionFragment,
-                    WorkoutDescriptionFragment.create(it)
+                    WorkoutDescriptionFragment.create(WorkoutRepository.workoutList[it.id])
                 )
             }
         }
@@ -60,7 +61,7 @@ class TrainingsForTheDayFragment : Fragment() {
         binding.rvDayList.adapter = adapter
     }
 
-    fun addItemsToAdapter() {
+    private fun addItemsToAdapter() {
         val workoutList = WorkoutRepository.workoutList
 
         val sharedPreferencesStorage = SharedPreferencesStorage(binding.root.context)
@@ -68,13 +69,14 @@ class TrainingsForTheDayFragment : Fragment() {
         val categoriesArr = sharedPreferencesStorage.loadCategories()?.split(" ")
         val typesArr = sharedPreferencesStorage.loadTypes()?.split(" ")
         val caloriesArr = sharedPreferencesStorage.loadCalories()?.split(" ")
+
         if (arrIds != null) {
             for (i in arrIds.indices) {
                 val category = categoriesArr?.get(i)
                 val type = typesArr?.get(i)
                 val kCal = caloriesArr?.get(i)
-                if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Training" && !kCal.isNullOrBlank()) {
 
+                if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Training" && !kCal.isNullOrBlank()) {
                     val trainingItem = workoutList.get(arrIds[i].toInt()).copy()
                     trainingItem.category = category
                     trainingItem.type = type
