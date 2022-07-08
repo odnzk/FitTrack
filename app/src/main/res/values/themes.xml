@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.FitTrack" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/primary_light_greeny</item>
+        <item name="colorPrimaryVariant">@color/main_green</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <!-- for edittext -->
@@ -28,9 +28,9 @@
     <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">0dp</item>
-        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
-        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
     </style>
 
     <style name="vp_tvDescriptionStyle" parent="Widget.AppCompat.TextView">
