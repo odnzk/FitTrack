@@ -77,6 +77,7 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
         }
 
         binding.btnAddItem.setOnClickListener {
+            changeSharedPref(curRecipe!!)
             addingValuesToSharedPreferencesExtension(binding.root.context, category, "Recipe", curRecipe)
         }
     }

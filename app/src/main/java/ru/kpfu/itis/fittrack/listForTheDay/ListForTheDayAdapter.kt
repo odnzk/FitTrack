@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.kpfu.itis.fittrack.data.BaseEntity
 import ru.kpfu.itis.fittrack.databinding.TrainingFoodForTheDayItemBinding
+import android.app.Activity
+import android.widget.Toast
+import ru.kpfu.itis.fittrack.data.Product
+import ru.kpfu.itis.fittrack.data.Recipe
+import ru.kpfu.itis.fittrack.fragments.ProductDescriptionFragment
 
 class ListForTheDayAdapter(
     private val list: MutableList<BaseEntity>,
@@ -35,8 +39,9 @@ class ListForTheDayAdapter(
     // it could not be worse, but it works.................
     // don't judge
     @SuppressLint("NotifyDataSetChanged")
-    fun deleteItem(id: Int, context: Context) {
+    fun deleteItem(id: Int, context: Context, activity: Activity) {
         val item = list.get(id)
+        changeSharedPref(activity, item)
         val sharedPreferencesStorage = SharedPreferencesStorage(context)
         val idSArr = sharedPreferencesStorage.loadIDS()?.split(" ")?.toMutableList()
         val categories = sharedPreferencesStorage.loadCategories()?.split(" ")?.toMutableList()
@@ -91,6 +96,7 @@ class ListForTheDayAdapter(
     }
 
 
+
     @SuppressLint("NotifyDataSetChanged")
     fun addItem(i: Int, itemForTheDay: BaseEntity, context: Context) {
         list.add(i, itemForTheDay)
@@ -112,6 +118,34 @@ class ListForTheDayAdapter(
             else -> b.category.length - a.category.length
         }
     }
+    private fun changeSharedPref(activity: Activity, baseEntity: BaseEntity) {
+        val sharedPref = activity.getSharedPreferences(
+            "UserData",
+            Context.MODE_PRIVATE
+        )
+        var eatenCalories = sharedPref?.getInt(ProductDescriptionFragment.EATEN_CALORIES, 0)
+        var eatenProteins = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f)
+        var eatenCarbs = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f)
+        var eatenFats = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_FATS, 0f)
+        val editor = sharedPref?.edit()
 
+        eatenCalories = eatenCalories?.minus(baseEntity.calories)
+        if (baseEntity is Product) {
+            eatenProteins = eatenProteins?.minus(baseEntity.proteins)
+            eatenCarbs = eatenCarbs?.minus(baseEntity.carbohydrates)
+            eatenFats = eatenFats?.minus(baseEntity.fats)
+        }
+        if (baseEntity is Recipe) {
+            eatenProteins = eatenProteins?.minus(baseEntity.proteins)
+            eatenCarbs = eatenCarbs?.minus(baseEntity.carbohydrates)
+            eatenFats = eatenFats?.minus(baseEntity.fats)
+        }
+
+        editor?.putInt(ProductDescriptionFragment.EATEN_CALORIES, eatenCalories!!)?.apply()
+        editor?.putFloat(ProductDescriptionFragment.EATEN_PROTEINS, eatenProteins!!)?.apply()
+        editor?.putFloat(ProductDescriptionFragment.EATEN_CARBS, eatenCarbs!!)?.apply()
+        editor?.putFloat(ProductDescriptionFragment.EATEN_FATS, eatenFats!!)?.apply()
+
+    }
 }
 

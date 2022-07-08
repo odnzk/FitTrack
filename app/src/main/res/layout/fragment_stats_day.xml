@@ -5,187 +5,187 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/calorie_tracker"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:id="@+id/tv_eaten"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="0 \n eaten"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/pb_goal"
-        app:layout_constraintTop_toTopOf="@id/pb_goal"
-        app:layout_constraintBottom_toBottomOf="@id/pb_goal"/>
-    <TextView
-        android:id="@+id/tv_burned"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="0 \n burned"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/pb_goal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pb_goal"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
-    <TextView
-        android:id="@+id/tv_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="0 \n kcal left"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/pb_goal"
-        app:layout_constraintEnd_toEndOf="@+id/pb_goal"
-        app:layout_constraintStart_toStartOf="@+id/pb_goal"
-        app:layout_constraintTop_toTopOf="@+id/pb_goal" />
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calorie_tracker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/tv_eaten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="0 \n eaten"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/pb_goal"
+            app:layout_constraintTop_toTopOf="@id/pb_goal"
+            app:layout_constraintBottom_toBottomOf="@id/pb_goal"/>
+        <TextView
+            android:id="@+id/tv_burned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="0 \n burned"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/pb_goal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/pb_goal"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="0 \n kcal left"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/pb_goal"
+            app:layout_constraintEnd_toEndOf="@+id/pb_goal"
+            app:layout_constraintStart_toStartOf="@+id/pb_goal"
+            app:layout_constraintTop_toTopOf="@+id/pb_goal" />
 
-    <ProgressBar
-        android:id="@+id/pb_goal"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:indeterminateOnly="false"
-        android:progressDrawable="@drawable/circle_pb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        tools:progress="60" />
-    <ProgressBar
-        android:id="@+id/pb_proteins"
-        style="?android:progressBarStyleHorizontal"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:indeterminateOnly="false"
+        <ProgressBar
+            android:id="@+id/pb_goal"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:progress="1"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/circle_pb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:progress="60" />
+        <ProgressBar
+            android:id="@+id/pb_proteins"
+            style="?android:progressBarStyleHorizontal"
+            android:progressDrawable="@drawable/square_pb"
+            android:layout_width="350dp"
+            android:layout_height="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="30dp"
+            tools:progress="40"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@id/pb_carbs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pb_goal" />
+        <ProgressBar
+            android:id="@+id/pb_carbs"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="350dp"
+            android:layout_height="5dp"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/square_pb"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            tools:progress="50"
+            app:layout_constraintStart_toStartOf="@+id/pb_proteins"
+            app:layout_constraintTop_toBottomOf="@+id/pb_proteins"
+            app:layout_constraintBottom_toTopOf="@id/pb_fat"/>
+        <ProgressBar
+            android:id="@+id/pb_fat"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:progressDrawable="@drawable/square_pb"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_waterSquare"
+            app:layout_constraintStart_toStartOf="@+id/pb_proteins"
+            app:layout_constraintTop_toBottomOf="@+id/pb_carbs" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/proteins"
+            app:layout_constraintBottom_toTopOf="@+id/pb_proteins"
+            app:layout_constraintStart_toStartOf="@+id/pb_proteins" />
+        <TextView
+            android:id="@+id/tv_proteinsLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/pb_proteins"
+            app:layout_constraintTop_toBottomOf="@+id/pb_proteins"
+            tools:text="0/250" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/carbs"
+            app:layout_constraintBottom_toTopOf="@+id/pb_carbs"
+            app:layout_constraintStart_toStartOf="@+id/pb_carbs" />
+        <TextView
+            android:id="@+id/tv_carbsLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/pb_carbs"
+            app:layout_constraintTop_toBottomOf="@+id/pb_carbs"
+            tools:text="0/250" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fat"
+            app:layout_constraintBottom_toTopOf="@+id/pb_fat"
+            app:layout_constraintStart_toStartOf="@+id/pb_fat" />
+        <TextView
+            android:id="@+id/tv_fatLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/pb_fat"
+            app:layout_constraintTop_toBottomOf="@+id/pb_fat"
+            tools:text="0/250" />
+        <TextView
+            android:id="@+id/tv_waterSquare"
+            android:layout_width="375dp"
+            android:layout_height="50dp"
+            android:background="@drawable/rv_back"
+            android:text="@string/rvWaterTitle"
 
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="30dp"
-        tools:progress="40"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintBottom_toTopOf="@id/pb_carbs"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pb_goal" />
-    <ProgressBar
-        android:id="@+id/pb_carbs"
-        style="?android:progressBarStyleHorizontal"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:indeterminateOnly="false"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
 
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintStart_toStartOf="@+id/pb_proteins"
-        app:layout_constraintTop_toBottomOf="@+id/pb_proteins"
-        app:layout_constraintBottom_toTopOf="@id/pb_fat"/>
-    <ProgressBar
-        android:id="@+id/pb_fat"
-        style="?android:progressBarStyleHorizontal"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-
-        android:layout_marginBottom="30dp"
-        android:indeterminateOnly="false"
-        app:layout_constraintBottom_toBottomOf="@id/tv_waterSquare"
-        app:layout_constraintStart_toStartOf="@+id/pb_proteins"
-        app:layout_constraintTop_toBottomOf="@+id/pb_carbs" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/proteins"
-        app:layout_constraintBottom_toTopOf="@+id/pb_proteins"
-        app:layout_constraintStart_toStartOf="@+id/pb_proteins" />
-    <TextView
-        android:id="@+id/tv_proteinsLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/pb_proteins"
-        app:layout_constraintTop_toBottomOf="@+id/pb_proteins"
-        tools:text="0/250" />
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/carbs"
-        app:layout_constraintBottom_toTopOf="@+id/pb_carbs"
-        app:layout_constraintStart_toStartOf="@+id/pb_carbs" />
-    <TextView
-        android:id="@+id/tv_carbsLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/pb_carbs"
-        app:layout_constraintTop_toBottomOf="@+id/pb_carbs"
-        tools:text="0/250" />
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fat"
-        app:layout_constraintBottom_toTopOf="@+id/pb_fat"
-        app:layout_constraintStart_toStartOf="@+id/pb_fat" />
-    <TextView
-        android:id="@+id/tv_fatLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/pb_fat"
-        app:layout_constraintTop_toBottomOf="@+id/pb_fat"
-        tools:text="0/250" />
-    <TextView
-        android:id="@+id/tv_waterSquare"
-        android:layout_width="375dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rv_back"
-        android:text="@string/rvWaterTitle"
-
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_fatLeft" />
-
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_fatLeft" />
 
 
-    <TextView
-        android:id="@+id/tv_water"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/tv_waterSquare"
-        app:layout_constraintBottom_toBottomOf="@id/tv_waterSquare"
-        app:layout_constraintEnd_toEndOf="@id/tv_waterSquare"
-        android:layout_marginEnd="20dp"
-        android:text="@string/waterCounter"
-        />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_cups"
-        android:layout_width="375dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        android:background="@drawable/rv_back"
-        tools:listitem="@layout/item_water"
-        tools:itemCount="10"
-        app:layout_constraintTop_toBottomOf="@id/tv_waterSquare"
-        app:layout_constraintStart_toStartOf="@id/tv_waterSquare"
-        app:layout_constraintEnd_toEndOf="@id/tv_waterSquare"
-        />
-<!--    костыль чтобы менюшка не перекрывала :) подскажи если это нормально можно сделать-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rv_cups"
-        tools:text = "121212"
-        android:layout_marginTop="200dp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_water"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/tv_waterSquare"
+            app:layout_constraintBottom_toBottomOf="@id/tv_waterSquare"
+            app:layout_constraintEnd_toEndOf="@id/tv_waterSquare"
+            android:layout_marginEnd="20dp"
+            android:text="@string/waterCounter"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_cups"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:background="@drawable/rv_back"
+            tools:listitem="@layout/item_water"
+            tools:itemCount="10"
+            app:layout_constraintTop_toBottomOf="@id/tv_waterSquare"
+            app:layout_constraintStart_toStartOf="@id/tv_waterSquare"
+            app:layout_constraintEnd_toEndOf="@id/tv_waterSquare"
+            />
+        <!--    костыль чтобы менюшка не перекрывала :) подскажи если это нормально можно сделать-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_cups"
+            tools:text = "121212"
+            android:layout_marginTop="200dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

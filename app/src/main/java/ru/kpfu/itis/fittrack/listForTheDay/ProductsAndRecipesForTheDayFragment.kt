@@ -1,18 +1,14 @@
 package ru.kpfu.itis.fittrack.listForTheDay
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.bumptech.glide.Glide
-import ru.kpfu.itis.fittrack.ProductAdapter
 import ru.kpfu.itis.fittrack.R
-import ru.kpfu.itis.fittrack.RecipeAdapter
 import ru.kpfu.itis.fittrack.data.*
 import ru.kpfu.itis.fittrack.databinding.FragmentListForTheDayBinding
 import ru.kpfu.itis.fittrack.fragments.ProductDescriptionFragment
@@ -71,12 +67,11 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
             adapter.getItemList().toMutableList()
         }
         binding.rvDayList.addItemDecoration(itemSectionDecoration)
-        val touchHelper = ItemTouchHelper(this.addSwipeGesture(binding, adapter))
+        val touchHelper = ItemTouchHelper(this.addSwipeGesture(binding, adapter, requireActivity()))
         touchHelper.attachToRecyclerView(binding.rvDayList)
         binding.rvDayList.adapter = adapter
 
     }
-
 
 
     // тут всё просто костыль, простите...
