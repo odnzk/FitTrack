@@ -3,6 +3,7 @@ package ru.kpfu.itis.fittrack
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
@@ -22,14 +23,17 @@ class MainActivity : AppCompatActivity() {
             controller = (supportFragmentManager.findFragmentById(R.id.container)
                     as NavHostFragment).navController
             bottomNavigationView.setupWithNavController(controller)
-            bottomNavigationView.setOnItemSelectedListener {
-                val selectedDestinationId = it.itemId
-                controller.navigate(selectedDestinationId)
-                controller.popBackStack(selectedDestinationId, inclusive = false)
-            }
 
             fab.setOnClickListener {
-                controller.navigate(R.id.productsAndRecipesFragment)
+                val builder = NavOptions.Builder()
+                val options = controller.currentDestination?.let {
+                    builder.setPopUpTo(it.id, true).build()
+                }
+                controller.navigate(
+                    R.id.productsAndRecipesFragment,
+                    null,
+                    options,
+                )
             }
         }
     }
