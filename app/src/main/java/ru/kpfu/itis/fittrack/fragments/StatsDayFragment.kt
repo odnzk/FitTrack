@@ -48,45 +48,6 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         drawProgressBars()
     }
 
-    private fun calculateConsumed(sharedPref: SharedPreferences) {
-        consumedCalories = sharedPref.getInt(ProductDescriptionFragment.EATEN_CALORIES, 0) ?: 0
-        consumedProteins =
-            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f) ?: 0).toInt()
-        consumedFat = (sharedPref.getFloat(ProductDescriptionFragment.EATEN_FATS, 0f) ?: 0).toInt()
-        consumedCarbs =
-            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f) ?: 0).toInt()
-    }
-
-
-    private fun calcGoalCalories(): Int {
-        return (calcActivenessCoef() * when (sex) {
-            false -> MALE_CONST + weight * MALE_WEIGHT + height * MALE_HEIGHT - MALE_AGE * age
-            true -> FEMALE_CONST + weight * FEMALE_WEIGHT + height * FEMALE_HEIGHT - FEMALE_AGE * age
-        }).toInt() + calcGoalDiff()
-    }
-
-    private fun calcActivenessCoef(): Double {
-        return when (activeness) {
-            "minimum" -> LOW_ACTIVENESS
-            "average" -> AVERAGE_ACTIVENESS
-            "maximum" -> MAX_ACTIVENESS
-            else -> {
-                0.0
-            }
-        }
-    }
-
-    private fun calcGoalDiff(): Int {
-        return when (goal) {
-            "lose weight" -> -100
-            "keep the same" -> 0
-            "gain weight" -> 100
-            else -> {
-                0
-            }
-        }
-    }
-
     private fun initUserData(sharedPref: SharedPreferences?) {
         sex = sharedPref?.getBoolean(ReceivingInformationFragment.GENDER_KEY, sex)!!
         height = sharedPref.getInt(ReceivingInformationFragment.HEIGHT_KEY, height)
@@ -112,14 +73,53 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         }
     }
 
+
+    private fun calcGoalCalories() = (calcActivenessCoef() * when (sex) {
+        false -> MALE_CONST + weight * MALE_WEIGHT + height * MALE_HEIGHT - MALE_AGE * age
+        true -> FEMALE_CONST + weight * FEMALE_WEIGHT + height * FEMALE_HEIGHT - FEMALE_AGE * age
+    }).toInt() + calcGoalDiff()
+
+
+    private fun calcActivenessCoef() =
+        when (activeness) {
+            "minimum" -> LOW_ACTIVENESS
+            "average" -> AVERAGE_ACTIVENESS
+            "maximum" -> MAX_ACTIVENESS
+            else -> {
+                0.0
+            }
+        }
+
+
+    private fun calcGoalDiff() =
+        when (goal) {
+            "lose weight" -> -100
+            "keep the same" -> 0
+            "gain weight" -> 100
+            else -> {
+                0
+            }
+        }
+
+    private fun calculateConsumed(sharedPref: SharedPreferences) {
+        consumedCalories = sharedPref.getInt(ProductDescriptionFragment.EATEN_CALORIES, 0) ?: 0
+        consumedProteins =
+            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f) ?: 0).toInt()
+        consumedFat = (sharedPref.getFloat(ProductDescriptionFragment.EATEN_FATS, 0f) ?: 0).toInt()
+        consumedCarbs =
+            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f) ?: 0).toInt()
+    }
+
     private fun drawProgressBars() {
         with(binding) {
             tvEaten.text = "$consumedCalories \n eaten"
             tvBurned.text = "$burnedCalories \n burned"
-            if (goalCalories - (consumedCalories - burnedCalories) >= 0){
-                tvProgress.text = "${goalCalories - (consumedCalories - burnedCalories)} \n kcal left"
-            }else{
-                tvProgress.text = "${(consumedCalories - burnedCalories)-goalCalories} \n kcal over limit"
+            if (goalCalories - (consumedCalories - burnedCalories) >= 0) {
+                tvProgress.text =
+                    "${goalCalories - (consumedCalories - burnedCalories)} \n kcal left"
+            } else {
+                tvProgress.text =
+                    "${(consumedCalories - burnedCalories) - goalCalories} \n kcal over limit"
             }
             pbGoal.max = goalCalories
             pbGoal.progress = consumedCalories - burnedCalories
