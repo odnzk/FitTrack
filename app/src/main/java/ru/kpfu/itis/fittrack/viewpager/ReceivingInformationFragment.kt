@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.databinding.FragmentReceivingInformationBinding
+
 
 class ReceivingInformationFragment : Fragment() {
     private var _binding: FragmentReceivingInformationBinding? = null
@@ -68,15 +70,19 @@ class ReceivingInformationFragment : Fragment() {
                             binding.spinnerGoal.selectedItem.toString()
                         )
                         activity?.findViewById<ViewPager2>(R.id.view_pager2)?.visibility = View.GONE
-                        activity?.findViewById<BottomAppBar>(R.id.bottomAppBar)?.visibility = View.VISIBLE
-                        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.VISIBLE
-                        activity?.findViewById<FloatingActionButton>(R.id.fab)?.visibility = View.VISIBLE
+                        makeNavigationVisible()
+                        hideKeyboard(etAge)
                     }
                 }
             }
         }
 
         return binding.root
+    }
+
+    private fun hideKeyboard(view: View) {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     override fun onDestroyView() {
@@ -145,6 +151,13 @@ class ReceivingInformationFragment : Fragment() {
         editor?.putString(ACTIVENESS_KEY, activeness)
         editor?.putString(GOAL_KEY, goal)
         editor?.apply()
+    }
+
+    private fun makeNavigationVisible() {
+        activity?.findViewById<BottomAppBar>(R.id.bottomAppBar)?.visibility = View.VISIBLE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility =
+            View.VISIBLE
+        activity?.findViewById<FloatingActionButton>(R.id.fab)?.visibility = View.VISIBLE
     }
 
     companion object PreferencesKeysForSavingUserDataAndIsColdBoot {

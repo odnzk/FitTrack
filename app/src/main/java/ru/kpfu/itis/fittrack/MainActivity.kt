@@ -1,6 +1,5 @@
 package ru.kpfu.itis.fittrack
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.navigation.ui.setupWithNavController
 import ru.kpfu.itis.fittrack.data.ProductViewModel
 import ru.kpfu.itis.fittrack.data.RecipeViewModel
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
-import ru.kpfu.itis.fittrack.viewpager.ReceivingInformationFragment
 import ru.kpfu.itis.fittrack.viewpager.ViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -30,18 +28,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sharedPref = this.getSharedPreferences(getString(R.string.preferenceFileKey_UserData), Context.MODE_PRIVATE)
-        if(sharedPref.getBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, true)){
-            binding.viewPager2.adapter = ViewPagerAdapter(this, this)
-            binding.bottomAppBar.visibility = View.GONE
-            binding.fab.visibility = View.GONE
-            binding.bottomNavigationView.visibility = View.GONE
-            binding.viewPager2.visibility = View.VISIBLE
-            sharedPref.edit().putBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, false).apply()
-        }
+
+        binding.viewPager2.adapter = ViewPagerAdapter(this, this)
+        binding.bottomAppBar.visibility = View.GONE
+        binding.fab.visibility = View.GONE
+        binding.bottomNavigationView.visibility = View.GONE
+        binding.viewPager2.visibility = View.VISIBLE
+//        val sharedPref = this.getSharedPreferences(getString(R.string.preferenceFileKey_UserData), Context.MODE_PRIVATE)
+//        if(sharedPref.getBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, true)){
+//            binding.viewPager2.adapter = ViewPagerAdapter(this, this)
+//            binding.bottomAppBar.visibility = View.GONE
+//            binding.fab.visibility = View.GONE
+//            binding.bottomNavigationView.visibility = View.GONE
+//            binding.viewPager2.visibility = View.VISIBLE
+//            sharedPref.edit().putBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, false).apply()
+//        }
 
         supportActionBar?.hide()
-        with (binding) {
+        with(binding) {
             controller = (supportFragmentManager.findFragmentById(R.id.container)
                     as NavHostFragment).navController
             bottomNavigationView.setupWithNavController(controller)
