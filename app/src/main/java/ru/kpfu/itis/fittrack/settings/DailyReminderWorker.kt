@@ -9,6 +9,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import ru.kpfu.itis.fittrack.MainActivity
 import ru.kpfu.itis.fittrack.R
+import ru.kpfu.itis.fittrack.settings.NotificationHelper.Companion.NOTIFICATIONS_CHANNEL_ID
 
 class DailyReminderWorker(appContext: Context, workerParams: WorkerParameters) :
     Worker(appContext, workerParams) {
@@ -29,7 +30,7 @@ class DailyReminderWorker(appContext: Context, workerParams: WorkerParameters) :
 
         val builder = NotificationCompat.Builder(
             applicationContext,
-            SettingsFragment.NOTIFICATIONS_CHANNEL_ID
+            NOTIFICATIONS_CHANNEL_ID
         )
             .setSmallIcon(R.drawable.ic_baseline_notifications_24)
             .setContentTitle(applicationContext.resources.getString(R.string.notif_reminder))

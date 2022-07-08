@@ -5,15 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.databinding.FragmentReceivingInformationBinding
+
 
 class ReceivingInformationFragment : Fragment() {
     private var _binding: FragmentReceivingInformationBinding? = null
@@ -68,15 +71,19 @@ class ReceivingInformationFragment : Fragment() {
                             binding.spinnerGoal.selectedItem.toString()
                         )
                         activity?.findViewById<ViewPager2>(R.id.view_pager2)?.visibility = View.GONE
-                        activity?.findViewById<BottomAppBar>(R.id.bottomAppBar)?.visibility = View.VISIBLE
-                        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.VISIBLE
-                        activity?.findViewById<FloatingActionButton>(R.id.fab)?.visibility = View.VISIBLE
+                        makeNavigationVisible()
+                        hideKeyboard(etAge)
                     }
                 }
             }
         }
 
         return binding.root
+    }
+
+    private fun hideKeyboard(view: View) {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     override fun onDestroyView() {
@@ -133,18 +140,22 @@ class ReceivingInformationFragment : Fragment() {
         activeness: String,
         goal: String
     ) {
-        val sp = activity?.getSharedPreferences(
-            getString(R.string.preferenceFileKey_UserData),
-            Context.MODE_PRIVATE
-        )
-        val editor = sp?.edit()
-        editor?.putBoolean(GENDER_KEY, gender)
-        editor?.putInt(HEIGHT_KEY, height)
-        editor?.putFloat(WEIGHT_KEY, weight)
-        editor?.putInt(AGE_KEY, age)
-        editor?.putString(ACTIVENESS_KEY, activeness)
-        editor?.putString(GOAL_KEY, goal)
-        editor?.apply()
+        val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val editor = sp.edit()
+        editor.putString(GENDER_KEY, gender.toString())
+        editor.putString(HEIGHT_KEY, height.toString())
+        editor.putString(WEIGHT_KEY, weight.toString())
+        editor.putString(AGE_KEY, age.toString())
+        editor.putString(ACTIVENESS_KEY, activeness)
+        editor.putString(GOAL_KEY, goal)
+        editor.apply()
+    }
+
+    private fun makeNavigationVisible() {
+        activity?.findViewById<BottomAppBar>(R.id.bottomAppBar)?.visibility = View.VISIBLE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility =
+            View.VISIBLE
+        activity?.findViewById<FloatingActionButton>(R.id.fab)?.visibility = View.VISIBLE
     }
 
     companion object PreferencesKeysForSavingUserDataAndIsColdBoot {
