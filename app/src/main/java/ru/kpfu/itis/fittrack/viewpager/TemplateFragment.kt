@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.DecelerateInterpolator
 import androidx.fragment.app.Fragment
 import ru.kpfu.itis.fittrack.databinding.FragmentTemplateBinding
 
@@ -24,6 +26,7 @@ class TemplateFragment : Fragment() {
         arguments?.let {
             with(binding) {
                 ivIcons.setImageResource(it.getInt(ViewPagerAdapter.IMAGE_KEY))
+                ivIcons.startAnimation(generateAlphaAnimation())
                 tvDescription.text = it.getString(ViewPagerAdapter.DESCRIPTION_KEY)
                 when (it.getInt(ViewPagerAdapter.POSITION_KEY)) {
                     0 -> rb1.isChecked = true
@@ -40,4 +43,11 @@ class TemplateFragment : Fragment() {
         _binding = null
     }
 
+    private fun generateAlphaAnimation():AlphaAnimation{
+        val anim = AlphaAnimation(0f, 1f)
+        anim.duration = 3000
+        anim.interpolator = DecelerateInterpolator()
+        anim.fillAfter = true
+        return anim
+    }
 }

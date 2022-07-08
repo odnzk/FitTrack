@@ -16,6 +16,7 @@
         android:summary="@string/notif_reminder_desc"/>
     </PreferenceCategory>
     <PreferenceCategory
+        android:key="category_expandable"
         android:title="@string/category_user_infa"
         app:initialExpandedChildrenCount="0">
 
