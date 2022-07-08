@@ -9,6 +9,9 @@
     <string name="calorie_tracker">Calorie tracker</string>
     <string name="stats">Stats</string>
 
+
+
+
     <string name="lunch">Lunch</string>
     <string name="breakfast">Breakfast</string>
     <string name="dinner">Dinner</string>
@@ -32,5 +35,21 @@
     <string name="vp_errorMessageEmptiness">Cannot be empty</string>
     <string name="vp_errorMessageInvalidity">Invalid data</string>
     <string name="preferenceFileKey_UserData">UserData</string>
+
+
+
+    <string name="category_user_infa">Your information</string>
+    <string name="activeness">Activeness</string>
+    <string name="goal">Goal</string>
+    <string name="gender">Gender</string>
+    <string name="Change">Change</string>
+    <string name="category_notifications">Notifications</string>
+    <string name="notif_daily_recipe">Daily recipe</string>
+    <string name="notif_daily_recipe_desc">Get random recipe everyday</string>
+    <string name="notif_reminder">Daily reminder</string>
+    <string name="notif_channel_name">All notifications</string>
+    <string name="notif_channel_description">channel for DailyRecipeNotification and DailyReminderNotification</string>
+    <string name="notif_reminder_content">Do not forget to journal your food</string>
+    <string name="notif_reminder_desc">Reminder to fill out the food log</string>
 
 </resources>

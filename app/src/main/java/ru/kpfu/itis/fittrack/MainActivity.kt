@@ -1,13 +1,12 @@
 package ru.kpfu.itis.fittrack
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController

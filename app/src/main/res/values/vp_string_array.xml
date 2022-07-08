@@ -17,4 +17,13 @@
         <item>average</item>
         <item>maximum</item>
     </string-array>
+
+    <string-array name="gender">
+        <item>female</item>
+        <item>male</item>
+    </string-array>
+    <string-array name="gender_boolean">
+        <item>true</item>
+        <item>false</item>
+    </string-array>
 </resources>
