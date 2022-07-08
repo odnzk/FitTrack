@@ -49,7 +49,11 @@ class MainActivity : AppCompatActivity() {
             controller = (supportFragmentManager.findFragmentById(R.id.container)
                     as NavHostFragment).navController
             bottomNavigationView.setupWithNavController(controller)
-
+            bottomNavigationView.setOnItemSelectedListener {
+                val selectedDestinationId = it.itemId
+                controller.navigate(selectedDestinationId)
+                controller.popBackStack(selectedDestinationId, inclusive = false)
+            }
             fab.setOnClickListener {
                 val builder = AlertDialog.Builder(this@MainActivity)
                 builder.setPositiveButton("Food") { _, _ ->
@@ -85,5 +89,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val FIRST_LAUNCH = "firstLaunch"
         const val KEY_FIRST_LAUNCH = "flKey"
+
     }
 }
