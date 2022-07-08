@@ -3,40 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2245" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.2245" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2245" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/add_recipe.xml" value="0.3125572868927589" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/food_for_the_day_item.xml" value="0.17760416666666667" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_add_product.xml" value="0.22291666666666668" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_add_recipe.xml" value="0.234375" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_list_for_the_day.xml" value="0.4" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_place_holder.xml" value="0.4" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1235" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1275" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/drawable/ic_baseline_bar_chart_24.xml" value="0.1275" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1275" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/drawable/ic_baseline_menu_book_24.xml" value="0.199" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1235" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/drawable/round_top.xml" value="0.2365" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_add_product.xml" value="0.25" />
         <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_product_description.xml" value="0.25" />
         <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_products_and_recipes.xml" value="0.25" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_recipe_description.xml" value="0.536" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_recipe_description.xml" value="0.35732647814910024" />
         <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_stats_day.xml" value="0.25" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_stats_week.xml" value="0.25" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/fragment_trainings_for_the_day.xml" value="0.17760416666666667" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/item_product.xml" value="0.13229166666666667" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/item_product_delete.xml" value="0.3018867924528302" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/item_recipe.xml" value="0.13229166666666667" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/item_recipe_delete.xml" value="0.17760416666666667" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/layout_will_be_deleted.xml" value="0.2" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/list_for_the_day_item.xml" value="0.264" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/section_view_holder.xml" value="0.1" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/training_food_for_the_day_item.xml" value="0.17760416666666667" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/training_for_the_day_item.xml" value="0.17760416666666667" />
-        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/menu/drop_down_category_menu.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/item_product.xml" value="0.6" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/item_recipe.xml" value="0.4" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/section_view_holder.xml" value="0.1125" />
+        <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/layout/training_food_for_the_day_item.xml" value="0.1125" />
         <entry key="..\:/Users/nauru/AndroidStudioProjects/home works/summer_practice/FitTrack/app/src/main/res/menu/menu_main.xml" value="0.25" />
-      </map>
-    </option>
-  </component>
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5485702514648438" />
         <entry key="app/src/main/res/layout/fragment_receiving_information.xml" value="0.40400390625000004" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.14166666666666666" />

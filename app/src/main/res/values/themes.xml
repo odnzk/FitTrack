@@ -28,9 +28,9 @@
     <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">0dp</item>
-        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
-        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
     </style>
 
     <style name="vp_tvDescriptionStyle" parent="Widget.AppCompat.TextView">
