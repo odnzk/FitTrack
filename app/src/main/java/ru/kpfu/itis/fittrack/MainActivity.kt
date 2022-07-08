@@ -22,7 +22,7 @@ import ru.kpfu.itis.fittrack.viewpager.ReceivingInformationFragment
 import ru.kpfu.itis.fittrack.viewpager.ViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private lateinit var mProductViewModel: ProductViewModel
     private lateinit var mRecipeViewModel: RecipeViewModel
     private lateinit var prefFirstLaunch: SharedPreferences
@@ -54,11 +54,6 @@ class MainActivity : AppCompatActivity() {
             controller = (supportFragmentManager.findFragmentById(R.id.container)
                     as NavHostFragment).navController
             bottomNavigationView.setupWithNavController(controller)
-            bottomNavigationView.setOnItemSelectedListener {
-                val selectedDestinationId = it.itemId
-                controller.navigate(selectedDestinationId)
-                controller.popBackStack(selectedDestinationId, inclusive = false)
-            }
             fab.setOnClickListener {
                 val builder = AlertDialog.Builder(this@MainActivity)
                 builder.setPositiveButton("Food") { _, _ ->
@@ -80,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateWithOptions(idToNavigateInto: Int){
+    private fun navigateWithOptions(idToNavigateInto: Int) {
         val builder = NavOptions.Builder()
         val options = controller.currentDestination?.let {
             builder.setPopUpTo(it.id, true).build()
@@ -91,13 +86,14 @@ class MainActivity : AppCompatActivity() {
             options,
         )
     }
+
     private fun fillFirstTime() {
         mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         mRecipeViewModel = ViewModelProvider(this)[RecipeViewModel::class.java]
         InitialProducts.list.forEach {
             mProductViewModel.addProduct(it)
         }
-        InitialRecipes.list.forEach{
+        InitialRecipes.list.forEach {
             mRecipeViewModel.addRecipe(it)
         }
     }
