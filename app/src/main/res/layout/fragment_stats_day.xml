@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/statsDayTitle"
+        android:text="@string/calorie_tracker"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -52,7 +55,6 @@
         android:layout_height="200dp"
         android:indeterminateOnly="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:progress="60" />
@@ -69,7 +71,7 @@
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintBottom_toTopOf="@id/pb_carbs"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/pb_goal" />
+        app:layout_constraintTop_toBottomOf="@+id/pb_goal" />
     <ProgressBar
         android:id="@+id/pb_carbs"
         style="?android:progressBarStyleHorizontal"
@@ -91,7 +93,7 @@
 
         android:layout_marginBottom="30dp"
         android:indeterminateOnly="false"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tv_waterSquare"
         app:layout_constraintStart_toStartOf="@+id/pb_proteins"
         app:layout_constraintTop_toBottomOf="@+id/pb_carbs" />
     <TextView
@@ -135,5 +137,54 @@
         app:layout_constraintStart_toStartOf="@+id/pb_fat"
         app:layout_constraintTop_toBottomOf="@+id/pb_fat"
         tools:text="0/250" />
+    <TextView
+        android:id="@+id/tv_waterSquare"
+        android:layout_width="375dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rv_back"
+        android:text="@string/rvWaterTitle"
 
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_fatLeft" />
+
+
+
+
+    <TextView
+        android:id="@+id/tv_water"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/tv_waterSquare"
+        app:layout_constraintBottom_toBottomOf="@id/tv_waterSquare"
+        app:layout_constraintEnd_toEndOf="@id/tv_waterSquare"
+        android:layout_marginEnd="20dp"
+        android:text="@string/waterCounter"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_cups"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:background="@drawable/rv_back"
+        tools:listitem="@layout/item_water"
+        tools:itemCount="10"
+        app:layout_constraintTop_toBottomOf="@id/tv_waterSquare"
+        app:layout_constraintStart_toStartOf="@id/tv_waterSquare"
+        app:layout_constraintEnd_toEndOf="@id/tv_waterSquare"
+        />
+<!--    костыль чтобы менюшка не перекрывала :) подскажи если это нормально можно сделать-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_cups"
+        tools:text = "121212"
+        android:layout_marginTop="200dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

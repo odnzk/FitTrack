@@ -8,6 +8,8 @@
     <string name="settings">Settings</string>
     <string name="calorie_tracker">Calorie tracker</string>
     <string name="stats">Stats</string>
+    <string name="rvWaterTitle">\n Water</string>
+    <string name="waterCounter">0 L</string>
 
 
 
