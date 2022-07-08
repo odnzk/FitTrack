@@ -19,19 +19,19 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAddProductBinding.bind(view)
-        mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+        mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         binding.addProductBtn.setOnClickListener {
             insertDataToDatabase()
         }
     }
 
     private fun insertDataToDatabase() {
-        var title = ""
-        var picture = ""
-        var calories = 0
-        var proteins = 0f
-        var fats = 0f
-        var carbohydrates = 0f
+        var title: String
+        var picture: String
+        var calories: Int
+        var proteins: Float
+        var fats: Float
+        var carbohydrates: Float
         with(binding) {
             title = etTitle.text.toString()
             picture = etLink.text.toString()
