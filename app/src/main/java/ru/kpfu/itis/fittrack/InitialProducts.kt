@@ -81,7 +81,5 @@ object InitialProducts {
             8.1f,
         )
 
-
-
     )
 }
