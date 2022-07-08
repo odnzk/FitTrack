@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.data.Recipe
 import ru.kpfu.itis.fittrack.data.RecipeViewModel
@@ -25,7 +24,6 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
     private var category: String? = null
     private var deletedElementId: Int = 0
 
-    //TODO: этому фрагменту требуется нормальная верстка
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentRecipeDescriptionBinding.bind(view)
@@ -76,8 +74,6 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
             }
 
         }
-
-        //TODO: вроде как картинка и описание не отобраются, чекните, у меня эмулятор дурацкий
 
 
         binding.btnAddItem.setOnClickListener {

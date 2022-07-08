@@ -25,7 +25,6 @@ class ProductDescriptionFragment : Fragment(R.layout.fragment_product_descriptio
     private var category: String? = null
     private var deletedElementId: Int = 0
 
-    //TODO: этому фрагменту требуется нормальная верстка
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentProductDescriptionBinding.bind(view)
@@ -75,8 +74,6 @@ class ProductDescriptionFragment : Fragment(R.layout.fragment_product_descriptio
 
         }
 
-
-        //TODO: вроде как картинка не отображается, хз почему, проверьте у себя
         binding.btnAddItem.setOnClickListener {
 
             val sharedPreferencesStorage = SharedPreferencesStorage(binding.root.context)

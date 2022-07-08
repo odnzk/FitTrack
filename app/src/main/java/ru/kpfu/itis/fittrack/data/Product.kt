@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 //TODO: решить проблему дубликатов в бд
-//TODO: заполнить бд для продуктов и рецептов, но сделать такие элементы, которые нельзя удалить
 @Entity
 data class Product (
     @PrimaryKey(autoGenerate = true)
