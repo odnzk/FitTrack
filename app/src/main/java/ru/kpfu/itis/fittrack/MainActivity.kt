@@ -1,19 +1,11 @@
 package ru.kpfu.itis.fittrack
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
-import ru.kpfu.itis.fittrack.fragments.ProductsAndRecipesFragment
-import ru.kpfu.itis.fittrack.fragments.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,21 +22,15 @@ class MainActivity : AppCompatActivity() {
             controller = (supportFragmentManager.findFragmentById(R.id.container)
                     as NavHostFragment).navController
             bottomNavigationView.setupWithNavController(controller)
+            bottomNavigationView.setOnItemSelectedListener {
+                val selectedDestinationId = it.itemId
+                controller.navigate(selectedDestinationId)
+                controller.popBackStack(selectedDestinationId, inclusive = false)
+            }
 
             fab.setOnClickListener {
-                controller.navigate(
-                    R.id.productsAndRecipesFragment
-                )
-
-                hideMenu()
+                controller.navigate(R.id.productsAndRecipesFragment)
             }
-        }
-    }
-
-    private fun hideMenu() {
-        with (binding) {
-            fab.hide()
-            bottomAppBar.performHide()
         }
     }
 

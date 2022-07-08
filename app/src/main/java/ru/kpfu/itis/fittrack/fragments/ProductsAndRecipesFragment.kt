@@ -13,14 +13,4 @@ class ProductsAndRecipesFragment : Fragment(R.layout.fragment_products_and_recip
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
-
-    override fun onDestroyView() {
-        showMenu()
-        super.onDestroyView()
-    }
-
-    private fun showMenu() {
-        activity?.findViewById<FloatingActionButton>(R.id.fab)?.show()
-        activity?.findViewById<BottomAppBar>(R.id.bottomAppBar)?.performShow()
-    }
 }
