@@ -9,15 +9,15 @@ import ru.kpfu.itis.fittrack.databinding.FragmentStatsDayBinding
 class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
     private var _binding: FragmentStatsDayBinding? = null
     private val binding get() = _binding!!
-    private var goalCalories= 0
-    private var consumedCalories = 0
-    private var burnedCalories= 0
-    private var consumedProteins = 0
-    private var consumedFat = 0
-    private var consumedCarbs = 0
-    private var maxProteins = 0
-    private var maxCarbs= 0
-    private var maxFat= 0
+    private var goalCalories: Int = 0
+    private var consumedCalories: Int = 0
+    private var burnedCalories: Int = 0
+    private var consumedProteins: Int = 0
+    private var consumedFat: Int = 0
+    private var consumedCarbs: Int = 0
+    private var maxProteins: Int = 0
+    private var maxCarbs: Int = 0
+    private var maxFat: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

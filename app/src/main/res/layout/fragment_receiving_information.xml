@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="70dp"
+    android:background="@color/main_green"
+    tools:context=".viewpager.ReceivingInformationFragment">
+
+
+    <TextView
+        android:id="@+id/textView"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vp_riTvTitle"
+        style="@style/vp_tvDescriptionStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/etHeight"
+        />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/materialButtonToggleGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/btnSaveUser"
+        app:layout_constraintEnd_toEndOf="@id/etAge"
+        app:layout_constraintStart_toStartOf="@id/etAge"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_goal"
+        app:singleSelection="true">
+
+        <Button
+            android:id="@+id/btnFemale"
+            style="@style/vp_btnCustomOutlineTransparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/vp_riTvGenderFemale" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMale"
+            style="@style/vp_btnCustomOutlineTransparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/vp_riTvGenderMale" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <EditText
+        android:id="@+id/etHeight"
+        style="@style/vp_edCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:autofillHints="height"
+        android:hint="@string/vp_riTvHeight"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@id/etWeight"
+        app:layout_constraintEnd_toEndOf="@id/textView"
+        app:layout_constraintStart_toStartOf="@id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/etWeight"
+        style="@style/vp_edCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="weight"
+        android:hint="@string/vp_riTvWeight"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@id/etAge"
+        app:layout_constraintEnd_toEndOf="@+id/etHeight"
+        app:layout_constraintStart_toStartOf="@+id/etHeight"
+        app:layout_constraintTop_toBottomOf="@+id/etHeight" />
+
+    <EditText
+        android:id="@+id/etAge"
+        style="@style/vp_edCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="age"
+        android:hint="@string/vp_riTvAge"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@id/spinner_activeness"
+        app:layout_constraintEnd_toEndOf="@+id/etWeight"
+        app:layout_constraintStart_toStartOf="@+id/etWeight"
+        app:layout_constraintTop_toBottomOf="@+id/etWeight" />
+
+    <Button
+        android:id="@+id/btnSaveUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/vp_btnCustomOutlineRed"
+        android:text="@string/vp_riBtnSaveUserData"
+        app:layout_constraintEnd_toEndOf="@+id/materialButtonToggleGroup"
+        app:layout_constraintStart_toStartOf="@+id/materialButtonToggleGroup"
+        app:layout_constraintTop_toBottomOf="@id/materialButtonToggleGroup"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_activeness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/spinner_goal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etAge" />
+
+    <Spinner
+        android:id="@+id/spinner_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/materialButtonToggleGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_activeness" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

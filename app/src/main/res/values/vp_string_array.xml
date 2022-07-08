@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="vp_descriptions">
+        <item>Consider your calorie intake every day with the option of adding a dish or product to any of the meals</item>
+        <item>Use the convenient recipe guides, discover new dishes for yourself</item>
+        <item>Track the quantity and quality of calories consumed per week using the statistics screen</item>
+    </string-array>
+
+    <string-array name="vp_spinner_goal">
+        <item>lose weight</item>
+        <item>keep the same</item>
+        <item>gain weight</item>
+    </string-array>
+
+    <string-array name="vp_spinner_activeness">
+        <item>minimum</item>
+        <item>average</item>
+        <item>maximum</item>
+    </string-array>
+</resources>
