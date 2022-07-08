@@ -52,7 +52,6 @@ class ProductsAndRecipesFragment : Fragment(R.layout.fragment_products_and_recip
             viewLifecycleOwner
         ) {
                 a -> recipeAdapter.setData(a)
-
         }
 
         binding.btnAdd.setOnClickListener {

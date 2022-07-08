@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_placeHolderFragment_to_recipeDescriptionFragment2"
             app:destination="@id/recipeDescriptionFragment" />
+        <action
+            android:id="@+id/action_placeHolderFragment_to_workoutDescriptionFragment"
+            app:destination="@id/workoutDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

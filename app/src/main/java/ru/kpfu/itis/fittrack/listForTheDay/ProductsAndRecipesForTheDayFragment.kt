@@ -100,7 +100,7 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
                         val recipeItem = recipe.get(arrIds[i].toInt()).copy()
                         recipeItem.category = category
                         recipeItem.type = type
-                        adapter.addItem(0, recipeItem)
+                        adapter.addItem(0, recipeItem, binding.root.context)
                     }
                 }
             }
@@ -118,7 +118,7 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
                         val productItem = product.get(arrIds[i].toInt()).copy()
                         productItem.category = category
                         productItem.type = type
-                        adapter.addItem(0, productItem)
+                        adapter.addItem(0, productItem, binding.root.context)
                     }
                 }
             }

@@ -21,7 +21,7 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
     lateinit var mRecipeViewModel: RecipeViewModel
     private var _binding: FragmentRecipeDescriptionBinding? = null
     private val binding get() = _binding!!
-    private var category: String? = null
+    private lateinit var category: String
     private var deletedElementId: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,6 +36,7 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
         binding.tvTitle.text = curRecipe?.title
         binding.tvDescription.text = curRecipe?.description
         Glide.with(this).load(curRecipe?.picture).into(binding.ivPicture)
+        Glide.with(this).load(curRecipe?.picture).into(binding.ivPicture2)
         mRecipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
 
         binding.btnDeleteItem.setOnClickListener {
@@ -69,29 +70,14 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
 
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                category = null
+            override fun onNothingSelected(adapterView: AdapterView<*>?) {
+                category = "Breakfast"
             }
 
         }
 
-
         binding.btnAddItem.setOnClickListener {
-
-            val sharedPreferencesStorage = SharedPreferencesStorage(binding.root.context)
-            if (category != null) {
-                val type = "Recipe"
-                curRecipe?.let { it1 -> Integer.valueOf(it1.id) - 1 }
-                    ?.let { it2 -> sharedPreferencesStorage.addItemID(it2) }
-                sharedPreferencesStorage.addCategory(category!!)
-                sharedPreferencesStorage.addType(type)
-            }
-
-            Toast.makeText(
-                context,
-                curRecipe?.title + " has been added to the day list",
-                Toast.LENGTH_SHORT
-            ).show()
+            addingValuesToSharedPreferencesExtension(binding.root.context, category, "Recipe", curRecipe)
         }
     }
 

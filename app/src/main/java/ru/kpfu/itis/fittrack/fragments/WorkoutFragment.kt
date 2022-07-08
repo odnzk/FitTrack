@@ -28,6 +28,5 @@ class WorkoutFragment : Fragment(R.layout.fragment_workout) {
         binding.rvList.layoutManager =
             GridLayoutManager(requireContext(), 3)
 
-
     }
 }

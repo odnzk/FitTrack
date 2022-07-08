@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -57,10 +58,10 @@ class MainActivity : AppCompatActivity() {
             fab.setOnClickListener {
                 val builder = AlertDialog.Builder(this@MainActivity)
                 builder.setPositiveButton("Food") { _, _ ->
-                    controller.navigate(R.id.productsAndRecipesFragment)
+                    navigateWithOptions(R.id.productsAndRecipesFragment)
                 }
                 builder.setNegativeButton("Workout") { _, _ ->
-                    controller.navigate(R.id.workoutFragment)
+                    navigateWithOptions(R.id.workoutFragment)
                 }
                 builder.setTitle("Select an action")
                 builder.setMessage("What do you want to add?")
@@ -73,6 +74,18 @@ class MainActivity : AppCompatActivity() {
             fillFirstTime()
             prefFirstLaunch.edit().putBoolean(KEY_FIRST_LAUNCH, false).apply()
         }
+    }
+
+    private fun navigateWithOptions(idToNavigateInto: Int){
+        val builder = NavOptions.Builder()
+        val options = controller.currentDestination?.let {
+            builder.setPopUpTo(it.id, true).build()
+        }
+        controller.navigate(
+            idToNavigateInto,
+            null,
+            options,
+        )
     }
     private fun fillFirstTime() {
         mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]

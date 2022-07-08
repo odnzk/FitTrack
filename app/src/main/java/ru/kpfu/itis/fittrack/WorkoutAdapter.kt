@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
-import ru.kpfu.itis.fittrack.data.Product
-import ru.kpfu.itis.fittrack.data.Workout
+import ru.kpfu.itis.fittrack.data.Training
 import ru.kpfu.itis.fittrack.databinding.ItemWorkoutBinding
 
 class WorkoutAdapter(
     private val glide: RequestManager,
-    private val onItemClick: (Workout) -> Unit
+    private val onItemClick: (Training) -> Unit
 ): RecyclerView.Adapter<WorkoutHolder>() {
 
     private var workoutList = WorkoutRepository.workoutList
