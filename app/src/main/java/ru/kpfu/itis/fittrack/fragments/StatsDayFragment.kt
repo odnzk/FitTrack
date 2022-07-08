@@ -35,7 +35,6 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         init()
     }
 
-    //TODO обработка того что калорий съедено больше чем цель
     private fun init() {
         val sharedPref = activity?.getSharedPreferences(
             getString(R.string.preferenceFileKey_UserData),
@@ -48,7 +47,8 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         calculateConsumed(sharedPref!!)
         drawProgressBars()
     }
-    private fun calculateConsumed(sharedPref:SharedPreferences){
+
+    private fun calculateConsumed(sharedPref: SharedPreferences) {
         consumedCalories = sharedPref.getInt(ProductDescriptionFragment.EATEN_CALORIES, 0) ?: 0
         consumedProteins =
             (sharedPref.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f) ?: 0).toInt()
@@ -56,12 +56,35 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         consumedCarbs =
             (sharedPref.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f) ?: 0).toInt()
     }
-    //TODO учитывать активность и цель
+
+
     private fun calcGoalCalories(): Int {
-        return when (sex) {
+        return (calcActivenessCoef() * when (sex) {
             false -> MALE_CONST + weight * MALE_WEIGHT + height * MALE_HEIGHT - MALE_AGE * age
             true -> FEMALE_CONST + weight * FEMALE_WEIGHT + height * FEMALE_HEIGHT - FEMALE_AGE * age
-        }.toInt()
+        }).toInt() + calcGoalDiff()
+    }
+
+    private fun calcActivenessCoef(): Double {
+        return when (activeness) {
+            "minimum" -> LOW_ACTIVENESS
+            "average" -> AVERAGE_ACTIVENESS
+            "maximum" -> MAX_ACTIVENESS
+            else -> {
+                0.0
+            }
+        }
+    }
+
+    private fun calcGoalDiff(): Int {
+        return when (goal) {
+            "lose weight" -> -100
+            "keep the same" -> 0
+            "gain weight" -> 100
+            else -> {
+                0
+            }
+        }
     }
 
     private fun initUserData(sharedPref: SharedPreferences?) {
@@ -93,7 +116,11 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         with(binding) {
             tvEaten.text = "$consumedCalories \n eaten"
             tvBurned.text = "$burnedCalories \n burned"
-            tvProgress.text = "${goalCalories - (consumedCalories - burnedCalories)} \n kcal left"
+            if (goalCalories - (consumedCalories - burnedCalories) >= 0){
+                tvProgress.text = "${goalCalories - (consumedCalories - burnedCalories)} \n kcal left"
+            }else{
+                tvProgress.text = "${(consumedCalories - burnedCalories)-goalCalories} \n kcal over limit"
+            }
             pbGoal.max = goalCalories
             pbGoal.progress = consumedCalories - burnedCalories
             tvProteinsLeft.text = "$consumedProteins / $maxProteins"
@@ -119,6 +146,9 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
     }
 
     companion object {
+        const val LOW_ACTIVENESS = 1.2
+        const val AVERAGE_ACTIVENESS = 1.4
+        const val MAX_ACTIVENESS = 1.9
         const val MALE_CONST = 66.5
         const val MALE_WEIGHT = 13.75
         const val MALE_HEIGHT = 5.003
