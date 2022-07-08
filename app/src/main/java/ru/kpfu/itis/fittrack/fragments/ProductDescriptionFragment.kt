@@ -80,7 +80,7 @@ class ProductDescriptionFragment : Fragment(R.layout.fragment_product_descriptio
 
         //TODO: вроде как картинка не отображается, хз почему, проверьте у себя
         binding.btnAddItem.setOnClickListener {
-            changeSharedPref()
+            changeSharedPref(curProduct!!)
             val sharedPreferencesStorage = SharedPreferencesStorage(binding.root.context)
             if (category != null) {
                 val type = "Product"
@@ -95,27 +95,6 @@ class ProductDescriptionFragment : Fragment(R.layout.fragment_product_descriptio
                 Toast.LENGTH_SHORT
             ).show()
         }
-    }
-    private fun changeSharedPref(){
-        val sharedPref = activity?.getSharedPreferences(
-            getString(R.string.preferenceFileKey_UserData),
-            Context.MODE_PRIVATE
-        )
-        var eatenCalories = sharedPref?.getInt(EATEN_CALORIES, 0)
-        var eatenProteins = sharedPref?.getFloat(EATEN_PROTEINS, 0f)
-        var eatenCarbs = sharedPref?.getFloat(EATEN_CARBS, 0f)
-        var eatenFats = sharedPref?.getFloat(EATEN_FATS, 0f)
-        val editor = sharedPref?.edit()
-
-        eatenCalories = eatenCalories?.plus(curProduct?.calories!!)
-        eatenProteins = eatenProteins?.plus(curProduct?.proteins!!)
-        eatenCarbs = eatenCarbs?.plus(curProduct?.carbohydrates!!)
-        eatenFats = eatenFats?.plus(curProduct?.fats!!)
-
-        editor?.putInt(EATEN_CALORIES, eatenCalories!!)?.apply()
-        editor?.putFloat(EATEN_PROTEINS, eatenProteins!!)?.apply()
-        editor?.putFloat(EATEN_CARBS, eatenCarbs!!)?.apply()
-        editor?.putFloat(EATEN_FATS, eatenFats!!)?.apply()
     }
     companion object {
         private const val ARG_TEXT = "product"
