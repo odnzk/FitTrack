@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import ru.kpfu.itis.fittrack.R
@@ -46,13 +47,15 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
             getString(R.string.preferenceFileKey_UserData),
             Context.MODE_PRIVATE
         )
-        initUserData(sharedPref)
+        val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        initUserData(sp)
         calcPFC()
         goalCalories = calcGoalCalories()
         burnedCalories = 6 // ждём
         calculateConsumed(sharedPref!!)
         drawProgressBars()
     }
+
     private fun onItemClick(int: Int) {
         water += WATER_CUP_WEIGHT
         binding.tvWater.text = "$water L"
@@ -72,10 +75,10 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
     }
 
     private fun initUserData(sharedPref: SharedPreferences?) {
-        sex = sharedPref?.getBoolean(ReceivingInformationFragment.GENDER_KEY, sex)!!
-        height = sharedPref.getInt(ReceivingInformationFragment.HEIGHT_KEY, height)
-        weight = sharedPref.getFloat(ReceivingInformationFragment.WEIGHT_KEY, weight)
-        age = sharedPref.getInt(ReceivingInformationFragment.AGE_KEY, age)
+        sex = sharedPref?.getString(ReceivingInformationFragment.GENDER_KEY, "false")!!.toBoolean()
+        height = sharedPref.getString(ReceivingInformationFragment.HEIGHT_KEY, "0")!!.toInt()
+        weight = sharedPref.getString(ReceivingInformationFragment.WEIGHT_KEY, "0f")!!.toFloat()
+        age = sharedPref.getString(ReceivingInformationFragment.AGE_KEY, "0")!!.toInt()
         activeness =
             sharedPref.getString(ReceivingInformationFragment.ACTIVENESS_KEY, activeness).toString()
         goal = sharedPref.getString(ReceivingInformationFragment.GOAL_KEY, goal).toString()
@@ -125,12 +128,12 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         }
 
     private fun calculateConsumed(sharedPref: SharedPreferences) {
-        consumedCalories = sharedPref.getInt(ProductDescriptionFragment.EATEN_CALORIES, 0) ?: 0
+        consumedCalories = sharedPref.getInt(ProductDescriptionFragment.EATEN_CALORIES, 0)
         consumedProteins =
-            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f) ?: 0).toInt()
-        consumedFat = (sharedPref.getFloat(ProductDescriptionFragment.EATEN_FATS, 0f) ?: 0).toInt()
+            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f)).toInt()
+        consumedFat = (sharedPref.getFloat(ProductDescriptionFragment.EATEN_FATS, 0f)).toInt()
         consumedCarbs =
-            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f) ?: 0).toInt()
+            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f)).toInt()
     }
 
     private fun drawProgressBars() {
