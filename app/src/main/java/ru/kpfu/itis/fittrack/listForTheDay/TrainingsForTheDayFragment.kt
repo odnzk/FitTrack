@@ -56,7 +56,7 @@ class TrainingsForTheDayFragment : Fragment() {
             adapter.getItemList().toMutableList()
         }
         binding.rvDayList.addItemDecoration(itemSectionDecoration)
-        val touchHelper = ItemTouchHelper(this.addSwipeGesture(binding, adapter))
+        val touchHelper = ItemTouchHelper(this.addSwipeGesture(binding, adapter, requireActivity()))
         touchHelper.attachToRecyclerView(binding.rvDayList)
         binding.rvDayList.adapter = adapter
     }

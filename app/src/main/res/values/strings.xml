@@ -8,37 +8,20 @@
     <string name="settings">Settings</string>
     <string name="calorie_tracker">Calorie tracker</string>
     <string name="stats">Stats</string>
-    <string name="rvWaterTitle">\n Water</string>
-    <string name="waterCounter">0 L</string>
-
-
-
 
     <string name="lunch">Lunch</string>
     <string name="breakfast">Breakfast</string>
     <string name="dinner">Dinner</string>
 
     <string-array name="food_categories">
+        <item name="lunch">Lunch__</item>
         <item name="breakfast">Breakfast</item>
-        <item name="lunch">Lunch</item>
         <item name="dinner">Dinner</item>
     </string-array>
 
+
     <string name="vp_content_description">Image</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="vp_riTvTitle">Answer a couple of questions to correctly account your calorie intake</string>
-    <string name="vp_riTvGenderFemale">female</string>
-    <string name="vp_riTvGenderMale">male</string>
-    <string name="vp_riTvAge">Age</string>
-    <string name="vp_riTvHeight">Height</string>
-    <string name="vp_riTvWeight">Weight</string>
-    <string name="vp_riBtnSaveUserData">Start</string>
-    <string name="vp_errorMessageEmptiness">Cannot be empty</string>
-    <string name="vp_errorMessageInvalidity">Invalid data</string>
-    <string name="preferenceFileKey_UserData">UserData</string>
-
-
+<string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="category_user_infa">Your information</string>
     <string name="activeness">Activeness</string>
@@ -54,4 +37,24 @@
     <string name="notif_reminder_content">Do not forget to journal your food</string>
     <string name="notif_reminder_desc">Reminder to fill out the food log</string>
 
+    <string name="rvWaterTitle">\n Water</string>
+    <string name="waterCounter">0 L</string>
+
+    <string name="vp_riTvTitle">Answer a couple of questions to correctly account your calorie intake</string>
+    <string name="vp_riTvGenderFemale">female</string>
+    <string name="vp_riTvGenderMale">male</string>
+    <string name="vp_riTvAge">Age</string>
+    <string name="vp_riTvHeight">Height</string>
+    <string name="vp_riTvWeight">Weight</string>
+    <string name="vp_riBtnSaveUserData">Start</string>
+    <string name="vp_errorMessageEmptiness">Cannot be empty</string>
+    <string name="vp_errorMessageInvalidity">Invalid data</string>
+    <string name="preferenceFileKey_UserData">UserData</string>
+
+    <string name="vp_notif_title">Setup notifications</string>
+    <string name="vp_notif_recipe">daily recipe from app’s handbook</string>
+    <string name="vp_notif_reminder">daily reminder to help you not to forget about journaling your food</string>
+    <string name="vp_notif_hint"><u>swipe right to skip and set up notifications later</u></string>
+    <string name="on">on</string>
+    <string name="off">off</string>
 </resources>

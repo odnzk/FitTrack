@@ -22,7 +22,7 @@ import ru.kpfu.itis.fittrack.viewpager.ReceivingInformationFragment
 import ru.kpfu.itis.fittrack.viewpager.ViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private lateinit var mProductViewModel: ProductViewModel
     private lateinit var mRecipeViewModel: RecipeViewModel
     private lateinit var prefFirstLaunch: SharedPreferences
@@ -34,26 +34,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sharedPref = this.getSharedPreferences(getString(R.string.preferenceFileKey_UserData), Context.MODE_PRIVATE)
-        if(sharedPref.getBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, true)){
+
+        val sharedPref = this.getSharedPreferences(
+            getString(R.string.preferenceFileKey_UserData),
+            Context.MODE_PRIVATE
+        )
+        if (sharedPref.getBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, true)) {
             binding.viewPager2.adapter = ViewPagerAdapter(this, this)
             binding.bottomAppBar.visibility = View.GONE
             binding.fab.visibility = View.GONE
             binding.bottomNavigationView.visibility = View.GONE
             binding.viewPager2.visibility = View.VISIBLE
-            sharedPref.edit().putBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, false).apply()
+            sharedPref.edit().putBoolean(ReceivingInformationFragment.IS_FIRST_TIME_RUNNING, false)
+                .apply()
         }
 
         supportActionBar?.hide()
-        with (binding) {
+        with(binding) {
             controller = (supportFragmentManager.findFragmentById(R.id.container)
                     as NavHostFragment).navController
             bottomNavigationView.setupWithNavController(controller)
-            bottomNavigationView.setOnItemSelectedListener {
-                val selectedDestinationId = it.itemId
-                controller.navigate(selectedDestinationId)
-                controller.popBackStack(selectedDestinationId, inclusive = false)
-            }
             fab.setOnClickListener {
                 val builder = AlertDialog.Builder(this@MainActivity)
                 builder.setPositiveButton("Food") { _, _ ->
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateWithOptions(idToNavigateInto: Int){
+    private fun navigateWithOptions(idToNavigateInto: Int) {
         val builder = NavOptions.Builder()
         val options = controller.currentDestination?.let {
             builder.setPopUpTo(it.id, true).build()
@@ -86,13 +86,14 @@ class MainActivity : AppCompatActivity() {
             options,
         )
     }
+
     private fun fillFirstTime() {
         mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         mRecipeViewModel = ViewModelProvider(this)[RecipeViewModel::class.java]
         InitialProducts.list.forEach {
             mProductViewModel.addProduct(it)
         }
-        InitialRecipes.list.forEach{
+        InitialRecipes.list.forEach {
             mRecipeViewModel.addRecipe(it)
         }
     }

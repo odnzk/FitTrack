@@ -6,6 +6,7 @@ import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import ru.kpfu.itis.fittrack.R
+import ru.kpfu.itis.fittrack.settings.NotificationHelper.Companion.NOTIFICATIONS_CHANNEL_ID
 
 class DailyRecipeWorker(appContext: Context, workerParams: WorkerParameters) :
     Worker(appContext, workerParams) {
@@ -20,9 +21,9 @@ class DailyRecipeWorker(appContext: Context, workerParams: WorkerParameters) :
     private fun createNotification() {
         val builder = NotificationCompat.Builder(
             applicationContext,
-            SettingsFragment.NOTIFICATIONS_CHANNEL_ID
+            NOTIFICATIONS_CHANNEL_ID
         )
-            .setSmallIcon(R.drawable.ic_baseline_menu_book)
+            .setSmallIcon(R.drawable.ic_baseline_menu_book_24)
             .setContentTitle(context.resources.getString(R.string.notif_daily_recipe))
             // ПОЛУЧАЕМ РЕЦЕПТ ИЗ БАЗЫ ДАННЫХ и сеттим его в контент текст: смогу дописать, когда будет бд
             .setContentText(context.resources.getString(R.string.notif_reminder_content))
