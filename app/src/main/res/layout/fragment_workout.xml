@@ -29,7 +29,7 @@
         android:layout_marginTop="25dp"
         android:text="Trainings"
         android:textAllCaps="false"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/rv_list"
         app:layout_constraintEnd_toEndOf="parent"

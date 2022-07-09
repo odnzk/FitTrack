@@ -23,6 +23,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="24dp"
         android:id="@+id/rv_dayList"
+        android:layoutAnimation="@anim/recycler_view_anim_layout_day_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="600dp"
