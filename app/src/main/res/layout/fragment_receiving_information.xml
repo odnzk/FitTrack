@@ -23,8 +23,6 @@
         />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
-        app:checkedButton="@id/btnFemale"
-        app:selectionRequired="false"
         android:id="@+id/materialButtonToggleGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
