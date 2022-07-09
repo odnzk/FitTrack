@@ -2,6 +2,7 @@ package ru.kpfu.itis.fittrack.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +29,7 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
 
     private fun insertDataToDatabase() {
         var title = ""
-        var picture = ""
+        var picture = "https://cdn-icons-png.flaticon.com/512/706/706195.png"
         var calories = 0
         var proteins = 0f
         var fats = 0f
@@ -37,7 +38,9 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
         if (inputCheck()) {
             with(binding) {
                 title = etTitle.text.toString()
-                picture = etLink.text.toString()
+                if (!etLink.text.isNullOrBlank()) {
+                    picture = etLink.text.toString()
+                }
                 calories = etCalories.text.toString().toInt()
                 proteins = etProteins.text.toString().toFloat()
                 fats = etFats.text.toString().toFloat()
@@ -66,7 +69,7 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
 
     private fun checkTitle(): Boolean =  when(binding.etTitle.getText().toString().length) {
         0 -> {
-            binding.etTitle.setError("Пустое поле");
+            binding.etTitle.setError("Empty field");
             false
         }
         else -> true
@@ -93,7 +96,7 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
         return ans
     }
 
-    private fun checkPFC(e: TextInputEditText): Boolean {
+    private fun checkPFC(e: EditText): Boolean {
         val s: String = e.text.toString()
         val ans = when(s.length) {
             0 -> {

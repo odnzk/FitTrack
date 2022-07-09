@@ -16,7 +16,7 @@
         android:foreground="#5098a587"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop"
-        android:src="@drawable/pizza" />
+        android:src="@drawable/defdishes" />
 
     <ImageView
         android:id="@+id/iv_picture"
@@ -25,7 +25,7 @@
         android:foreground="#5098a587"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop"
-        android:src="@drawable/pizza" />
+        android:src="@drawable/defdishes" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
