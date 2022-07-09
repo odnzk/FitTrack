@@ -1,16 +1,16 @@
 package ru.kpfu.itis.fittrack.listForTheDay
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.kpfu.itis.fittrack.data.BaseEntity
-import ru.kpfu.itis.fittrack.databinding.TrainingFoodForTheDayItemBinding
-import android.app.Activity
-import android.widget.Toast
 import ru.kpfu.itis.fittrack.data.Product
 import ru.kpfu.itis.fittrack.data.Recipe
+import ru.kpfu.itis.fittrack.databinding.TrainingFoodForTheDayItemBinding
 import ru.kpfu.itis.fittrack.fragments.ProductDescriptionFragment
 
 class ListForTheDayAdapter(
@@ -56,6 +56,10 @@ class ListForTheDayAdapter(
                 if (type == "Training") {
                     val calorie = calories?.get(i)?.toInt()
                     if (idd == (item.id).toString() && category == item.category && type == item.type && item.calories == calorie) {
+                        break
+                    }
+                } else if (type == "Product") {
+                    if (idd == (item.id - 1).toString() && category == item.category && type == item.type) {
                         break
                     }
                 } else {
