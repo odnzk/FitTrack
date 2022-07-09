@@ -16,4 +16,12 @@ interface RecipeDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun add(recipe: Recipe)
+
+
+    @Query("SELECT COUNT(*) from Recipe")
+    fun countRecipes(): Int
+
+    @Query("SELECT * from Recipe WHERE id_recipe LIKE :id")
+    fun getRecipeById(id: Int): Recipe?
+
 }
