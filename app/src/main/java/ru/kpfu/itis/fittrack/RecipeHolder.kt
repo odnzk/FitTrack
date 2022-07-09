@@ -15,6 +15,7 @@ class RecipeHolder(
     fun onBind(a: Recipe) {
         with(binding) {
             tvRecipe.text = a.title
+            tvCKal.text = a.calories.toString() + "cKal"
             root.setOnClickListener {
                 onItemClick(a)
             }

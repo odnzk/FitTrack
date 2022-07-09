@@ -14,6 +14,20 @@
         tools:context=".fragments.ProductsAndRecipesFragment">
 
 
+
+        <TextView
+            android:id="@+id/tv_handbook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:text="Handbook"
+            android:textColor="@color/black"
+            android:textSize="38sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tv_products"
             android:layout_width="wrap_content"
@@ -21,10 +35,11 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="48dp"
             android:text="Products"
+            android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tv_handbook" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
@@ -56,8 +71,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
             android:text="Recipes"
+            android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,8 +86,8 @@
             android:layout_marginTop="24dp"
             android:background="@color/white"
             android:orientation="horizontal"
-
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/btn_add_recipe"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,33 +96,26 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_add"
-
+            style="@style/vp_btnCustomOutlineRed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:text="Add"
-            app:backgroundTint="#f6c87b"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_add_recipe"
+            style="@style/vp_btnCustomOutlineRed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="40dp"
             android:text="Add"
-            app:backgroundTint="#f6c87b"
+            android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_recipe"
-            app:layout_constraintVertical_bias="0.4" />
-
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.data.Product
 import ru.kpfu.itis.fittrack.data.ProductViewModel
@@ -22,10 +21,9 @@ class ProductDescriptionFragment : Fragment(R.layout.fragment_product_descriptio
     lateinit var mProductViewModel: ProductViewModel
     private var _binding: FragmentProductDescriptionBinding? = null
     private val binding get() = _binding!!
-    private var category: String? = null
+    private lateinit var category: String
     private var deletedElementId: Int = 0
 
-    //TODO: этому фрагменту требуется нормальная верстка
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentProductDescriptionBinding.bind(view)
@@ -69,26 +67,14 @@ class ProductDescriptionFragment : Fragment(R.layout.fragment_product_descriptio
 
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                category = null
+            override fun onNothingSelected(adapterView: AdapterView<*>?) {
+                category = "Breakfast"
             }
 
         }
 
-
-        //TODO: вроде как картинка не отображается, хз почему, проверьте у себя
         binding.btnAddItem.setOnClickListener {
-
-            val sharedPreferencesStorage = SharedPreferencesStorage(binding.root.context)
-            if (category != null) {
-                val type = "Product"
-                curProduct?.let { it1 -> Integer.valueOf(it1.id) - 1 }
-                    ?.let { it2 -> sharedPreferencesStorage.addItemID(it2) }
-                sharedPreferencesStorage.addCategory(category!!)
-                sharedPreferencesStorage.addType(type)
-            }
-            Toast.makeText(context, curProduct?.title+" has been added to the day list", Toast.LENGTH_SHORT).show()
-
+            addingValuesToSharedPreferencesExtension(binding.root.context, category, "Product", curProduct)
         }
 
 

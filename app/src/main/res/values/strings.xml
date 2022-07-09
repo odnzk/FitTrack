@@ -48,6 +48,7 @@
     <string name="vp_errorMessageEmptiness">Cannot be empty</string>
     <string name="vp_errorMessageInvalidity">Invalid data</string>
     <string name="preferenceFileKey_UserData">UserData</string>
+
     <string name="vp_notif_title">Setup notifications</string>
     <string name="vp_notif_recipe">daily recipe from app’s handbook</string>
     <string name="vp_notif_reminder">daily reminder to help you not to forget about journaling your food</string>

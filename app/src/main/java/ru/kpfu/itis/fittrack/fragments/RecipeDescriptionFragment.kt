@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.data.Recipe
 import ru.kpfu.itis.fittrack.data.RecipeViewModel
@@ -22,10 +21,9 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
     lateinit var mRecipeViewModel: RecipeViewModel
     private var _binding: FragmentRecipeDescriptionBinding? = null
     private val binding get() = _binding!!
-    private var category: String? = null
+    private lateinit var category: String
     private var deletedElementId: Int = 0
 
-    //TODO: этому фрагменту требуется нормальная верстка
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentRecipeDescriptionBinding.bind(view)
@@ -38,6 +36,7 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
         binding.tvTitle.text = curRecipe?.title
         binding.tvDescription.text = curRecipe?.description
         Glide.with(this).load(curRecipe?.picture).into(binding.ivPicture)
+        Glide.with(this).load(curRecipe?.picture).into(binding.ivPicture2)
         mRecipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
 
         binding.btnDeleteItem.setOnClickListener {
@@ -71,31 +70,14 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
 
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                category = null
+            override fun onNothingSelected(adapterView: AdapterView<*>?) {
+                category = "Breakfast"
             }
 
         }
 
-        //TODO: вроде как картинка и описание не отобраются, чекните, у меня эмулятор дурацкий
-
-
         binding.btnAddItem.setOnClickListener {
-
-            val sharedPreferencesStorage = SharedPreferencesStorage(binding.root.context)
-            if (category != null) {
-                val type = "Recipe"
-                curRecipe?.let { it1 -> Integer.valueOf(it1.id) - 1 }
-                    ?.let { it2 -> sharedPreferencesStorage.addItemID(it2) }
-                sharedPreferencesStorage.addCategory(category!!)
-                sharedPreferencesStorage.addType(type)
-            }
-
-            Toast.makeText(
-                context,
-                curRecipe?.title + " has been added to the day list",
-                Toast.LENGTH_SHORT
-            ).show()
+            addingValuesToSharedPreferencesExtension(binding.root.context, category, "Recipe", curRecipe)
         }
     }
 
