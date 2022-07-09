@@ -14,7 +14,7 @@
     <string name="dinner">Dinner</string>
 
     <string-array name="food_categories">
-        <item name="lunch">Lunch__</item>
+        <item name="lunch">Lunch</item>
         <item name="breakfast">Breakfast</item>
         <item name="dinner">Dinner</item>
     </string-array>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -87,13 +88,14 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
         mRecipeViewModel.getAllRecipes.observe(
             viewLifecycleOwner
         ) { recipes ->
+            var i = 0
             if (arrIds != null) {
-                for (i in arrIds.indices) {
+                for (index in arrIds) {
                     val category = categoriesArr?.get(i)
                     val type = typesArr?.get(i)
-                    if (!arrIds[i].isNullOrBlank()) {
+                    if (!index.isBlank()) {
                         for (recipe in recipes) {
-                            if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Recipe" && recipe.id == arrIds[i].toInt()) {
+                            if (!category.isNullOrBlank() && type == "Recipe" && recipe.id == arrIds[i].toInt()) {
                                 val recipeItem = recipe.copy()
                                 recipeItem.category = category
                                 recipeItem.type = type
@@ -101,7 +103,9 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
                             }
                         }
                     }
+                    i++
                 }
+
             }
         }
 
@@ -109,18 +113,22 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
         mProductViewModel.getAllProducts.observe(
             viewLifecycleOwner
         ) { products ->
+            var i = 0
             if (arrIds != null) {
-                for (i in arrIds.indices) {
+                for (index in arrIds) {
                     val category = categoriesArr?.get(i)
                     val type = typesArr?.get(i)
-                    for(product in products) {
-                        if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Product" && product.id == arrIds[i].toInt()) {
-                            val productItem = products.get(arrIds[i].toInt()).copy()
-                            productItem.category = category
-                            productItem.type = type
-                            adapter.addItem(0, productItem, binding.root.context)
+                    if(index.isNotBlank()) {
+                        for (product in products) {
+                            if (!category.isNullOrBlank() && type == "Product" && product.id == arrIds[i].toInt()) {
+                                val productItem = products.get(arrIds[i].toInt()).copy()
+                                productItem.category = category
+                                productItem.type = type
+                                adapter.addItem(0, productItem, binding.root.context)
+                            }
                         }
                     }
+                    i++
                 }
             }
         }

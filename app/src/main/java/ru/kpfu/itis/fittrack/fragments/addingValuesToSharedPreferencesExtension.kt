@@ -13,13 +13,10 @@ fun Fragment.addingValuesToSharedPreferencesExtension(
     item: BaseEntity?
 ) {
     val sharedPreferencesStorage = SharedPreferencesStorage(context)
-    if (typeOfItem == "Training") {
-        item?.let { it1 -> Integer.valueOf(it1.id) }
-            ?.let { it2 -> sharedPreferencesStorage.addItemID(it2) }
-    } else {
-        item?.let { it1 -> Integer.valueOf(it1.id - 1) }
-            ?.let { it2 -> sharedPreferencesStorage.addItemID(it2) }
-    }
+
+    item?.let { it1 -> Integer.valueOf(it1.id) }
+        ?.let { it2 -> sharedPreferencesStorage.addItemID(it2) }
+
     sharedPreferencesStorage.addCategory(category)
     sharedPreferencesStorage.addType(typeOfItem)
     sharedPreferencesStorage.addCalorieCount(item?.calories.toString())
