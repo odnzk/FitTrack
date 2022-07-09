@@ -1,8 +1,6 @@
 package ru.kpfu.itis.fittrack.fragments
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import ru.kpfu.itis.fittrack.R
@@ -51,7 +49,7 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
         )
         processor.apply {
             setGraphDataFromList(data)
-            setStringFields(strings)
+            setStringFieldsFromList(strings)
         }
     }
 

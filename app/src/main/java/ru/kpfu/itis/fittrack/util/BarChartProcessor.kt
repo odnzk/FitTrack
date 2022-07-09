@@ -10,6 +10,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 class BarChartProcessor(barChart: BarChart) {
     private val chart = barChart
     private val label = "Calories"
+    private var index = 0
 
     init {
         chart.getAxis(YAxis.AxisDependency.LEFT).axisMinimum = 0f
@@ -24,11 +25,40 @@ class BarChartProcessor(barChart: BarChart) {
         )
     }
 
-    fun setStringFields(list: List<String>) {
+    fun setStringFieldsFromList(list: List<String>) {
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(list)
     }
 
-    fun addData(item: Float, info: String) {
+    fun add(item: Float, info: String) {
+        if (index < 7) {
+            addNotFilled(item, info)
+        } else {
+            addFilled(item, info)
+        }
+    }
+
+    private fun addNotFilled(item: Float, info: String) {
+        val listInfo = ArrayList<String>()
+        val listData = ArrayList<Float>()
+        val dataSet = chart.data.dataSets[0]
+        val count = chart.data.dataSets[0].entryCount
+        val formatter = chart.xAxis.valueFormatter
+        for (i in 0 until index) {
+            listInfo.add(formatter.getFormattedValue(i.toFloat()))
+            listData.add(dataSet.getEntryForIndex(i).y)
+        }
+        listInfo.add(info)
+        listData.add(item)
+        for (i in index + 1 until count) {
+            listInfo.add("")
+            listData.add(0f)
+        }
+        setStringFieldsFromList(listInfo)
+        setGraphDataFromList(listData)
+        index++
+    }
+
+    private fun addFilled(item: Float, info: String) {
         val listData = ArrayList<Float>()
         val listInfo = ArrayList<String>()
         val dataSet = chart.data.dataSets[0]
@@ -47,7 +77,7 @@ class BarChartProcessor(barChart: BarChart) {
         listData.add(item)
         listInfo.add(info)
         setGraphDataFromList(listData)
-        setStringFields(listInfo)
+        setStringFieldsFromList(listInfo)
     }
 
     private fun createDataSetFromList(list: List<Float>): BarDataSet {
