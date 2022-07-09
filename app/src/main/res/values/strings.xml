@@ -19,6 +19,22 @@
         <item name="dinner">Dinner</item>
     </string-array>
 
+
+    <string name="category_user_infa">Your information</string>
+    <string name="activeness">Activeness</string>
+    <string name="goal">Goal</string>
+    <string name="gender">Gender</string>
+    <string name="Change">Change</string>
+    <string name="category_notifications">Notifications</string>
+    <string name="notif_daily_recipe">Daily recipe</string>
+    <string name="notif_daily_recipe_desc">Get random recipe everyday</string>
+    <string name="notif_reminder">Daily reminder</string>
+    <string name="notif_channel_name">All notifications</string>
+    <string name="notif_channel_description">channel for DailyRecipeNotification and DailyReminderNotification</string>
+    <string name="notif_reminder_content">Do not forget to journal your food</string>
+    <string name="notif_reminder_desc">Reminder to fill out the food log</string>
+
+
     <string name="vp_content_description">Image</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -33,9 +49,9 @@
     <string name="vp_errorMessageInvalidity">Invalid data</string>
     <string name="preferenceFileKey_UserData">UserData</string>
     <string name="vp_notif_title">Setup notifications</string>
-    <string name="vp_notif_recipe"><li>daily recipe from app’s handbook</li></string>
-    <string name="vp_notif_reminder"><li>daily reminder to help you not to forget about journaling your food</li></string>
+    <string name="vp_notif_recipe">daily recipe from app’s handbook</string>
+    <string name="vp_notif_reminder">daily reminder to help you not to forget about journaling your food</string>
     <string name="vp_notif_hint"><u>swipe right to skip and set up notifications later</u></string>
-
-
+    <string name="on">on</string>
+    <string name="off">off</string>
 </resources>

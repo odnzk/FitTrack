@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -139,18 +140,15 @@ class ReceivingInformationFragment : Fragment() {
         activeness: String,
         goal: String
     ) {
-        val sp = activity?.getSharedPreferences(
-            getString(R.string.preferenceFileKey_UserData),
-            Context.MODE_PRIVATE
-        )
-        val editor = sp?.edit()
-        editor?.putBoolean(GENDER_KEY, gender)
-        editor?.putInt(HEIGHT_KEY, height)
-        editor?.putFloat(WEIGHT_KEY, weight)
-        editor?.putInt(AGE_KEY, age)
-        editor?.putString(ACTIVENESS_KEY, activeness)
-        editor?.putString(GOAL_KEY, goal)
-        editor?.apply()
+        val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val editor = sp.edit()
+        editor.putString(GENDER_KEY, gender.toString())
+        editor.putString(HEIGHT_KEY, height.toString())
+        editor.putString(WEIGHT_KEY, weight.toString())
+        editor.putString(AGE_KEY, age.toString())
+        editor.putString(ACTIVENESS_KEY, activeness)
+        editor.putString(GOAL_KEY, goal)
+        editor.apply()
     }
 
     private fun makeNavigationVisible() {

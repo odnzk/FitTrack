@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/category_notifications">
+
+    <SwitchPreferenceCompat
+        android:key="switchDailyRecipe"
+        android:title="@string/notif_daily_recipe"
+        android:summary="@string/notif_daily_recipe_desc"/>
+
+    <SwitchPreferenceCompat
+        android:key="switchReminder"
+        android:title="@string/notif_reminder"
+        android:summary="@string/notif_reminder_desc"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="category_expandable"
+        android:title="@string/category_user_infa"
+        app:initialExpandedChildrenCount="0">
+
+        <EditTextPreference
+            android:key="et_height"
+            android:title="@string/vp_riTvHeight"
+            app:useSimpleSummaryProvider="true"
+            android:dialogTitle="@string/Change"
+            android:dialogLayout="@layout/preference_edit_text_number"/>
+        <EditTextPreference
+            android:key="et_weight"
+            android:title="@string/vp_riTvWeight"
+            app:useSimpleSummaryProvider="true"
+            android:dialogTitle="@string/Change"
+            android:dialogLayout="@layout/preference_edit_text_weight"/>
+        <EditTextPreference
+            android:key="et_age"
+            android:title="@string/vp_riTvAge"
+            app:useSimpleSummaryProvider="true"
+            android:dialogTitle="@string/Change"
+            android:dialogLayout="@layout/preference_edit_text_number"/>
+        <DropDownPreference
+            android:key="dropdown_activeness"
+            android:title="@string/activeness"
+            android:entries="@array/vp_spinner_activeness"
+            app:useSimpleSummaryProvider="true"
+            android:entryValues="@array/vp_spinner_activeness"/>
+        <DropDownPreference
+            android:key="dropdown_goal"
+            android:title="@string/goal"
+            android:entries="@array/vp_spinner_goal"
+            app:useSimpleSummaryProvider="true"
+            android:entryValues="@array/vp_spinner_goal"/>
+        <ListPreference
+            android:key="list_gender"
+            android:title="@string/gender"
+            app:useSimpleSummaryProvider="true"
+            android:entries="@array/gender"
+            android:entryValues="@array/gender_boolean" />
+    </PreferenceCategory>
+
+
+</androidx.preference.PreferenceScreen>

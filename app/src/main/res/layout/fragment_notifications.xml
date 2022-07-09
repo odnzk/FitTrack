@@ -5,55 +5,122 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_green"
+    android:padding="50dp"
     tools:context=".viewpager.NotificationsFragment">
 
 
     <TextView
         android:id="@+id/tv_title"
+        android:gravity="center"
         style="@style/vp_tvDescriptionStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/vp_notif_title"
-        app:layout_constraintBottom_toTopOf="@id/tv_recipe"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@id/toggle_group_recipe"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <TextView
-        android:id="@+id/tv_recipe"
-        style="@style/vp_tvBlack"
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggle_group_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        app:checkedButton="@id/btnOffRecipe"
+        app:layout_constraintBottom_toBottomOf="@id/tv_recipe"
+        app:layout_constraintEnd_toEndOf="@id/tv_title"
+        app:layout_constraintStart_toStartOf="@id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:singleSelection="true">
+
+        <Button
+            android:id="@+id/btnOnRecipe"
+            style="@style/vp_btnCustomOutlineTransparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/on"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOffRecipe"
+            style="@style/vp_btnCustomOutlineTransparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/off"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <TextView
+        android:id="@+id/tv_recipe"
+        style="@style/vp_tvBlackCentered"
+        app:layout_constrainedWidth="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/vp_notif_recipe"
-        app:layout_constraintBottom_toTopOf="@id/tv_reminder"
-        app:layout_constraintEnd_toEndOf="@+id/tv_title"
-        app:layout_constraintStart_toStartOf="@+id/tv_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+        app:layout_constraintBottom_toTopOf="@id/toggle_group_reminder"
+        app:layout_constraintEnd_toEndOf="@+id/toggle_group_recipe"
+        app:layout_constraintStart_toStartOf="@+id/toggle_group_recipe"
+        app:layout_constraintTop_toBottomOf="@+id/toggle_group_recipe" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggle_group_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:checkedButton="@id/btnOffReminder"
+        app:layout_constraintBottom_toBottomOf="@id/tv_reminder"
+        app:layout_constraintEnd_toEndOf="@id/tv_recipe"
+        app:layout_constraintStart_toStartOf="@id/tv_recipe"
+        app:layout_constraintTop_toBottomOf="@+id/tv_recipe"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <Button
+            android:id="@+id/btnOnReminder"
+            style="@style/vp_btnCustomOutlineTransparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/on" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOffReminder"
+            style="@style/vp_btnCustomOutlineTransparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/off" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <TextView
         android:id="@+id/tv_reminder"
-        style="@style/vp_tvBlack"
+        style="@style/vp_tvBlackCentered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/vp_notif_reminder"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/tv_hint"
-        app:layout_constraintEnd_toEndOf="@+id/tv_recipe"
-        app:layout_constraintStart_toStartOf="@+id/tv_recipe"
-        app:layout_constraintTop_toBottomOf="@+id/tv_recipe" />
+        app:layout_constraintEnd_toEndOf="@+id/toggle_group_reminder"
+        app:layout_constraintStart_toStartOf="@+id/toggle_group_reminder"
+        app:layout_constraintTop_toBottomOf="@+id/toggle_group_reminder" />
+
 
     <TextView
         android:id="@+id/tv_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="@string/vp_notif_hint"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tv_reminder"
         app:layout_constraintStart_toStartOf="@+id/tv_reminder"
-        app:layout_constraintTop_toBottomOf="@+id/tv_reminder" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_reminder"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,8 @@
         />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
+        app:checkedButton="@id/btnFemale"
+        app:selectionRequired="false"
         android:id="@+id/materialButtonToggleGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,6 +54,7 @@
     <EditText
         android:id="@+id/etHeight"
         style="@style/vp_edCustom"
+        android:maxLength="3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -68,6 +71,7 @@
     <EditText
         android:id="@+id/etWeight"
         style="@style/vp_edCustom"
+        android:maxLength="3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints="weight"
@@ -88,6 +92,7 @@
         android:layout_height="wrap_content"
         android:autofillHints="age"
         android:hint="@string/vp_riTvAge"
+        android:maxLength="3"
         android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@id/spinner_activeness"

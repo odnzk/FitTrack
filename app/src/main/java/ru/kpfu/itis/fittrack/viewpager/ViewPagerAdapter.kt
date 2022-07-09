@@ -14,14 +14,16 @@ class ViewPagerAdapter(fa: FragmentActivity, context: Context) : FragmentStateAd
 
     override fun getItemCount() = descriptionList.size + 1
     override fun createFragment(position: Int): Fragment {
-        if (position < descriptionList.size)
+        if (position < descriptionList.size-1)
             return TemplateFragment().apply {
                 arguments = bundleOf(
                     DESCRIPTION_KEY to descriptionList[position],
                     IMAGE_KEY to imageList[position],
                     POSITION_KEY to position
                 )
-            }
+            }else if(position == descriptionList.size -1){
+                return NotificationsFragment()
+        }
         return ReceivingInformationFragment()
     }
 
