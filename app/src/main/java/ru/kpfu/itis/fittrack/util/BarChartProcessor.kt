@@ -12,7 +12,7 @@ class BarChartProcessor(barChart: BarChart) {
     private val label = "Calories"
     private val emptyData = 0f
     private val emptyInfo = ""
-    private var index = 0
+    var index = 0
 
     init {
         chart.getAxis(YAxis.AxisDependency.LEFT).axisMinimum = 0f
@@ -21,14 +21,9 @@ class BarChartProcessor(barChart: BarChart) {
         chart.axisRight.setDrawGridLines(false)
     }
 
-    fun setGraphDataFromList(list: List<Float>) {
-        chart.data = BarData(
-            createDataSetFromList(list)
-        )
-    }
-
-    fun setStringFieldsFromList(list: List<String>) {
-        chart.xAxis.valueFormatter = IndexAxisValueFormatter(list)
+    fun setGraphLists(listData: List<Float>, listInfo: List<String>) {
+        setGraphDataFromList(listData)
+        setStringFieldsFromList(listInfo)
     }
 
     fun add(item: Float, info: String) {
@@ -61,6 +56,16 @@ class BarChartProcessor(barChart: BarChart) {
         return list
     }
 
+    private fun setGraphDataFromList(list: List<Float>) {
+        chart.data = BarData(
+            createDataSetFromList(list)
+        )
+    }
+
+    private fun setStringFieldsFromList(list: List<String>) {
+        chart.xAxis.valueFormatter = IndexAxisValueFormatter(list)
+    }
+
     private fun addNotFilled(item: Float, info: String) {
         val listNewInfo = ArrayList<String>()
         val listNewData = ArrayList<Float>()
@@ -77,8 +82,7 @@ class BarChartProcessor(barChart: BarChart) {
             listNewInfo.add(emptyInfo)
             listNewData.add(emptyData)
         }
-        setStringFieldsFromList(listNewInfo)
-        setGraphDataFromList(listNewData)
+        setGraphLists(listNewData, listNewInfo)
         index++
     }
 
@@ -94,8 +98,7 @@ class BarChartProcessor(barChart: BarChart) {
         }
         listNewData.add(item)
         listNewInfo.add(info)
-        setGraphDataFromList(listNewData)
-        setStringFieldsFromList(listNewInfo)
+        setGraphLists(listNewData, listNewInfo)
     }
 
     private fun createDataSetFromList(list: List<Float>): BarDataSet {

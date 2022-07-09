@@ -57,4 +57,6 @@
     <string name="vp_notif_hint"><u>swipe right to skip and set up notifications later</u></string>
     <string name="on">on</string>
     <string name="off">off</string>
+
+    <string name="stats_week_btn_txt">get from Calorie tracker</string>
 </resources>
