@@ -10,6 +10,8 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 class BarChartProcessor(barChart: BarChart) {
     private val chart = barChart
     private val label = "Calories"
+    private val emptyData = 0f
+    private val emptyInfo = ""
     private var index = 0
 
     init {
@@ -37,47 +39,63 @@ class BarChartProcessor(barChart: BarChart) {
         }
     }
 
-    private fun addNotFilled(item: Float, info: String) {
-        val listInfo = ArrayList<String>()
-        val listData = ArrayList<Float>()
+    fun getDataList(): List<Float> {
+        val list = ArrayList<Float>()
         val dataSet = chart.data.dataSets[0]
-        val count = chart.data.dataSets[0].entryCount
-        val formatter = chart.xAxis.valueFormatter
+        for (i in 0 until dataSet.entryCount) {
+            list.add(dataSet.getEntryForIndex(i).y)
+        }
+        return list
+    }
+
+    fun getInfoList(): List<String> {
+        val list = ArrayList<String>()
+        for (i in 0 until chart.data.dataSets[0].entryCount) {
+            list.add(
+                chart
+                    .xAxis
+                    .valueFormatter
+                    .getFormattedValue(i.toFloat())
+            )
+        }
+        return list
+    }
+
+    private fun addNotFilled(item: Float, info: String) {
+        val listNewInfo = ArrayList<String>()
+        val listNewData = ArrayList<Float>()
+        val listInfo = getInfoList()
+        val listData = getDataList()
+        val count = listData.size
         for (i in 0 until index) {
-            listInfo.add(formatter.getFormattedValue(i.toFloat()))
-            listData.add(dataSet.getEntryForIndex(i).y)
+            listNewInfo.add(listInfo[i])
+            listNewData.add(listData[i])
         }
-        listInfo.add(info)
-        listData.add(item)
+        listNewInfo.add(info)
+        listNewData.add(item)
         for (i in index + 1 until count) {
-            listInfo.add("")
-            listData.add(0f)
+            listNewInfo.add(emptyInfo)
+            listNewData.add(emptyData)
         }
-        setStringFieldsFromList(listInfo)
-        setGraphDataFromList(listData)
+        setStringFieldsFromList(listNewInfo)
+        setGraphDataFromList(listNewData)
         index++
     }
 
     private fun addFilled(item: Float, info: String) {
-        val listData = ArrayList<Float>()
-        val listInfo = ArrayList<String>()
-        val dataSet = chart.data.dataSets[0]
-        dataSet.apply {
-            for (i in 1 until entryCount) {
-                val entry = getEntryForIndex(i)
-                listData.add(entry.y)
-                listInfo.add(
-                    chart
-                        .xAxis
-                        .valueFormatter
-                        .getFormattedValue(entry.x)
-                )
-            }
+        val listNewData = ArrayList<Float>()
+        val listNewInfo = ArrayList<String>()
+        val listInfo = getInfoList()
+        val listData = getDataList()
+        val count = listData.size
+        for (i in 1 until count) {
+            listNewData.add(listData[i])
+            listNewInfo.add(listInfo[0])
         }
-        listData.add(item)
-        listInfo.add(info)
-        setGraphDataFromList(listData)
-        setStringFieldsFromList(listInfo)
+        listNewData.add(item)
+        listNewInfo.add(info)
+        setGraphDataFromList(listNewData)
+        setStringFieldsFromList(listNewInfo)
     }
 
     private fun createDataSetFromList(list: List<Float>): BarDataSet {
