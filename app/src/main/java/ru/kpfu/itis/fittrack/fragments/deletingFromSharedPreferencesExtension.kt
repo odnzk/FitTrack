@@ -8,18 +8,21 @@ fun Fragment.deleteFromSharedPreferences(idToDelete: Int, typeToDelete:String, c
     val sharedPreferencesStorage = SharedPreferencesStorage(context)
     val idsArr = sharedPreferencesStorage.loadIDS()?.split(" ")?.toMutableList()
     val typesArr = sharedPreferencesStorage.loadTypes()?.split(" ")?.toMutableList()
-    val categoryArr = sharedPreferencesStorage.loadCategories()?.split(" ")
-    val caloriesArr = sharedPreferencesStorage.loadCalories()?.split(" ")
-    for (i in idsArr!!.indices) {
+    val categoryArr = sharedPreferencesStorage.loadCategories()?.split(" ")?.toMutableList()
+    val caloriesArr = sharedPreferencesStorage.loadCalories()?.split(" ")?.toMutableList()
+
+    for (i in 0..idsArr!!.size-2) {
         val type = typesArr!![i]
         val id = idsArr[i]
         if (id.isNotBlank()) {
             if (idsArr[i].toInt() == idToDelete && type == typeToDelete) {
-                idsArr[i] = ""
+                idsArr.removeAt(i)
+                typesArr.removeAt(i)
+                categoryArr?.removeAt(i)
+                caloriesArr?.removeAt(i)
             }
         }
     }
-
     sharedPreferencesStorage.clearAll()
     for (i in 0 until idsArr.size) {
         if(idsArr[i].isNotBlank()) {
