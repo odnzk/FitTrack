@@ -6,6 +6,7 @@ import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.data.BaseEntity
 import ru.kpfu.itis.fittrack.data.Product
 import ru.kpfu.itis.fittrack.data.Recipe
+import ru.kpfu.itis.fittrack.data.Training
 
 fun Fragment.changeSharedPref(baseEntity: BaseEntity) {
     val sharedPref = activity?.getSharedPreferences(
@@ -16,7 +17,9 @@ fun Fragment.changeSharedPref(baseEntity: BaseEntity) {
     var eatenProteins = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f)
     var eatenCarbs = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f)
     var eatenFats = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_FATS, 0f)
+    var burnedCalories = sharedPref?.getInt(ProductDescriptionFragment.BURNED_CALORIES,0)
     val editor = sharedPref?.edit()
+
     if (baseEntity is Product) {
         eatenCalories = eatenCalories?.plus(baseEntity.calories)
         eatenProteins = eatenProteins?.plus(baseEntity.proteins)
@@ -29,10 +32,14 @@ fun Fragment.changeSharedPref(baseEntity: BaseEntity) {
         eatenCarbs = eatenCarbs?.plus(baseEntity.carbohydrates)
         eatenFats = eatenFats?.plus(baseEntity.fats)
     }
+    if (baseEntity is Training) {
+        burnedCalories = burnedCalories?.plus(baseEntity.calories)
+    }
     with(editor!!) {
         putInt(ProductDescriptionFragment.EATEN_CALORIES, eatenCalories!!)?.apply()
         putFloat(ProductDescriptionFragment.EATEN_PROTEINS, eatenProteins!!)?.apply()
         putFloat(ProductDescriptionFragment.EATEN_CARBS, eatenCarbs!!)?.apply()
         putFloat(ProductDescriptionFragment.EATEN_FATS, eatenFats!!)?.apply()
+        putInt(ProductDescriptionFragment.BURNED_CALORIES, burnedCalories!!)?.apply()
     }
 }
