@@ -28,8 +28,8 @@
         android:layout_width="match_parent"
         android:layout_gravity="bottom"
         app:fabCradleMargin="20dp"
-        app:contentInsetStart="0dp"
         android:backgroundTint="@color/main_green"
+        app:contentInsetStart="0dp"
         app:fabCradleVerticalOffset="10dp"
         android:layout_height="wrap_content">
 

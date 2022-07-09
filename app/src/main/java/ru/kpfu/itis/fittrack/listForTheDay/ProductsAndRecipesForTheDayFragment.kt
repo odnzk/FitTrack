@@ -86,16 +86,20 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
 
         mRecipeViewModel.getAllRecipes.observe(
             viewLifecycleOwner
-        ) { recipe ->
+        ) { recipes ->
             if (arrIds != null) {
                 for (i in arrIds.indices) {
                     val category = categoriesArr?.get(i)
                     val type = typesArr?.get(i)
-                    if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Recipe") {
-                        val recipeItem = recipe.get(arrIds[i].toInt()).copy()
-                        recipeItem.category = category
-                        recipeItem.type = type
-                        adapter.addItem(0, recipeItem, binding.root.context)
+                    if (!arrIds[i].isNullOrBlank()) {
+                        for (recipe in recipes) {
+                            if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Recipe" && recipe.id == arrIds[i].toInt()) {
+                                val recipeItem = recipe.copy()
+                                recipeItem.category = category
+                                recipeItem.type = type
+                                adapter.addItem(0, recipeItem, binding.root.context)
+                            }
+                        }
                     }
                 }
             }
@@ -104,16 +108,18 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
 
         mProductViewModel.getAllProducts.observe(
             viewLifecycleOwner
-        ) { product ->
+        ) { products ->
             if (arrIds != null) {
                 for (i in arrIds.indices) {
                     val category = categoriesArr?.get(i)
                     val type = typesArr?.get(i)
-                    if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Product") {
-                        val productItem = product.get(arrIds[i].toInt()).copy()
-                        productItem.category = category
-                        productItem.type = type
-                        adapter.addItem(0, productItem, binding.root.context)
+                    for(product in products) {
+                        if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Product" && product.id == arrIds[i].toInt()) {
+                            val productItem = products.get(arrIds[i].toInt()).copy()
+                            productItem.category = category
+                            productItem.type = type
+                            adapter.addItem(0, productItem, binding.root.context)
+                        }
                     }
                 }
             }
