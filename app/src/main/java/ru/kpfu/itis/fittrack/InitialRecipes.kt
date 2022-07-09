@@ -5,7 +5,7 @@ import ru.kpfu.itis.fittrack.data.Recipe
 object InitialRecipes {
     val list = arrayListOf<Recipe>(
         Recipe(
-            1, "Caesar salad",
+            0, "Caesar salad",
             "https://www.gastronom.ru/binfiles/images/20191113/b50e9f2a.jpg",
             "Prepare the ingredients for a simple Caesar salad with chicken. First, cook the chicken fillet. To do this, wash it, put it in a saucepan and pour hot water over it. Bring to a boil and cook for 45 minutes. Let it cool down.\n" +
                     "While the chicken fillet is cooking, make crackers for the salad. To do this, cut the crust from the bread, cut the crumb into cubes. Place them on a baking sheet lined with baking paper and place them in an oven heated to 160 ° C for 10-15 minutes. They should dry out and become crispy. Let it cool down.\n" +
@@ -22,7 +22,7 @@ object InitialRecipes {
             27.4f
         ),
         Recipe(
-            2,
+            1,
             "Pancakes",
             "https://lenta.gcdn.co/globalassets/recepty/b/--15/--.jpg?preset=medium",
             "Mix eggs, salt, sugar and stir with a mixer. Enter the flour and pour in the milk. Beat the pancake batter to achieve a homogeneous consistency.\n" +
@@ -41,7 +41,7 @@ object InitialRecipes {
             9f
         ),
         Recipe(
-            3, "Chicken",
+            2, "Chicken",
             "https://wowfood.club/uploads/mini/big/1a/ciplyonok_tabaka_v_duhovke.webp",
             "Wash the chicken, dry it with paper napkins.\n" +
                     "Place on a cutting board. Cut the chicken along the breast and open it like a book.\n" +
@@ -57,7 +57,7 @@ object InitialRecipes {
         ),
 
         Recipe(
-            4, "Risotto",
+            3, "Risotto",
             "https://daily-menu.ru/public/modules/dailymenu/dailymenurecipes/214211/c37456d74b9d8e07a47e4190e8695303.jpg",
             "For risotto, you need to choose round-grain starchy rice. The best varieties are \"arborio\", \"carnaroli\", \"baldo\" and \"vialone nano\". Sometimes on packages with rice, manufacturers specifically indicate that it is suitable for risotto.\n" +
                     "At the beginning of cooking, onions are almost always fried. It should soften, but not brown.\n" +

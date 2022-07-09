@@ -59,7 +59,7 @@ class ListForTheDayAdapter(
                         break
                     }
                 } else if (type == "Product") {
-                    if (idd == (item.id - 1).toString() && category == item.category && type == item.type) {
+                    if (idd == (item.id ).toString() && category == item.category && type == item.type) {
                         break
                     }
                 } else {

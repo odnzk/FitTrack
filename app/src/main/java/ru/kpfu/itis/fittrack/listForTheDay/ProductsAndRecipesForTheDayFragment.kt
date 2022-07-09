@@ -119,7 +119,7 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
                     if(index.isNotBlank()) {
                         for (product in products) {
                             if (!category.isNullOrBlank() && type == "Product" && product.id == arrIds[i].toInt()) {
-                                val productItem = products.get(arrIds[i].toInt()).copy()
+                                val productItem = products.get(arrIds[i].toInt()-1).copy()
                                 productItem.category = category
                                 productItem.type = type
                                 adapter.addItem(0, productItem, binding.root.context)
