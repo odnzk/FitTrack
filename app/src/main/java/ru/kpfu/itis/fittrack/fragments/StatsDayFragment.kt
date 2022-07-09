@@ -51,8 +51,8 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         initUserData(sp)
         calcPFC()
         goalCalories = calcGoalCalories()
-        burnedCalories = 6 // ждём
-        calculateConsumed(sharedPref!!)
+        burnedCalories = sharedPref?.getInt(ProductDescriptionFragment.BURNED_CALORIES,0)!!
+        calculateConsumed(sharedPref)
         drawProgressBars()
     }
 

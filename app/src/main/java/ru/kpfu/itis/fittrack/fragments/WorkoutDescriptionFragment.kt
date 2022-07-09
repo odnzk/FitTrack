@@ -39,6 +39,7 @@ class WorkoutDescriptionFragment : Fragment(R.layout.fragment_workout_descriptio
 
         binding.btnAddItem.setOnClickListener {
             training = Training(curWorkout.id, curWorkout.title, newCalories!!, curWorkout.picture, curWorkout.category)
+            changeSharedPref(training)
             addingValuesToSharedPreferencesExtension(binding.root.context, training.category, "Training", training)
         }
 
