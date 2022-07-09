@@ -20,6 +20,9 @@
     </string-array>
 
 
+    <string name="vp_content_description">Image</string>
+<string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="category_user_infa">Your information</string>
     <string name="activeness">Activeness</string>
     <string name="goal">Goal</string>
@@ -34,9 +37,8 @@
     <string name="notif_reminder_content">Do not forget to journal your food</string>
     <string name="notif_reminder_desc">Reminder to fill out the food log</string>
 
-
-    <string name="vp_content_description">Image</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rvWaterTitle">\n Water</string>
+    <string name="waterCounter">0 L</string>
 
     <string name="vp_riTvTitle">Answer a couple of questions to correctly account your calorie intake</string>
     <string name="vp_riTvGenderFemale">female</string>
