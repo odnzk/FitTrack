@@ -26,7 +26,6 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
     private var maxProteins = 0
     private var maxCarbs = 0
     private var maxFat = 0
-    private var water = -0.25
     private var count = 1
     private var sex = false
     private var height = 0
@@ -37,41 +36,48 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentStatsDayBinding.bind(view)
-        init()
-        initRecycler()
-    }
 
-    private fun init() {
         val sharedPref = activity?.getSharedPreferences(
             getString(R.string.preferenceFileKey_UserData),
             Context.MODE_PRIVATE
         )
+        _binding = FragmentStatsDayBinding.bind(view)
+
+        init(sharedPref!!)
+        initRecycler(sharedPref)
+    }
+
+    private fun init(sharedPref: SharedPreferences) {
+
         val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
         initUserData(sp)
         calcPFC()
+        count = sharedPref.getInt(WATER_CUP_AMOUNT, 1)
         goalCalories = calcGoalCalories()
-        burnedCalories = sharedPref?.getInt(ProductDescriptionFragment.BURNED_CALORIES,0)!!
+        burnedCalories = sharedPref.getInt(ProductDescriptionFragment.BURNED_CALORIES, 0)
         calculateConsumed(sharedPref)
         drawProgressBars()
     }
 
-    private fun onItemClick(int: Int) {
-        water += WATER_CUP_WEIGHT
-        binding.tvWater.text = "$water L"
+    private fun onItemClick(int: Int,sharedPref: SharedPreferences) {
         count++
+        sharedPref.edit().putInt(WATER_CUP_AMOUNT,count).apply()
+        binding.tvWater.text = "${WATER_CUP_WEIGHT * (count - 1)} L"
         binding.rvCups.adapter = WaterAdapter(List(count) { it }, Glide.with(this)) {
-            onItemClick(int)
+            onItemClick(int,sharedPref)
         }
     }
 
-    private fun initRecycler() {
+    private fun initRecycler(sharedPref: SharedPreferences) {
         val adapter = WaterAdapter(List(count) { it }, Glide.with(this)) {
-            water += WATER_CUP_WEIGHT
-            onItemClick(it)
+            onItemClick(it,sharedPref)
         }
-        binding.rvCups.adapter = adapter
-        binding.rvCups.layoutManager = GridLayoutManager(requireContext(), 10)
+        with(binding){
+            rvCups.adapter = adapter
+            rvCups.layoutManager = GridLayoutManager(requireContext(), 10)
+            tvWater.text = "${WATER_CUP_WEIGHT * (count - 1)} L"
+        }
     }
 
     private fun initUserData(sharedPref: SharedPreferences?) {
@@ -190,5 +196,6 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         const val PROTEINS_HARD = 2
         const val FAT_HARD = 1.5
         const val CARBS_HARD = 4
+        const val WATER_CUP_AMOUNT = "water cups amount"
     }
 }
