@@ -16,7 +16,8 @@ import ru.kpfu.itis.fittrack.fragments.ProductDescriptionFragment
 
 class ListForTheDayAdapter(
     private val list: MutableList<BaseEntity>,
-    private val onItemClick: (BaseEntity) -> Unit
+    val sharedPreferencesStorage: SharedPreferencesStorage? = null,
+    private val onItemClick: (BaseEntity) -> Unit,
 ) : RecyclerView.Adapter<ListForTheDayViewHolder>() {
 
 
@@ -122,7 +123,6 @@ class ListForTheDayAdapter(
             else -> b.category.length - a.category.length
         }
     }
-
     private fun changeSharedPref(activity: Activity, baseEntity: BaseEntity) {
         val sharedPref = activity.getSharedPreferences(
             "UserData",
