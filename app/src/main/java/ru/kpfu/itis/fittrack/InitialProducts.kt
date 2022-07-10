@@ -3,7 +3,7 @@ package ru.kpfu.itis.fittrack
 import ru.kpfu.itis.fittrack.data.Product
 
 object InitialProducts {
-    val list = arrayListOf<Product>(
+    val list = arrayListOf(
         Product(0,
             "tomato",
             "https://cdn-icons-png.flaticon.com/512/1135/1135457.png",

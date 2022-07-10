@@ -6,8 +6,8 @@ import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import ru.kpfu.itis.fittrack.R
-import ru.kpfu.itis.fittrack.data.RecipeDatabase
 import ru.kpfu.itis.fittrack.settings.NotificationHelper.Companion.NOTIFICATIONS_CHANNEL_ID
+import ru.kpfu.itis.fittrack.statsdata.EntireDatabase
 import java.util.concurrent.FutureTask
 
 class DailyRecipeWorker(appContext: Context, workerParams: WorkerParameters) :
@@ -27,7 +27,7 @@ class DailyRecipeWorker(appContext: Context, workerParams: WorkerParameters) :
         )
             .setSmallIcon(R.drawable.ic_baseline_menu_book_24)
             .setContentTitle(context.resources.getString(R.string.notif_daily_recipe))
-            .setContentText(getRandomRecipeFromDataBase())
+            .setContentText("${context.resources.getString(R.string.your_recipe)} ${getRandomRecipeFromDataBase()}")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         val manager =
@@ -38,7 +38,7 @@ class DailyRecipeWorker(appContext: Context, workerParams: WorkerParameters) :
 
     private fun getRandomRecipeFromDataBase(): String {
         val callable = {
-            val dao = RecipeDatabase.getDatabase(context).recipeDao()
+            val dao = EntireDatabase.getDatabase(context).recipeDao()
             val countRecipes = dao.countRecipes()
             if (countRecipes == 0) {
                 context.resources.getString(R.string.no_recipes)
