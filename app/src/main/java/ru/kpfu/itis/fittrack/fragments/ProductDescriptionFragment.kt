@@ -91,6 +91,7 @@ class ProductDescriptionFragment : Fragment(R.layout.fragment_product_descriptio
         const val EATEN_CARBS = "eaten carbs"
         const val EATEN_FATS = "eaten fats"
         const val BURNED_CALORIES = "burned calories"
+        const val CLEAR_LIST = "need to clear list"
         fun createProduct(item: Product): Bundle {
             val bundle = Bundle()
             bundle.putSerializable(
