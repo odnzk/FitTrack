@@ -5,18 +5,17 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.annotation.RequiresApi
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
-<<<<<<< HEAD
-=======
 import androidx.lifecycle.ViewModelProvider
->>>>>>> master
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.databinding.FragmentStatsWeekBinding
 import ru.kpfu.itis.fittrack.statsdata.StatsViewModel
 import ru.kpfu.itis.fittrack.util.BarChartProcessor
-import java.util.*
+import ru.kpfu.itis.fittrack.util.DateProcessor
 
 
 class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
@@ -25,14 +24,16 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
     private val binding get() = _binding!!
     private lateinit var vm: StatsViewModel
 
-    private lateinit var processor: BarChartProcessor
+    private lateinit var chartProcessor: BarChartProcessor
+    private lateinit var dateProcessor: DateProcessor
     private lateinit var pref: SharedPreferences
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentStatsWeekBinding.bind(view)
-        processor = BarChartProcessor(binding.barGraph)
+        chartProcessor = BarChartProcessor(binding.barGraph)
+        dateProcessor = DateProcessor()
         with(binding.barGraph) {
             setScaleEnabled(false)
             description.text = ""
@@ -41,63 +42,94 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
         initSharedPref()
         init()
 
-        binding.button.setOnClickListener {
-            processor.add(getDataFromPref(), getCurrentDate())
-            saveOnPref()
-        }
-        /////////////
         vm = ViewModelProvider(this)[StatsViewModel::class.java]
         vm.getAllStats.observe(viewLifecycleOwner) {
-            // ровно семь штук залила, можешь еще сам залить,
-            // но придется удалять приложение и снова скачивать
+            val dateList = dateProcessor.getDatesFromDBList(it)
+            with(binding) {
+                setSpinnerData(
+                    spinnerTop,
+                    dateList,
+                    dateList.indexOf(
+                        pref.getString(
+                            "STATS_WEEK_SPINNER_TOP_ITEM",
+                            dateList[0],
+                        )
+                    )
+                )
+                setSpinnerData(
+                    spinnerDown,
+                    dateList,
+                    dateList.indexOf(
+                        pref.getString(
+                            "STATS_WEEK_SPINNER_DOWN_ITEM",
+                            dateList[0],
+                        )
+                    )
+                )
+                btnShow.setOnClickListener { _ ->
+                    val left = spinnerTop.selectedItem.toString()
+                    val right = spinnerDown.selectedItem.toString()
+                    val pairIndexes = dateProcessor.getCurrentIndexesFromDateBorders(
+                        left,
+                        right,
+                        it
+                    )
+                    chartProcessor.setGraphListsFromDB(
+                        pairIndexes.first,
+                        pairIndexes.second,
+                        it
+                    )
+                }
+            }
         }
-        /////////////
     }
 
+    private fun setSpinnerData(spinner: Spinner, data: List<String>, index: Int) {
+        context?.let {
+            ArrayAdapter(
+                it,
+                android.R.layout.simple_spinner_item,
+                data,
+            )
+        }?.also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+        spinner.setSelection(index)
+    }
 
     private fun initSharedPref() {
-        pref = activity?.getSharedPreferences("TEST", Context.MODE_PRIVATE)!!
+        pref = activity?.getSharedPreferences("STATS_WEEK", Context.MODE_PRIVATE)!!
     }
 
     private fun saveOnPref() {
-        val listData = processor.getDataList()
-        val listInfo = processor.getInfoList()
+        val listData = chartProcessor.getDataList()
+        val listInfo = chartProcessor.getInfoList()
         pref.edit {
-            for (i in 0..6) {
+            for (i in listData.indices) {
                 putFloat("STATS_WEEK_DATA_${i + 1}", listData[i])
                 putString("STATS_WEEK_INFO_${i + 1}", listInfo[i])
             }
-            putInt("STATS_WEEK_INDEX", processor.index)
+            putInt("STATS_WEEK_DATA_COUNT", listData.size)
+            putString("STATS_WEEK_SPINNER_TOP_ITEM", binding.spinnerTop.selectedItem.toString())
+            putString("STATS_WEEK_SPINNER_DOWN_ITEM", binding.spinnerDown.selectedItem.toString())
         }
 
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun getCurrentDate(): String {
-        val date = Date().toString().split(" ")
-        val yesterday = Calendar.getInstance()
-        yesterday.add(Calendar.DATE, -1)
-        return Date.from(yesterday.toInstant()).toString().split(" ").let {
-            it[1] + " " + it[2]
-        }
-    }
-
-    private fun getDataFromPref(): Float {
-        return pref.getInt("save day:6", 0).toFloat()
     }
 
     private fun init() {
         val listData = ArrayList<Float>()
         val listInfo = ArrayList<String>()
-        for (i in 0..6) {
+        val count = pref.getInt("STATS_WEEK_DATA_COUNT", 0)
+        for (i in 0 until count) {
             listInfo.add(pref.getString("STATS_WEEK_INFO_${i + 1}", "") ?: "")
             listData.add(pref.getFloat("STATS_WEEK_DATA_${i + 1}", 0f))
         }
-        processor.index = pref.getInt("STATS_WEEK_INDEX", 0)
-        processor.setGraphLists(listData, listInfo)
+        chartProcessor.setGraphLists(listData, listInfo)
     }
 
     override fun onDestroyView() {
+        saveOnPref()
         _binding = null
         super.onDestroyView()
     }
