@@ -22,8 +22,8 @@ class RecipeHolder(
 
             glide
                 .load(a.picture)
-                .placeholder(R.drawable.pizza)
-                .error(R.drawable.pizza)
+                .placeholder(R.drawable.defdishes)
+                .error(R.drawable.defdishes)
                 .into(ivRecipe)
         }
     }

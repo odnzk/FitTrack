@@ -5,19 +5,18 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import ru.kpfu.itis.fittrack.data.ProductViewModel
 import ru.kpfu.itis.fittrack.data.RecipeViewModel
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
-import ru.kpfu.itis.fittrack.fragments.deleteFromSharedPreferences
+import ru.kpfu.itis.fittrack.recipesFromAPI.RandomRecipeGenerator
 import ru.kpfu.itis.fittrack.viewpager.ReceivingInformationFragment
 import ru.kpfu.itis.fittrack.viewpager.ViewPagerAdapter
 
@@ -91,6 +90,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+
 //    private fun fillFirstTime() {
 //        mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
 //        mRecipeViewModel = ViewModelProvider(this)[RecipeViewModel::class.java]
@@ -109,3 +109,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+
+
+

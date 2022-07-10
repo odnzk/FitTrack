@@ -161,7 +161,10 @@
             app:destination="@id/trainingsForTheDayFragment" />
         <action
             android:id="@+id/action_workoutFragment_to_workoutDescriptionFragment"
-            app:destination="@id/workoutDescriptionFragment" />
+            app:destination="@id/workoutDescriptionFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/trainingsForTheDayFragment"

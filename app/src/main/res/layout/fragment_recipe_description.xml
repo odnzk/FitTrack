@@ -16,7 +16,7 @@
         android:foreground="#5098a587"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop"
-        android:src="@drawable/pizza" />
+        android:src="@drawable/defdishes" />
 
     <ImageView
         android:id="@+id/iv_picture"
@@ -25,13 +25,13 @@
         android:foreground="#5098a587"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop"
-        android:src="@drawable/pizza" />
+        android:src="@drawable/defdishes" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/inner_shadow_shape"
+        android:background="@drawable/round_top"
         android:minHeight="900dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_picture">
@@ -142,7 +142,8 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_marginTop="24dp"
-            android:layout_height="440dp"
+            android:layout_height="384dp"
+            android:maxHeight="384dp"
             android:background="@drawable/round_top"
             android:fadeScrollbars="false"
             android:scrollbarAlwaysDrawVerticalTrack="true"
@@ -168,9 +169,8 @@
                 android:textSize="22sp" />
 
             <ScrollView
-
                 android:layout_width="match_parent"
-                android:layout_height="440dp"
+                android:layout_height="386dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="24dp"

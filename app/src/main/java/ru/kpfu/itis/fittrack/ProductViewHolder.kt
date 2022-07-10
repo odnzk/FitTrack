@@ -23,8 +23,8 @@ class ProductViewHolder(
 
             glide
                 .load(a.picture)
-                .placeholder(R.drawable.cherry1135469)
-                .error(R.drawable.cherry1135469)
+                .placeholder(R.drawable.diet)
+                .error(R.drawable.diet)
                 .into(ivProduct)
         }
     }

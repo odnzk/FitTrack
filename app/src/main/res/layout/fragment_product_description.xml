@@ -70,7 +70,7 @@
             android:layout_height="150dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="84dp"
-            android:src="@drawable/pizza"
+            android:src="@drawable/diet"
             app:layout_constraintEnd_toStartOf="@id/tv_calories"
             app:layout_constraintHorizontal_bias="0.099"
             app:layout_constraintStart_toStartOf="parent"

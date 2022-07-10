@@ -57,7 +57,7 @@ object WorkoutRepository {
         Training(9,
         "Stepper",
         350,
-        "https://cdn-icons-png.flaticon.com/512/3349/3349205.png",
+        "https://cdn-icons.flaticon.com/png/512/6061/premium/6061187.png?token=exp=1657387179~hmac=e916cee62a12cd2815a166aefcd395a4",
             "Aerobic"
         ),
         Training(10,
