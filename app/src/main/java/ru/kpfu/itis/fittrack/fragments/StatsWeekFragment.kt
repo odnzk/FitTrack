@@ -2,8 +2,10 @@ package ru.kpfu.itis.fittrack.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import ru.kpfu.itis.fittrack.R
@@ -20,6 +22,7 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
     private lateinit var processor: BarChartProcessor
     private lateinit var pref: SharedPreferences
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentStatsWeekBinding.bind(view)
@@ -57,12 +60,19 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentDate(): String {
         val date = Date().toString().split(" ")
-        return "${date[1]} ${date[2]}"
+        val yesterday = Calendar.getInstance()
+        yesterday.add(Calendar.DATE, -1)
+        return Date.from(yesterday.toInstant()).toString().split(" ").let {
+            it[1] + " " + it[2]
+        }
     }
 
-    private fun getDataFromPref(): Float = 10f // TODO
+    private fun getDataFromPref(): Float {
+        return pref.getInt("save day:6", 0).toFloat()
+    }
 
     private fun init() {
         val listData = ArrayList<Float>()
