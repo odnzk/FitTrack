@@ -16,7 +16,7 @@
         android:foreground="#5098a587"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop"
-        android:src="@drawable/pizza" />
+        android:src="@drawable/defdishes" />
 
     <ImageView
         android:id="@+id/iv_picture"
@@ -25,14 +25,13 @@
         android:foreground="#5098a587"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop"
-        android:src="@drawable/pizza" />
+        android:src="@drawable/defdishes" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/inner_shadow_shape"
-
         android:minHeight="900dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_picture">

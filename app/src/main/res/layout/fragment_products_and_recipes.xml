@@ -58,7 +58,7 @@
                 android:id="@+id/rv_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layoutAnimation="@anim/recycler_view_anim_layout_products_and_recipes"
                 android:orientation="horizontal"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
@@ -85,6 +85,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:background="@color/white"
+            android:layoutAnimation="@anim/recycler_view_anim_layout_products_and_recipes"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/btn_add_recipe"

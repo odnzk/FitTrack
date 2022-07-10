@@ -54,13 +54,17 @@ class MainActivity : AppCompatActivity() {
             controller = (supportFragmentManager.findFragmentById(R.id.container)
                     as NavHostFragment).navController
             bottomNavigationView.setupWithNavController(controller)
+            bottomNavigationView.setOnItemSelectedListener {
+                navigateWithOptions(it.itemId)
+                true
+            }
             fab.setOnClickListener {
                 val builder = AlertDialog.Builder(this@MainActivity)
                 builder.setPositiveButton("Food") { _, _ ->
-                    navigateWithOptions(R.id.productsAndRecipesFragment)
+                    controller.navigate(R.id.productsAndRecipesFragment)
                 }
                 builder.setNegativeButton("Workout") { _, _ ->
-                    navigateWithOptions(R.id.workoutFragment)
+                    controller.navigate(R.id.workoutFragment)
                 }
                 builder.setTitle("Select an action")
                 builder.setMessage("What do you want to add?")
