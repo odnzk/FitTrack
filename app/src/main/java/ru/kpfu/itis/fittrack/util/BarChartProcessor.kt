@@ -24,6 +24,7 @@ class BarChartProcessor(barChart: BarChart) {
     fun setGraphLists(listData: List<Float>, listInfo: List<String>) {
         setGraphDataFromList(listData)
         setStringFieldsFromList(listInfo)
+        chart.resetZoom()
     }
 
     fun add(item: Float, info: String) {
