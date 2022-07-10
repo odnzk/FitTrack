@@ -8,8 +8,13 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+<<<<<<< HEAD
+=======
+import androidx.lifecycle.ViewModelProvider
+>>>>>>> master
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.databinding.FragmentStatsWeekBinding
+import ru.kpfu.itis.fittrack.statsdata.StatsViewModel
 import ru.kpfu.itis.fittrack.util.BarChartProcessor
 import java.util.*
 
@@ -18,6 +23,7 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
 
     private var _binding: FragmentStatsWeekBinding? = null
     private val binding get() = _binding!!
+    private lateinit var vm: StatsViewModel
 
     private lateinit var processor: BarChartProcessor
     private lateinit var pref: SharedPreferences
@@ -39,7 +45,13 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
             processor.add(getDataFromPref(), getCurrentDate())
             saveOnPref()
         }
-
+        /////////////
+        vm = ViewModelProvider(this)[StatsViewModel::class.java]
+        vm.getAllStats.observe(viewLifecycleOwner) {
+            // ровно семь штук залила, можешь еще сам залить,
+            // но придется удалять приложение и снова скачивать
+        }
+        /////////////
     }
 
 

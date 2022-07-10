@@ -3,7 +3,7 @@ package ru.kpfu.itis.fittrack
 import ru.kpfu.itis.fittrack.data.Recipe
 
 object InitialRecipes {
-    val list = arrayListOf<Recipe>(
+    val list = arrayListOf(
         Recipe(
             0, "Caesar salad",
             "https://www.gastronom.ru/binfiles/images/20191113/b50e9f2a.jpg",
@@ -74,7 +74,5 @@ object InitialRecipes {
             1.5f,
             10.1f
         )
-
-
     )
 }

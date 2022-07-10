@@ -58,6 +58,7 @@
     <string name="on">on</string>
     <string name="off">off</string>
     <string name="no_recipes">Recipe handbook is empty</string>
+    <string name="your_recipe">Today your recipe is </string>
 
     <string name="stats_week_btn_getter_txt">get data from Calorie tracker</string>
     <string name="stats_week_tv_top_text">left border</string>
