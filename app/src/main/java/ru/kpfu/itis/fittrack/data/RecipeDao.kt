@@ -14,8 +14,8 @@ interface RecipeDao {
     @Delete
     suspend fun deleteRecipe(recipe: Recipe)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun add(recipe: Recipe)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun add(recipe: Recipe)
 
 
     @Query("SELECT COUNT(*) from Recipe")

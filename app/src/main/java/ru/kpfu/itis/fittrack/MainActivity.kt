@@ -71,11 +71,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        prefFirstLaunch = getSharedPreferences(FIRST_LAUNCH, MODE_PRIVATE)
-        if (prefFirstLaunch.getBoolean(KEY_FIRST_LAUNCH, true)) {
-            fillFirstTime()
-            prefFirstLaunch.edit().putBoolean(KEY_FIRST_LAUNCH, false).apply()
-        }
+//        prefFirstLaunch = getSharedPreferences(FIRST_LAUNCH, MODE_PRIVATE)
+//        if (prefFirstLaunch.getBoolean(KEY_FIRST_LAUNCH, true)) {
+//            fillFirstTime()
+//            prefFirstLaunch.edit().putBoolean(KEY_FIRST_LAUNCH, false).apply()
+//        }
     }
 
     private fun navigateWithOptions(idToNavigateInto: Int) {
@@ -90,19 +90,17 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun fillFirstTime() {
-        mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
-        mRecipeViewModel = ViewModelProvider(this)[RecipeViewModel::class.java]
-        InitialProducts.list.forEach {
-            mProductViewModel.addProduct(it)
-        }
-        InitialRecipes.list.forEach {
-            mRecipeViewModel.addRecipe(it)
-        }
-        RandomRecipeGenerator().getRandomRecipe {
-           mRecipeViewModel.addRecipe(it)
-        }
-    }
+
+//    private fun fillFirstTime() {
+//        mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+//        mRecipeViewModel = ViewModelProvider(this)[RecipeViewModel::class.java]
+//        InitialProducts.list.forEach {
+//            mProductViewModel.addProduct(it)
+//        }
+//        InitialRecipes.list.forEach {
+//            mRecipeViewModel.addRecipe(it)
+//        }
+//    }
 
 
     companion object {
