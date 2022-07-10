@@ -1,6 +1,5 @@
 package ru.kpfu.itis.fittrack.recipesFromAPI
 
-import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -14,7 +13,7 @@ import java.net.URL
 
 class RandomRecipeGenerator {
     companion object {
-        const val API_KEY = "3ab0e7dbfbdc4c38888f59f128cd58ab"
+        private const val API_KEY = "3ab0e7dbfbdc4c38888f59f128cd58ab"
         const val RANDOM_RECIPE_URL = "https://api.spoonacular.com/recipes/random?apiKey=$API_KEY"
         const val RECIPE_INSTRUCTION_URL_FIRST_HALF = "https://api.spoonacular.com/recipes/"
         const val RECIPE_INSTRUCTION_URL_SECOND_HALF = "/analyzedInstructions?apiKey=$API_KEY"
@@ -62,8 +61,8 @@ class RandomRecipeGenerator {
         val responseRecipeInstruction =
             URL(RECIPE_INSTRUCTION_URL_FIRST_HALF + id.toString() + RECIPE_INSTRUCTION_URL_SECOND_HALF).readText()
         var result = ""
-        getRegexResult(responseRecipeInstruction, INSTRUCTION_REGEX).forEach {
-            it.groupValues.get(1).forEach {
+        getRegexResult(responseRecipeInstruction, INSTRUCTION_REGEX).forEach { it ->
+            it.groupValues[1].forEach {
                 result += "$it "
             }
         }

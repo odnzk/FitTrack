@@ -42,7 +42,7 @@ abstract class EntireDatabase : RoomDatabase() {
                                     INSTANCE?.recipeDao()?.add(elem)
                                 }
                                 for (elem in InitialStatsItem.list){
-                                    INSTANCE?.statsItemDao()?.add(elem)
+                                    INSTANCE?.statsItemDao()?.insert(elem)
                                 }
                             }
                             Thread(runnable).start()

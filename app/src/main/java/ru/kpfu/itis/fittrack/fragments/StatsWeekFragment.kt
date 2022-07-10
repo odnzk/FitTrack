@@ -1,6 +1,7 @@
 package ru.kpfu.itis.fittrack.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -52,13 +53,14 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
             setStringFields(strings)
         }
 
-        /////////////
+
         vm = ViewModelProvider(this)[StatsViewModel::class.java]
         vm.getAllStats.observe(viewLifecycleOwner) {
-            // ровно семь штук залила, можешь еще сам залить,
-            // но придется удалять приложение и снова скачивать
+            for(e in it){
+
+            }
         }
-        /////////////
+
 
     }
 

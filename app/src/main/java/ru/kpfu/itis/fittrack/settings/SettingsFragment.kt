@@ -1,10 +1,15 @@
 package ru.kpfu.itis.fittrack.settings
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.preference.EditTextPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import ru.kpfu.itis.fittrack.R
+import ru.kpfu.itis.fittrack.fragments.ProductDescriptionFragment
+import ru.kpfu.itis.fittrack.statsdata.StatsItem
+import java.util.*
 
 class SettingsFragment : PreferenceFragmentCompat() {
     companion object {

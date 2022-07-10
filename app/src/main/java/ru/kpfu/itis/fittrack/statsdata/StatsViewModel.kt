@@ -21,7 +21,7 @@ class StatsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun addStatsItem(statsItem: StatsItem) {
         viewModelScope.launch(Dispatchers.IO) {
-            EntireDatabase.getDatabase(getApplication()).statsItemDao().add(statsItem)
+            EntireDatabase.getDatabase(getApplication()).statsItemDao().insert(statsItem)
         }
     }
 }

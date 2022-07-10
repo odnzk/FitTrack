@@ -9,7 +9,7 @@ data class StatsItem(
     @ColumnInfo val month: Int,
     @ColumnInfo val year: Int,
     @ColumnInfo(name = "consumed_calories") val consumedCalories: Int,
-    @ColumnInfo val proteins: Int,
-    @ColumnInfo val fats: Int,
-    @ColumnInfo val carbs: Int,
+    @ColumnInfo val proteins: Float,
+    @ColumnInfo val fats: Float,
+    @ColumnInfo val carbs: Float,
 )
