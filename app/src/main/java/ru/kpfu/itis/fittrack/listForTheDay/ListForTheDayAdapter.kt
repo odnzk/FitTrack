@@ -49,6 +49,9 @@ class ListForTheDayAdapter(
         val categories = sharedPreferencesStorage.loadCategories()?.split(" ")?.toMutableList()
         val types = sharedPreferencesStorage.loadTypes()?.split(" ")?.toMutableList()
         val calories = sharedPreferencesStorage.loadCalories()?.split(" ")?.toMutableList()
+        val proteinsArr = sharedPreferencesStorage.loadProteins()?.split(" ")?.toMutableList()
+        val fatsArr = sharedPreferencesStorage.loadFats()?.split(" ")?.toMutableList()
+        val carbsArr = sharedPreferencesStorage.loadCarbs()?.split(" ")?.toMutableList()
         var i = 0
 
         if (idSArr != null) {
@@ -61,7 +64,7 @@ class ListForTheDayAdapter(
                         break
                     }
                 } else if (type == "Product") {
-                    if (idd == (item.id ).toString() && category == item.category && type == item.type) {
+                    if (idd == (item.id).toString() && category == item.category && type == item.type) {
                         break
                     }
                 } else {
@@ -81,18 +84,26 @@ class ListForTheDayAdapter(
             categories?.removeAt(i)
             types?.removeAt(i)
             calories?.removeAt(i)
-
+            proteinsArr?.removeAt(i)
+            fatsArr?.removeAt(i)
+            carbsArr?.removeAt(i)
             sharedPreferencesStorage.clearAll()
             if (idSArr != null) {
                 for ((s, k) in idSArr.withIndex()) {
                     val category = categories?.get(s)
                     val type = types?.get(s)
                     val kCal = calories?.get(s) ?: ""
+                    val protein = proteinsArr?.get(s) ?: ""
+                    val fat = fatsArr?.get(s) ?: ""
+                    val carbs = carbsArr?.get(s) ?: ""
                     if (k.isNotBlank() && !category.isNullOrBlank() && !type.isNullOrBlank()) {
                         sharedPreferencesStorage.addCategory(category)
                         sharedPreferencesStorage.addItemID(k.toInt())
                         sharedPreferencesStorage.addType(type)
                         sharedPreferencesStorage.addCalorieCount(kCal)
+                        sharedPreferencesStorage.addProteinCount(protein)
+                        sharedPreferencesStorage.addFatCount(fat)
+                        sharedPreferencesStorage.addCarbsCount(carbs)
                     }
                 }
             }

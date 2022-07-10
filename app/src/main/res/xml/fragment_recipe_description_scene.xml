@@ -22,7 +22,7 @@
             motion:touchAnchorSide="bottom" />
     </Transition>
 
-    <ConstraintSet android:id="@+id/start">
+    <ConstraintSet>
         <Constraint
             android:layout_height="250dp"
             motion:layout_constraintTop_toTopOf="parent"

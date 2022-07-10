@@ -3,10 +3,7 @@ package ru.kpfu.itis.fittrack.fragments
 import android.content.Context
 import androidx.fragment.app.Fragment
 import ru.kpfu.itis.fittrack.R
-import ru.kpfu.itis.fittrack.data.BaseEntity
-import ru.kpfu.itis.fittrack.data.Product
-import ru.kpfu.itis.fittrack.data.Recipe
-import ru.kpfu.itis.fittrack.data.Training
+import ru.kpfu.itis.fittrack.data.*
 
 fun Fragment.changeSharedPref(baseEntity: BaseEntity) {
     val sharedPref = activity?.getSharedPreferences(
@@ -20,13 +17,13 @@ fun Fragment.changeSharedPref(baseEntity: BaseEntity) {
     var burnedCalories = sharedPref?.getInt(ProductDescriptionFragment.BURNED_CALORIES,0)
     val editor = sharedPref?.edit()
 
-    if (baseEntity is Product) {
+    if (baseEntity is Food) {
         eatenCalories = eatenCalories?.plus(baseEntity.calories)
         eatenProteins = eatenProteins?.plus(baseEntity.proteins)
         eatenCarbs = eatenCarbs?.plus(baseEntity.carbohydrates)
         eatenFats = eatenFats?.plus(baseEntity.fats)
     }
-    if (baseEntity is Recipe) {
+    if (baseEntity is Dish) {
         eatenCalories = eatenCalories?.plus(baseEntity.calories)
         eatenProteins = eatenProteins?.plus(baseEntity.proteins)
         eatenCarbs = eatenCarbs?.plus(baseEntity.carbohydrates)

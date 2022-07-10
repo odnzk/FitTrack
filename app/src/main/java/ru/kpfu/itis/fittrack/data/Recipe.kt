@@ -23,4 +23,5 @@ data class Recipe(
     @ColumnInfo(name = "fats_recipe")
     var fats: Float,
     @ColumnInfo(name = "carbohydrates")
-    var carbohydrates: Float): BaseEntity(id, title, calories, "", ""), Serializable
+    var carbohydrates: Float
+    ): BaseEntity(id, title, calories, "", ""), Serializable
