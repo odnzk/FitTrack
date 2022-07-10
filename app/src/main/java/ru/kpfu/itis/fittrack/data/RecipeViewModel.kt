@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.kpfu.itis.fittrack.dataForStats.EntireDatabase
 
 class RecipeViewModel(application: Application): AndroidViewModel(application) {
     val getAllRecipes: LiveData<List<Recipe>>
@@ -16,6 +17,7 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
 
     init {
         val recipeDao = RecipeDatabase.getDatabase(application).recipeDao()
+//        val recipeDao = EntireDatabase.getDatabase(application).recipeDao()
         repository = RecipeRepository(recipeDao)
         getAllRecipes = repository.getAllRecipes
     }
