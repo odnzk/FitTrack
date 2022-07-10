@@ -8,13 +8,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.WorkoutFragment">
 
-    <ru.kpfu.itis.fittrack.animation.GridRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
-        android:layoutAnimation="@anim/recycler_view_anim_workout"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +27,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="24dp"
         android:text="Trainings"
         android:textAllCaps="false"
         android:textSize="24sp"

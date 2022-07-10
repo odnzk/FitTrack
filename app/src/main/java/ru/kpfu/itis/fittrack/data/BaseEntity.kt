@@ -6,6 +6,4 @@ abstract class BaseEntity (
     open var calories: Int,
     open var category: String,
     open var type:String
-) {
-
-}
+)

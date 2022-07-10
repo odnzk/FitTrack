@@ -1,14 +1,13 @@
 package ru.kpfu.itis.fittrack.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import androidx.lifecycle.ViewModelProvider
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.databinding.FragmentStatsWeekBinding
+import ru.kpfu.itis.fittrack.statsdata.StatsViewModel
 import ru.kpfu.itis.fittrack.util.BarChartProcessor
 
 
@@ -16,6 +15,7 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
 
     private var _binding: FragmentStatsWeekBinding? = null
     private val binding get() = _binding!!
+    private lateinit var vm: StatsViewModel
 
     private lateinit var processor: BarChartProcessor
 
@@ -51,6 +51,14 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
         with(processor) {
             setGraphDataFromList(data, graphLabel)
             setStringFields(strings)
+        }
+
+
+        vm = ViewModelProvider(this)[StatsViewModel::class.java]
+        vm.getAllStats.observe(viewLifecycleOwner) {
+            for(e in it){
+
+            }
         }
 
 
