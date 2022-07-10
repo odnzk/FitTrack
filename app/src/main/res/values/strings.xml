@@ -14,7 +14,7 @@
     <string name="dinner">Dinner</string>
 
     <string-array name="food_categories">
-        <item name="lunch">Lunch__</item>
+        <item name="lunch">Lunch</item>
         <item name="breakfast">Breakfast</item>
         <item name="dinner">Dinner</item>
     </string-array>
@@ -57,6 +57,7 @@
     <string name="vp_notif_hint"><u>swipe right to skip and set up notifications later</u></string>
     <string name="on">on</string>
     <string name="off">off</string>
+    <string name="no_recipes">Recipe handbook is empty</string>
 
     <string name="stats_week_btn_getter_txt">get data from Calorie tracker</string>
     <string name="stats_week_tv_top_text">left border</string>

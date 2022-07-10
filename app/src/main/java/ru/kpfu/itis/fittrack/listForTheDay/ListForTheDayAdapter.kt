@@ -1,21 +1,23 @@
 package ru.kpfu.itis.fittrack.listForTheDay
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.kpfu.itis.fittrack.data.BaseEntity
-import ru.kpfu.itis.fittrack.databinding.TrainingFoodForTheDayItemBinding
-import android.app.Activity
-import android.widget.Toast
 import ru.kpfu.itis.fittrack.data.Product
 import ru.kpfu.itis.fittrack.data.Recipe
+import ru.kpfu.itis.fittrack.data.Training
+import ru.kpfu.itis.fittrack.databinding.TrainingFoodForTheDayItemBinding
 import ru.kpfu.itis.fittrack.fragments.ProductDescriptionFragment
 
 class ListForTheDayAdapter(
     private val list: MutableList<BaseEntity>,
-    private val onItemClick: (BaseEntity) -> Unit
+    val sharedPreferencesStorage: SharedPreferencesStorage? = null,
+    private val onItemClick: (BaseEntity) -> Unit,
 ) : RecyclerView.Adapter<ListForTheDayViewHolder>() {
 
 
@@ -58,8 +60,12 @@ class ListForTheDayAdapter(
                     if (idd == (item.id).toString() && category == item.category && type == item.type && item.calories == calorie) {
                         break
                     }
+                } else if (type == "Product") {
+                    if (idd == (item.id ).toString() && category == item.category && type == item.type) {
+                        break
+                    }
                 } else {
-                    if (idd == (item.id - 1).toString() && category == item.category && type == item.type) {
+                    if (idd == (item.id).toString() && category == item.category && type == item.type) {
                         break
                     }
                 }
@@ -96,7 +102,6 @@ class ListForTheDayAdapter(
     }
 
 
-
     @SuppressLint("NotifyDataSetChanged")
     fun addItem(i: Int, itemForTheDay: BaseEntity, context: Context) {
         list.add(i, itemForTheDay)
@@ -111,7 +116,7 @@ class ListForTheDayAdapter(
 
     override fun getItemCount(): Int = list.size
 
-    private fun categoriesComparator() = Comparator<BaseEntity>{ a, b ->
+    private fun categoriesComparator() = Comparator<BaseEntity> { a, b ->
         when {
             (b.category == "Dinner" && a.category == "Lunch") -> -1
             (a.category == "Dinner" && b.category == "Lunch") -> 1
@@ -127,25 +132,32 @@ class ListForTheDayAdapter(
         var eatenProteins = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f)
         var eatenCarbs = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f)
         var eatenFats = sharedPref?.getFloat(ProductDescriptionFragment.EATEN_FATS, 0f)
+        var burnedCalories = sharedPref?.getInt(ProductDescriptionFragment.BURNED_CALORIES, 0)
         val editor = sharedPref?.edit()
 
-        eatenCalories = eatenCalories?.minus(baseEntity.calories)
+
         if (baseEntity is Product) {
+            eatenCalories = eatenCalories?.minus(baseEntity.calories)
             eatenProteins = eatenProteins?.minus(baseEntity.proteins)
             eatenCarbs = eatenCarbs?.minus(baseEntity.carbohydrates)
             eatenFats = eatenFats?.minus(baseEntity.fats)
         }
         if (baseEntity is Recipe) {
+            eatenCalories = eatenCalories?.minus(baseEntity.calories)
             eatenProteins = eatenProteins?.minus(baseEntity.proteins)
             eatenCarbs = eatenCarbs?.minus(baseEntity.carbohydrates)
             eatenFats = eatenFats?.minus(baseEntity.fats)
         }
-
-        editor?.putInt(ProductDescriptionFragment.EATEN_CALORIES, eatenCalories!!)?.apply()
-        editor?.putFloat(ProductDescriptionFragment.EATEN_PROTEINS, eatenProteins!!)?.apply()
-        editor?.putFloat(ProductDescriptionFragment.EATEN_CARBS, eatenCarbs!!)?.apply()
-        editor?.putFloat(ProductDescriptionFragment.EATEN_FATS, eatenFats!!)?.apply()
-
+        if (baseEntity is Training) {
+            burnedCalories = burnedCalories?.minus(baseEntity.calories)
+        }
+        with(editor!!) {
+            putInt(ProductDescriptionFragment.EATEN_CALORIES, eatenCalories!!)?.apply()
+            putFloat(ProductDescriptionFragment.EATEN_PROTEINS, eatenProteins!!)?.apply()
+            putFloat(ProductDescriptionFragment.EATEN_CARBS, eatenCarbs!!)?.apply()
+            putFloat(ProductDescriptionFragment.EATEN_FATS, eatenFats!!)?.apply()
+            putInt(ProductDescriptionFragment.BURNED_CALORIES, burnedCalories!!)?.apply()
+        }
     }
 }
 

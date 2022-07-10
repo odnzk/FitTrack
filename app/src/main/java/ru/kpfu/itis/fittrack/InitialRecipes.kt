@@ -22,7 +22,7 @@ object InitialRecipes {
             27.4f
         ),
         Recipe(
-            0,
+            1,
             "Pancakes",
             "https://lenta.gcdn.co/globalassets/recepty/b/--15/--.jpg?preset=medium",
             "Mix eggs, salt, sugar and stir with a mixer. Enter the flour and pour in the milk. Beat the pancake batter to achieve a homogeneous consistency.\n" +
@@ -41,7 +41,7 @@ object InitialRecipes {
             9f
         ),
         Recipe(
-            0, "Chicken",
+            2, "Chicken",
             "https://wowfood.club/uploads/mini/big/1a/ciplyonok_tabaka_v_duhovke.webp",
             "Wash the chicken, dry it with paper napkins.\n" +
                     "Place on a cutting board. Cut the chicken along the breast and open it like a book.\n" +
@@ -57,7 +57,7 @@ object InitialRecipes {
         ),
 
         Recipe(
-            0, "Risotto",
+            3, "Risotto",
             "https://daily-menu.ru/public/modules/dailymenu/dailymenurecipes/214211/c37456d74b9d8e07a47e4190e8695303.jpg",
             "For risotto, you need to choose round-grain starchy rice. The best varieties are \"arborio\", \"carnaroli\", \"baldo\" and \"vialone nano\". Sometimes on packages with rice, manufacturers specifically indicate that it is suitable for risotto.\n" +
                     "At the beginning of cooking, onions are almost always fried. It should soften, but not brown.\n" +

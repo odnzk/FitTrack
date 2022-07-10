@@ -5,19 +5,18 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import ru.kpfu.itis.fittrack.data.ProductViewModel
 import ru.kpfu.itis.fittrack.data.RecipeViewModel
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
-import ru.kpfu.itis.fittrack.fragments.deleteFromSharedPreferences
+import ru.kpfu.itis.fittrack.recipesFromAPI.RandomRecipeGenerator
 import ru.kpfu.itis.fittrack.viewpager.ReceivingInformationFragment
 import ru.kpfu.itis.fittrack.viewpager.ViewPagerAdapter
 
@@ -54,13 +53,17 @@ class MainActivity : AppCompatActivity() {
             controller = (supportFragmentManager.findFragmentById(R.id.container)
                     as NavHostFragment).navController
             bottomNavigationView.setupWithNavController(controller)
+            bottomNavigationView.setOnItemSelectedListener {
+                navigateWithOptions(it.itemId)
+                true
+            }
             fab.setOnClickListener {
                 val builder = AlertDialog.Builder(this@MainActivity)
                 builder.setPositiveButton("Food") { _, _ ->
-                    navigateWithOptions(R.id.productsAndRecipesFragment)
+                    controller.navigate(R.id.productsAndRecipesFragment)
                 }
                 builder.setNegativeButton("Workout") { _, _ ->
-                    navigateWithOptions(R.id.workoutFragment)
+                    controller.navigate(R.id.workoutFragment)
                 }
                 builder.setTitle("Select an action")
                 builder.setMessage("What do you want to add?")
@@ -96,6 +99,9 @@ class MainActivity : AppCompatActivity() {
         InitialRecipes.list.forEach {
             mRecipeViewModel.addRecipe(it)
         }
+        RandomRecipeGenerator().getRandomRecipe {
+           mRecipeViewModel.addRecipe(it)
+        }
     }
 
 
@@ -105,3 +111,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+
+
+

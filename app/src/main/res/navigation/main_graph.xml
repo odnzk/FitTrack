@@ -12,13 +12,23 @@
         android:label="ListForTheDayFragment" >
         <action
             android:id="@+id/action_placeHolderFragment_to_productDescriptionFragment"
-            app:destination="@id/productDescriptionFragment" />
+            app:destination="@id/productDescriptionFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_placeHolderFragment_to_recipeDescriptionFragment2"
-            app:destination="@id/recipeDescriptionFragment" />
+            app:destination="@id/recipeDescriptionFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_placeHolderFragment_to_workoutDescriptionFragment"
-            app:destination="@id/workoutDescriptionFragment" />
+            app:destination="@id/workoutDescriptionFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -52,16 +62,26 @@
             app:destination="@id/addFragment" />
         <action
             android:id="@+id/action_productsAndRecipesFragment_to_addRecipeFragment"
-            app:destination="@id/addRecipeFragment" />
+            app:destination="@id/addRecipeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_productsAndRecipesFragment_to_recipeDescriptionFragment"
             app:destination="@id/recipeDescriptionFragment" />
         <action
             android:id="@+id/action_productsAndRecipesFragment_to_recipeDescriptionFragment2"
-            app:destination="@id/recipeDescriptionFragment" />
+            app:destination="@id/recipeDescriptionFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_productsAndRecipesFragment_to_productDescriptionFragment"
-            app:destination="@id/productDescriptionFragment" />
+            app:destination="@id/productDescriptionFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_productsAndRecipesFragment_to_placeHolderFragment"
             app:destination="@id/placeHolderFragment"
@@ -79,11 +99,12 @@
         <action
             android:id="@+id/action_addFragment_to_productsAndRecipesFragment"
             app:destination="@id/productsAndRecipesFragment"
-            app:popUpTo="@id/productsAndRecipesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:launchSingleTop="true"
+            app:popUpTo="@id/productsAndRecipesFragment"
             app:popUpToInclusive="true"
-            app:popUpToSaveState="true"
-            />
+            app:popUpToSaveState="true" />
     </fragment>
     <fragment
         android:id="@+id/addRecipeFragment"
@@ -93,11 +114,12 @@
         <action
             android:id="@+id/action_addRecipeFragment_to_productsAndRecipesFragment"
             app:destination="@id/productsAndRecipesFragment"
-            app:popUpTo="@id/productsAndRecipesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:launchSingleTop="true"
+            app:popUpTo="@id/productsAndRecipesFragment"
             app:popUpToInclusive="true"
-            app:popUpToSaveState="true"
-            />
+            app:popUpToSaveState="true" />
     </fragment>
     <fragment
         android:id="@+id/recipeDescriptionFragment"
@@ -122,10 +144,12 @@
         <action
             android:id="@+id/action_productDescriptionFragment_to_productsAndRecipesFragment"
             app:destination="@id/productsAndRecipesFragment"
-            app:popUpTo="@id/productsAndRecipesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:launchSingleTop="true"
+            app:popUpTo="@id/productsAndRecipesFragment"
             app:popUpToInclusive="true"
-            app:popUpToSaveState="true"/>
+            app:popUpToSaveState="true" />
     </fragment>
     <fragment
         android:id="@+id/workoutFragment"
@@ -137,7 +161,10 @@
             app:destination="@id/trainingsForTheDayFragment" />
         <action
             android:id="@+id/action_workoutFragment_to_workoutDescriptionFragment"
-            app:destination="@id/workoutDescriptionFragment" />
+            app:destination="@id/workoutDescriptionFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/trainingsForTheDayFragment"

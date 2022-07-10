@@ -29,7 +29,7 @@ class AddRecipeFragment : Fragment(R.layout.fragment_add_recipe) {
 
     private fun insertDataToDatabase() {
         var title = ""
-        var picture = ""
+        var picture = "https://milaclub.com/uploads/2018/06/milaclub-vtorye-blyuda.jpg"
         var calories = 0
         var proteins = 0f
         var fats = 0f
@@ -39,12 +39,16 @@ class AddRecipeFragment : Fragment(R.layout.fragment_add_recipe) {
         if (inputCheck()) {
             with(binding) {
                 title = etTitle.text.toString()
-                picture = etLink.text.toString()
+                if (!etLink.text.isNullOrBlank()) {
+                    picture = etLink.text.toString()
+                }
                 calories = etCalories.text.toString().toInt()
                 proteins = etProteins.text.toString().toFloat()
                 fats = etFats.text.toString().toFloat()
                 carbohydrates = etCarbohydrates.text.toString().toFloat()
-                description = etDescription.text.toString()
+                if (!etDescription.text.isNullOrBlank()) {
+                    description = etDescription.text.toString()
+                }
             }
             val p = Recipe(
                 0,
@@ -70,7 +74,7 @@ class AddRecipeFragment : Fragment(R.layout.fragment_add_recipe) {
 
     private fun checkTitle(): Boolean =  when(binding.etTitle.getText().toString().length) {
         0 -> {
-            binding.etTitle.setError("Пустое поле");
+            binding.etTitle.setError("Empty field");
             false
         }
         else -> true

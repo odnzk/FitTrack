@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import ru.kpfu.itis.fittrack.R
@@ -25,7 +26,6 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
     private var maxProteins = 0
     private var maxCarbs = 0
     private var maxFat = 0
-    private var water = -0.25
     private var count = 1
     private var sex = false
     private var height = 0
@@ -36,46 +36,55 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentStatsDayBinding.bind(view)
-        init()
-        initRecycler()
-    }
 
-    private fun init() {
         val sharedPref = activity?.getSharedPreferences(
             getString(R.string.preferenceFileKey_UserData),
             Context.MODE_PRIVATE
         )
-        initUserData(sharedPref)
+        _binding = FragmentStatsDayBinding.bind(view)
+
+        init(sharedPref!!)
+        initRecycler(sharedPref)
+    }
+
+    private fun init(sharedPref: SharedPreferences) {
+
+        val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        initUserData(sp)
         calcPFC()
+        count = sharedPref.getInt(WATER_CUP_AMOUNT, 1)
         goalCalories = calcGoalCalories()
-        burnedCalories = 6 // ждём
-        calculateConsumed(sharedPref!!)
+        burnedCalories = sharedPref.getInt(ProductDescriptionFragment.BURNED_CALORIES, 0)
+        calculateConsumed(sharedPref)
         drawProgressBars()
     }
-    private fun onItemClick(int: Int) {
-        water += WATER_CUP_WEIGHT
-        binding.tvWater.text = "$water L"
+
+    private fun onItemClick(int: Int,sharedPref: SharedPreferences) {
         count++
+        sharedPref.edit().putInt(WATER_CUP_AMOUNT,count).apply()
+        binding.tvWater.text = "${WATER_CUP_WEIGHT * (count - 1)} L"
         binding.rvCups.adapter = WaterAdapter(List(count) { it }, Glide.with(this)) {
-            onItemClick(int)
+            onItemClick(int,sharedPref)
         }
     }
 
-    private fun initRecycler() {
+    private fun initRecycler(sharedPref: SharedPreferences) {
         val adapter = WaterAdapter(List(count) { it }, Glide.with(this)) {
-            water += WATER_CUP_WEIGHT
-            onItemClick(it)
+            onItemClick(it,sharedPref)
         }
-        binding.rvCups.adapter = adapter
-        binding.rvCups.layoutManager = GridLayoutManager(requireContext(), 10)
+        with(binding){
+            rvCups.adapter = adapter
+            rvCups.layoutManager = GridLayoutManager(requireContext(), 10)
+            tvWater.text = "${WATER_CUP_WEIGHT * (count - 1)} L"
+        }
     }
 
     private fun initUserData(sharedPref: SharedPreferences?) {
-        sex = sharedPref?.getBoolean(ReceivingInformationFragment.GENDER_KEY, sex)!!
-        height = sharedPref.getInt(ReceivingInformationFragment.HEIGHT_KEY, height)
-        weight = sharedPref.getFloat(ReceivingInformationFragment.WEIGHT_KEY, weight)
-        age = sharedPref.getInt(ReceivingInformationFragment.AGE_KEY, age)
+        sex = sharedPref?.getString(ReceivingInformationFragment.GENDER_KEY, "false")!!.toBoolean()
+        height = sharedPref.getString(ReceivingInformationFragment.HEIGHT_KEY, "0")!!.toInt()
+        weight = sharedPref.getString(ReceivingInformationFragment.WEIGHT_KEY, "0f")!!.toFloat()
+        age = sharedPref.getString(ReceivingInformationFragment.AGE_KEY, "0")!!.toInt()
         activeness =
             sharedPref.getString(ReceivingInformationFragment.ACTIVENESS_KEY, activeness).toString()
         goal = sharedPref.getString(ReceivingInformationFragment.GOAL_KEY, goal).toString()
@@ -125,12 +134,12 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         }
 
     private fun calculateConsumed(sharedPref: SharedPreferences) {
-        consumedCalories = sharedPref.getInt(ProductDescriptionFragment.EATEN_CALORIES, 0) ?: 0
+        consumedCalories = sharedPref.getInt(ProductDescriptionFragment.EATEN_CALORIES, 0)
         consumedProteins =
-            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f) ?: 0).toInt()
-        consumedFat = (sharedPref.getFloat(ProductDescriptionFragment.EATEN_FATS, 0f) ?: 0).toInt()
+            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_PROTEINS, 0f)).toInt()
+        consumedFat = (sharedPref.getFloat(ProductDescriptionFragment.EATEN_FATS, 0f)).toInt()
         consumedCarbs =
-            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f) ?: 0).toInt()
+            (sharedPref.getFloat(ProductDescriptionFragment.EATEN_CARBS, 0f)).toInt()
     }
 
     private fun drawProgressBars() {
@@ -187,5 +196,6 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
         const val PROTEINS_HARD = 2
         const val FAT_HARD = 1.5
         const val CARBS_HARD = 4
+        const val WATER_CUP_AMOUNT = "water cups amount"
     }
 }

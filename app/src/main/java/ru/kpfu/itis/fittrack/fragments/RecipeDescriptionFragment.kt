@@ -3,18 +3,21 @@ package ru.kpfu.itis.fittrack.fragments
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.bumptech.glide.Glide
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.data.Recipe
 import ru.kpfu.itis.fittrack.data.RecipeViewModel
 import ru.kpfu.itis.fittrack.databinding.FragmentRecipeDescriptionBinding
-import ru.kpfu.itis.fittrack.listForTheDay.SharedPreferencesStorage
+
 
 class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description) {
     var curRecipe: Recipe? = null
@@ -58,6 +61,7 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
             builder.create().show()
 
         }
+        setUpAnim()
 
         binding.menuCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -80,6 +84,13 @@ class RecipeDescriptionFragment : Fragment(R.layout.fragment_recipe_description)
             changeSharedPref(curRecipe!!)
             addingValuesToSharedPreferencesExtension(binding.root.context, category, "Recipe", curRecipe)
         }
+    }
+
+    private fun setUpAnim() {
+        val slideUp: Animation =
+            AnimationUtils.loadAnimation(binding.root.context, R.anim.recipe_description_fragment_slide_up_anim)
+        binding.constraintLayout3.startAnimation(slideUp)
+
     }
 
 

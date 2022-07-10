@@ -3,20 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="30dp"
+    android:background="@color/main_green"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.WorkoutFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
+    <ru.kpfu.itis.fittrack.animation.GridRecyclerView
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="4dp"
         android:orientation="vertical"
+        android:layoutAnimation="@anim/recycler_view_anim_workout"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:itemCount="10"
@@ -29,7 +31,7 @@
         android:layout_marginTop="25dp"
         android:text="Trainings"
         android:textAllCaps="false"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/rv_list"
         app:layout_constraintEnd_toEndOf="parent"

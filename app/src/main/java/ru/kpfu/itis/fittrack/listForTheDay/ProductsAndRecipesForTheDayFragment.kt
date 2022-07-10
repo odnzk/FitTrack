@@ -1,5 +1,6 @@
 package ru.kpfu.itis.fittrack.listForTheDay
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.work.*
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.data.*
 import ru.kpfu.itis.fittrack.databinding.FragmentListForTheDayBinding
 import ru.kpfu.itis.fittrack.fragments.ProductDescriptionFragment
 import ru.kpfu.itis.fittrack.fragments.RecipeDescriptionFragment
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class ProductsAndRecipesForTheDayFragment : Fragment() {
@@ -23,7 +27,7 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
     private lateinit var itemSectionDecoration: ItemSectionDecoration
     private lateinit var mRecipeViewModel: RecipeViewModel
     private lateinit var mProductViewModel: ProductViewModel
-
+    private var flag = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +35,8 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
     ): View? {
         _binding = FragmentListForTheDayBinding.inflate(inflater, container, false)
         initAdapter()
-
+        clearListNewDay()
+        startWorker()
 
         return binding.root
     }
@@ -45,7 +50,8 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
     fun initAdapter() {
         val list = mutableListOf<BaseEntity>()
         adapter = ListForTheDayAdapter(
-            list
+            list,
+            SharedPreferencesStorage(requireContext())
         ) { it ->
             // navigating to appropriate description screen from day list
             if (it is Product) {
@@ -73,6 +79,49 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
 
     }
 
+    private fun startWorker() {
+        val sp = activity?.getSharedPreferences(
+            getString(R.string.preferenceFileKey_UserData),
+            Context.MODE_PRIVATE
+        )
+
+        flag = sp?.getBoolean("flag", false)!!
+        if (!flag) {
+            val workRequest = PeriodicWorkRequestBuilder<StatWorker>(1, TimeUnit.DAYS)
+                .setInitialDelay(countInitialDelay(), TimeUnit.SECONDS)
+                .build()
+
+            WorkManager
+                .getInstance(requireContext())
+                .enqueue(workRequest)
+            sp.edit().putBoolean("flag", true).apply()
+        }
+    }
+
+    private fun clearListNewDay() {
+        val sp = activity?.getSharedPreferences(
+            getString(R.string.preferenceFileKey_UserData),
+            Context.MODE_PRIVATE
+        )
+        if (sp?.getBoolean(ProductDescriptionFragment.CLEAR_LIST, false) == true) {
+            adapter.sharedPreferencesStorage?.clearAll()
+            sp.edit()?.putBoolean(ProductDescriptionFragment.CLEAR_LIST, false)?.apply()
+        }
+    }
+
+    // mock
+    private fun countInitialDelay(): Long {
+        val calendar = Calendar.getInstance()
+        var hours = 24
+        var minutes = 60
+        var seconds = 60
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+        val second = calendar.get(Calendar.SECOND)
+        if (minute > 0) hours--
+        if (second > 0) minutes--
+        return (hour * 60 * 60 + minute * 60 + second).toLong()
+    }
 
     // тут всё просто костыль, простите...
     private fun passAppropriateItemsToAdapter() {
@@ -86,17 +135,23 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
 
         mRecipeViewModel.getAllRecipes.observe(
             viewLifecycleOwner
-        ) { recipe ->
+        ) { recipes ->
+            var i = 0
             if (arrIds != null) {
-                for (i in arrIds.indices) {
+                for (index in arrIds) {
                     val category = categoriesArr?.get(i)
                     val type = typesArr?.get(i)
-                    if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Recipe") {
-                        val recipeItem = recipe.get(arrIds[i].toInt()).copy()
-                        recipeItem.category = category
-                        recipeItem.type = type
-                        adapter.addItem(0, recipeItem, binding.root.context)
+                    if (!index.isBlank()) {
+                        for (recipe in recipes) {
+                            if (!category.isNullOrBlank() && type == "Recipe" && recipe.id == arrIds[i].toInt()) {
+                                val recipeItem = recipe.copy()
+                                recipeItem.category = category
+                                recipeItem.type = type
+                                adapter.addItem(0, recipeItem, binding.root.context)
+                            }
+                        }
                     }
+                    i++
                 }
             }
         }
@@ -104,17 +159,23 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
 
         mProductViewModel.getAllProducts.observe(
             viewLifecycleOwner
-        ) { product ->
+        ) { products ->
+            var i = 0
             if (arrIds != null) {
-                for (i in arrIds.indices) {
+                for (index in arrIds) {
                     val category = categoriesArr?.get(i)
                     val type = typesArr?.get(i)
-                    if (!arrIds[i].isBlank() && !category.isNullOrBlank() && type == "Product") {
-                        val productItem = product.get(arrIds[i].toInt()).copy()
-                        productItem.category = category
-                        productItem.type = type
-                        adapter.addItem(0, productItem, binding.root.context)
+                    if (index.isNotBlank()) {
+                        for (product in products) {
+                            if (!category.isNullOrBlank() && type == "Product" && product.id == arrIds[i].toInt()) {
+                                val productItem = products.get(arrIds[i].toInt() - 1).copy()
+                                productItem.category = category
+                                productItem.type = type
+                                adapter.addItem(0, productItem, binding.root.context)
+                            }
+                        }
                     }
+                    i++
                 }
             }
         }

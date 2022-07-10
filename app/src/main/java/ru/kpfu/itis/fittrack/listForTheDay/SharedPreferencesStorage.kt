@@ -4,14 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 
 class SharedPreferencesStorage(private val context: Context) {
-    private val KEY1 = "FOOD_IDS"
-    private val KEY2 = "CATEGORIES"
-    private val KEY3 = "TYPES"
-    private val KEY4 = "CALORIES"
-    private val ID = "ID"
-    private val ID_CATEGORY = "CATEGORY"
-    private val ID_TYPE = "TYPE"
-    private val ID_CALORIE = "KCAL"
     private var idsFoodList: String? = null
     private var categories: String? = null
     private var types: String? = null
@@ -33,60 +25,71 @@ class SharedPreferencesStorage(private val context: Context) {
         return sharedPreferences.getString(keySecondary, null)
     }
     fun loadIDS(): String? {
-        return loadData(KEY1, ID)
+        return loadData(Companion.KEY1, Companion.ID)
     }
     fun loadCategories(): String? {
-        return loadData(KEY2, ID_CATEGORY)
+        return loadData(Companion.KEY2, Companion.ID_CATEGORY)
     }
     fun loadTypes(): String? {
-        return loadData(KEY3, ID_TYPE)
+        return loadData(Companion.KEY3, Companion.ID_TYPE)
     }
     fun loadCalories(): String? {
-        return loadData(KEY4, ID_CALORIE)
+        return loadData(Companion.KEY4, Companion.ID_CALORIE)
     }
 
     fun addItemID(id: Int) {
         if (loadIDS().isNullOrBlank()) {
             idsFoodList = "$id "
-            saveData(KEY1, ID, idsFoodList)
+            saveData(Companion.KEY1, Companion.ID, idsFoodList)
         } else {
             idsFoodList = (loadIDS() + id.toString() + " ")
-            saveData(KEY1, ID, idsFoodList)
+            saveData(Companion.KEY1, Companion.ID, idsFoodList)
         }
     }
     fun addCategory(category: String) {
         if (loadCategories().isNullOrBlank()) {
             categories = "$category "
-            saveData(KEY2,ID_CATEGORY, categories)
+            saveData(Companion.KEY2, Companion.ID_CATEGORY, categories)
         } else {
             categories = (loadCategories() + category + " ")
-            saveData(KEY2,ID_CATEGORY, categories)
+            saveData(Companion.KEY2, Companion.ID_CATEGORY, categories)
         }
     }
     fun addType(type: String) {
         if (loadTypes().isNullOrBlank()) {
             types = "$type "
-            saveData(KEY3,ID_TYPE, types)
+            saveData(Companion.KEY3, Companion.ID_TYPE, types)
         } else {
             types = (loadTypes() + type + " ")
-            saveData(KEY3,ID_TYPE, types)
+            saveData(Companion.KEY3, Companion.ID_TYPE, types)
         }
     }
     fun addCalorieCount(calorieCount: String) {
         if (loadCalories().isNullOrBlank()) {
             calories = "$calorieCount "
-            saveData(KEY4,ID_CALORIE, calories)
+            saveData(Companion.KEY4, Companion.ID_CALORIE, calories)
         } else {
             calories = (loadCalories() + calorieCount + " ")
-            saveData(KEY4,ID_CALORIE, calories)
+            saveData(Companion.KEY4, Companion.ID_CALORIE, calories)
         }
     }
 
     fun clearAll() {
-        saveData(KEY1, ID, idsFoodList)
-        saveData(KEY2,ID_CATEGORY, categories)
-        saveData(KEY3,ID_TYPE, types)
-        saveData(KEY4, ID_CALORIE, calories)
+        saveData(Companion.KEY1, Companion.ID, idsFoodList)
+        saveData(Companion.KEY2, Companion.ID_CATEGORY, categories)
+        saveData(Companion.KEY3, Companion.ID_TYPE, types)
+        saveData(Companion.KEY4, Companion.ID_CALORIE, calories)
+    }
+
+    companion object {
+        const val KEY1 = "FOOD_IDS"
+        const val KEY2 = "CATEGORIES"
+        const val KEY3 = "TYPES"
+        const  val KEY4 = "CALORIES"
+        const  val ID = "ID"
+        const val ID_CATEGORY = "CATEGORY"
+        const val ID_TYPE = "TYPE"
+        const  val ID_CALORIE = "KCAL"
     }
 
 }
