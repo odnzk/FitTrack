@@ -58,5 +58,8 @@
     <string name="on">on</string>
     <string name="off">off</string>
 
-    <string name="stats_week_btn_txt">get from Calorie tracker</string>
+    <string name="stats_week_btn_getter_txt">get data from Calorie tracker</string>
+    <string name="stats_week_tv_top_text">left border</string>
+    <string name="stats_week_tv_bottom_text">right border</string>
+    <string name="stats_week_btn_showing_text">show data</string>
 </resources>
