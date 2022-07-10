@@ -153,8 +153,8 @@ class StatsDayFragment : Fragment(R.layout.fragment_stats_day) {
                 tvProgress.text =
                     "${(consumedCalories - burnedCalories) - goalCalories} \n kcal over limit"
             }
-            pbGoal.max = goalCalories
-            pbGoal.progress = consumedCalories - burnedCalories
+            pbGoal.max = goalCalories + burnedCalories
+            pbGoal.progress = consumedCalories
             tvProteinsLeft.text = "$consumedProteins / $maxProteins"
             tvCarbsLeft.text = "$consumedCarbs / $maxCarbs"
             tvFatLeft.text = "$consumedFat / $maxFat"
