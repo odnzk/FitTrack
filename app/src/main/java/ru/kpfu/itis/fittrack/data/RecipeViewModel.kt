@@ -31,9 +31,6 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
             repository.deleteRecipe(recipe)
         }
     }
-    fun getRecipe(id:Int) : LiveData<Recipe> {
-        return repository.getRecipe(id)
-    }
 
 
 }
