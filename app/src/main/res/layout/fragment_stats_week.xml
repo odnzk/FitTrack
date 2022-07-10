@@ -56,6 +56,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_bottom" />
 
     <Button
+        android:id="@+id/btn_show"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/stats_week_btn_showing_text"

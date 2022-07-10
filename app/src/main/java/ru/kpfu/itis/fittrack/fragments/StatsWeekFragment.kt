@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import ru.kpfu.itis.fittrack.R
 import ru.kpfu.itis.fittrack.databinding.FragmentStatsWeekBinding
 import ru.kpfu.itis.fittrack.util.BarChartProcessor
+import java.util.*
 
 
 class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
@@ -38,6 +39,7 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
 
     }
 
+
     private fun initSharedPref() {
         pref = activity?.getSharedPreferences("TEST", Context.MODE_PRIVATE)!!
     }
@@ -55,9 +57,12 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
 
     }
 
-    private fun getCurrentDate(): String = "11.06.22" // mock for test
+    private fun getCurrentDate(): String {
+        val date = Date().toString().split(" ")
+        return "${date[1]} ${date[2]}"
+    }
 
-    private fun getDataFromPref(): Float = 10f // mock for test
+    private fun getDataFromPref(): Float = 10f // TODO
 
     private fun init() {
         val listData = ArrayList<Float>()

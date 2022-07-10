@@ -94,7 +94,7 @@ class BarChartProcessor(barChart: BarChart) {
         val count = listData.size
         for (i in 1 until count) {
             listNewData.add(listData[i])
-            listNewInfo.add(listInfo[0])
+            listNewInfo.add(listInfo[i])
         }
         listNewData.add(item)
         listNewInfo.add(info)
