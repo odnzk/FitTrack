@@ -56,7 +56,7 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
         vm = ViewModelProvider(this)[StatsViewModel::class.java]
         vm.getAllStats.observe(viewLifecycleOwner) {
             // ровно семь штук залила, можешь еще сам залить,
-            // но придется удалять приложение и снова скачивать
+            //  придется удалять приложение и снова скачивать
         }
         /////////////
 
