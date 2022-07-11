@@ -22,10 +22,7 @@ class UpdateDailyWorker(appContext: Context, workerParams: WorkerParameters) :
 
     private fun getRandomRecipe() {
         RandomRecipeGenerator().getRandomRecipe {
-            val runnable = {
-                EntireDatabase.getDatabase(context).recipeDao().add(it)
-            }
-            Thread(runnable).start()
+            EntireDatabase.getDatabase(context).recipeDao().add(it)
         }
     }
 
