@@ -6,7 +6,6 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import ru.kpfu.itis.fittrack.statsdata.StatsItem
 
 class BarChartProcessor(barChart: BarChart) {
     private val chart = barChart
@@ -59,6 +58,7 @@ class BarChartProcessor(barChart: BarChart) {
 
     private fun setGraphInfoFromList(list: List<String>) {
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(list)
+        chart.xAxis.labelCount = list.size
     }
 
     private fun createDataSetFromList(list: List<Float>): BarDataSet {
@@ -71,47 +71,4 @@ class BarChartProcessor(barChart: BarChart) {
         }
         return BarDataSet(entryList, label)
     }
-
-//    fun add(item: Float, info: String) {
-//        if (index < 7) {
-//            addNotFilled(item, info)
-//        } else {
-//            addFilled(item, info)
-//        }
-//    }
-
-//    private fun addFilled(item: Float, info: String) {
-//        val listNewData = ArrayList<Float>()
-//        val listNewInfo = ArrayList<String>()
-//        val listInfo = getInfoList()
-//        val listData = getDataList()
-//        val count = listData.size
-//        for (i in 1 until count) {
-//            listNewData.add(listData[i])
-//            listNewInfo.add(listInfo[i])
-//        }
-//        listNewData.add(item)
-//        listNewInfo.add(info)
-//        setGraphLists(listNewData, listNewInfo)
-//    }
-
-//    private fun addNotFilled(item: Float, info: String) {
-//        val listNewInfo = ArrayList<String>()
-//        val listNewData = ArrayList<Float>()
-//        val listInfo = getInfoList()
-//        val listData = getDataList()
-//        val count = listData.size
-//        for (i in 0 until index) {
-//            listNewInfo.add(listInfo[i])
-//            listNewData.add(listData[i])
-//        }
-//        listNewInfo.add(info)
-//        listNewData.add(item)
-//        for (i in index + 1 until count) {
-//            listNewInfo.add(emptyInfo)
-//            listNewData.add(emptyData)
-//        }
-//        setGraphLists(listNewData, listNewInfo)
-//        index++
-//    }
 }

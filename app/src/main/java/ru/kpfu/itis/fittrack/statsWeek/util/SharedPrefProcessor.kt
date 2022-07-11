@@ -1,9 +1,7 @@
 package ru.kpfu.itis.fittrack.statsWeek.util
 
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import ru.kpfu.itis.fittrack.databinding.FragmentStatsWeekBinding
 
 class SharedPrefProcessor(private val pref: SharedPreferences) {
 

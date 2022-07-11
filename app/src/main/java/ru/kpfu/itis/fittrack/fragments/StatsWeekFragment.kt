@@ -38,7 +38,7 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
                     dateList,
                     sharedPrefProcessor.getSpinnerIndexes(dateList)
                 )
-                btnShow.setOnClickListener { _ ->
+                btnShow.setOnClickListener {
                     val graphListsPair = dbListProcessor.getGraphListsFromDB(
                         spinnerTop.selectedItem.toString(),
                         spinnerDown.selectedItem.toString()
