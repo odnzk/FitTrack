@@ -1,4 +1,4 @@
-package ru.kpfu.itis.fittrack.util
+package ru.kpfu.itis.fittrack.statsWeek.util
 
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.YAxis
@@ -11,30 +11,21 @@ import ru.kpfu.itis.fittrack.statsdata.StatsItem
 class BarChartProcessor(barChart: BarChart) {
     private val chart = barChart
     private val label = "Calories"
-    private val emptyData = 0f
-    private val emptyInfo = ""
 
     init {
-        chart.getAxis(YAxis.AxisDependency.LEFT).axisMinimum = 0f
-        chart.xAxis.setDrawGridLines(false)
-        chart.axisLeft.setDrawGridLines(false)
-        chart.axisRight.setDrawGridLines(false)
-    }
-
-    fun setGraphListsFromDB(left: Int, right: Int, data: List<StatsItem>) {
-        val list = filterList(left, right, data)
-        val dataList = ArrayList<Float>()
-        val infoList = ArrayList<String>()
-        list.forEach {
-            dataList.add(it.consumedCalories.toFloat())
-            infoList.add("${it.day}-${it.month}-${it.year}")
+        with(chart) {
+            getAxis(YAxis.AxisDependency.LEFT).axisMinimum = 0f
+            xAxis.setDrawGridLines(false)
+            axisLeft.setDrawGridLines(false)
+            axisRight.setDrawGridLines(false)
+            setScaleEnabled(false)
+            description.text = ""
         }
-        setGraphLists(dataList, infoList)
     }
 
     fun setGraphLists(listData: List<Float>, listInfo: List<String>) {
         setGraphDataFromList(listData)
-        setStringFieldsFromList(listInfo)
+        setGraphInfoFromList(listInfo)
         chart.resetZoom()
     }
 
@@ -66,7 +57,7 @@ class BarChartProcessor(barChart: BarChart) {
         )
     }
 
-    private fun setStringFieldsFromList(list: List<String>) {
+    private fun setGraphInfoFromList(list: List<String>) {
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(list)
     }
 
