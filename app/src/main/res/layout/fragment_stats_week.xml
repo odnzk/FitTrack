@@ -15,9 +15,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_top"
+        android:id="@+id/tv_spinner_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:text="@string/stats_week_tv_top_text"
         app:layout_constraintTop_toBottomOf="@id/bar_graph" />
 
@@ -25,14 +26,16 @@
         android:id="@+id/spinner_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_top" />
+        app:layout_constraintTop_toBottomOf="@id/tv_spinner_top" />
 
     <TextView
-        android:id="@+id/tv_bottom"
+        android:id="@+id/tv_spinner_down"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:text="@string/stats_week_tv_bottom_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,19 +45,30 @@
         android:id="@+id/spinner_down"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_bottom" />
+        app:layout_constraintTop_toBottomOf="@id/tv_spinner_down" />
+
+    <TextView
+        android:id="@+id/tv_exception"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_down" />
 
     <Button
         android:id="@+id/btn_show"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:text="@string/stats_week_btn_showing_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinner_down" />
+        app:layout_constraintTop_toBottomOf="@id/tv_exception" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

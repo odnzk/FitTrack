@@ -64,4 +64,5 @@
     <string name="stats_week_tv_top_text">left border</string>
     <string name="stats_week_tv_bottom_text">right border</string>
     <string name="stats_week_btn_showing_text">show data</string>
+    <string name="stats_week_tv_exception_text">the wrong interval is selected</string>
 </resources>

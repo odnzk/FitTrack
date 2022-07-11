@@ -47,6 +47,11 @@ class StatsWeekFragment : Fragment(R.layout.fragment_stats_week) {
                         graphListsPair.first,
                         graphListsPair.second
                     )
+                    if (graphListsPair.first.isEmpty()) {
+                        tvException.text = getString(R.string.stats_week_tv_exception_text)
+                    } else {
+                        tvException.text = ""
+                    }
                     sharedPrefProcessor.saveOnPref(
                         chartProcessor.getDataList(),
                         chartProcessor.getInfoList(),
