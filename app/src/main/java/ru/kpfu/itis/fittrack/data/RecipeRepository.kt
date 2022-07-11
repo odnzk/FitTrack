@@ -12,7 +12,5 @@ class RecipeRepository(private val recipeDao: RecipeDao) {
         recipeDao.deleteRecipe(recipe)
     }
 
-    fun getRecipe(id: Int) :LiveData<Recipe>{
-        return recipeDao.getRecipe(id)
-    }
+
 }

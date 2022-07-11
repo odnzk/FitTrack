@@ -14,12 +14,12 @@
                 android:alpha="0" />
             <KeyAttribute
                 motion:motionTarget="@+id/iv_picture"
-                motion:framePosition="80"
-                android:alpha="0.5" />
+                motion:framePosition="70"
+                android:alpha="0.4" />
             <KeyAttribute
                 motion:motionTarget="@+id/iv_picture2"
                 motion:framePosition="80"
-                android:alpha="0.5" />
+                android:alpha="0.4" />
         </KeyFrameSet>
         <OnSwipe
             motion:touchAnchorId="@+id/iv_picture"

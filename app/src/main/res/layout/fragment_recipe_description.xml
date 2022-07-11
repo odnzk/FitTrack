@@ -14,12 +14,15 @@
         android:layout_height="270dp"
         android:foreground="#5098a587"
         android:foregroundTintMode="src_atop"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/defdishes"
+        />
 
     <ImageView
         android:id="@+id/iv_picture"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:src="@drawable/defdishes"
         android:foreground="#5098a587"
         android:foregroundTintMode="src_atop"
         android:scaleType="centerCrop" />
