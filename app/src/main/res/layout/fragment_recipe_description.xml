@@ -191,6 +191,7 @@
                         android:layout_height="wrap_content"
                         android:text="The best in life"
                         android:textColor="@color/black"
+                        android:fontFamily="@font/ubuntu_regular"
                         android:textSize="16sp" />
                 </RelativeLayout>
             </ScrollView>

@@ -5,10 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
@@ -19,8 +16,7 @@ import androidx.work.WorkRequest
 import ru.kpfu.itis.fittrack.data.ProductViewModel
 import ru.kpfu.itis.fittrack.data.RecipeViewModel
 import ru.kpfu.itis.fittrack.databinding.ActivityMainBinding
-import ru.kpfu.itis.fittrack.recipesFromAPI.RandomRecipeGenerator
-import ru.kpfu.itis.fittrack.updatingdata.UpdateDataWorker
+import ru.kpfu.itis.fittrack.updatingdata.UpdateDailyWorker
 import ru.kpfu.itis.fittrack.viewpager.ReceivingInformationFragment
 import ru.kpfu.itis.fittrack.viewpager.ViewPagerAdapter
 import java.util.*
@@ -98,7 +94,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun defineAndStartWork(delay: Int) {
         val workRequest: WorkRequest =
-            PeriodicWorkRequestBuilder<UpdateDataWorker>(1, TimeUnit.DAYS)
+            PeriodicWorkRequestBuilder<UpdateDailyWorker>(1, TimeUnit.DAYS)
                 .setInitialDelay(delay.toLong(), TimeUnit.SECONDS)
                 .build()
         WorkManager.getInstance(applicationContext).enqueue(workRequest)
