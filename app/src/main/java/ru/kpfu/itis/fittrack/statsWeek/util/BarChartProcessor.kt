@@ -1,6 +1,7 @@
 package ru.kpfu.itis.fittrack.statsWeek.util
 
 import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -19,6 +20,7 @@ class BarChartProcessor(barChart: BarChart) {
             axisRight.setDrawGridLines(false)
             setScaleEnabled(false)
             description.text = ""
+            xAxis.position = XAxis.XAxisPosition.BOTTOM
         }
     }
 
