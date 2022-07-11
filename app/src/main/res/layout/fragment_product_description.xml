@@ -24,12 +24,11 @@
             app:layout_constraintEnd_toStartOf="@id/btn_add_item"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu_category"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar"
             app:layout_constraintVertical_bias="0.95" />
 
         <Button
             android:layout_marginBottom="88dp"
-
             android:id="@+id/btn_add_item"
             style="@style/vp_btnCustomOutlineRed"
             android:layout_width="wrap_content"
@@ -40,7 +39,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toEndOf="@id/btn_delete_item"
-            app:layout_constraintTop_toBottomOf="@+id/menu_category"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar"
             app:layout_constraintVertical_bias="0.95" />
 
         <TextView
@@ -49,11 +48,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:text="Proteins: 100"
-
-            app:layout_constraintHorizontal_bias="0.555"
+            android:textColor="@color/black"
+            android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@+id/iv_picture"
-            app:layout_constraintTop_toBottomOf="@+id/tv_calories"
-            app:layout_constraintVertical_bias="0.01" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_calories" />
 
         <TextView
             android:id="@+id/tv_fats"
@@ -61,6 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:text="Fats: 100"
+            android:textColor="@color/black"
+            android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@+id/iv_picture"
             app:layout_constraintTop_toBottomOf="@id/tv_proteins" />
 
@@ -82,6 +82,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
             android:text="Pizza"
+            android:textColor="@color/black"
             android:textSize="30dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/iv_picture"
@@ -98,10 +99,10 @@
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/tv_proteins"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/iv_picture"
             app:layout_constraintTop_toTopOf="@+id/iv_picture"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tv_carbo"
@@ -109,8 +110,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:text="Carbo: 100"
+            android:textColor="@color/black"
+            android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@+id/iv_picture"
             app:layout_constraintTop_toBottomOf="@+id/tv_fats" />
+
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="350dp"
+            android:min="5"
+            android:max="700"
+            android:progress="100"
+            android:background="@color/main_green"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintTop_toBottomOf="@id/menu_category"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_add_item"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
         <Spinner
             android:id="@+id/menu_category"
@@ -118,12 +138,28 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:entries="@array/food_categories"
+            android:minHeight="48dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_add_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_picture">
+            app:layout_constraintTop_toBottomOf="@+id/iv_picture"
+            app:layout_constraintVertical_bias="0.224">
 
 
         </Spinner>
+
+        <TextView
+            android:id="@+id/tv_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:text="100 grams"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_carbo"
+            app:layout_constraintTop_toBottomOf="@+id/tv_carbo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

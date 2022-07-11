@@ -4,7 +4,7 @@ import ru.kpfu.itis.fittrack.data.Product
 
 object InitialProducts {
     val list = arrayListOf(
-        Product(0,
+        Product(1,
             "tomato",
             "https://cdn-icons-png.flaticon.com/512/1135/1135457.png",
             24,
@@ -13,7 +13,7 @@ object InitialProducts {
             3.8f
         ),
 
-        Product(1,
+        Product(2,
         "banana",
         "https://cdn-icons-png.flaticon.com/512/1135/1135468.png",
         96,
@@ -22,7 +22,7 @@ object InitialProducts {
             21f
         ),
 
-        Product(2,
+        Product(3,
             "broccoli",
             "https://cdn-icons-png.flaticon.com/512/1135/1135479.png",
             34,
@@ -31,7 +31,7 @@ object InitialProducts {
             4f
         ),
 
-        Product(3,
+        Product(4,
             "apple",
         "https://cdn-icons-png.flaticon.com/512/1135/1135455.png",
             47,
@@ -40,7 +40,7 @@ object InitialProducts {
             9.8f
         ),
 
-        Product(4,
+        Product(5,
         "apricot",
             "https://cdn-icons-png.flaticon.com/512/1135/1135477.png",
             44,
@@ -49,7 +49,7 @@ object InitialProducts {
             9f
         ),
 
-        Product(5, "strawberry",
+        Product(6, "strawberry",
             "https://cdn-icons-png.flaticon.com/512/1135/1135475.png",
             41,
             0.8f,
@@ -57,7 +57,7 @@ object InitialProducts {
             7.5f
         ),
 
-        Product(6, "potato",
+        Product(7, "potato",
             "https://cdn-icons-png.flaticon.com/512/1135/1135467.png",
             394,
             5.7f,
@@ -65,7 +65,7 @@ object InitialProducts {
             49.2f
         ),
 
-        Product(7, "cabbage",
+        Product(8, "cabbage",
             "https://cdn-icons-png.flaticon.com/512/1135/1135459.png",
             28,
             1.8f,
@@ -73,7 +73,7 @@ object InitialProducts {
             4.7f
         ),
 
-        Product(8, "orange",
+        Product(9, "orange",
             "https://cdn-icons-png.flaticon.com/512/1135/1135488.png",
             43,
             0.9f,

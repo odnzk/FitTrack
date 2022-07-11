@@ -16,6 +16,7 @@ import ru.kpfu.itis.fittrack.databinding.FragmentListForTheDayBinding
 import ru.kpfu.itis.fittrack.fragments.ProductDescriptionFragment
 import ru.kpfu.itis.fittrack.fragments.RecipeDescriptionFragment
 import java.util.*
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 
@@ -54,17 +55,35 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
             SharedPreferencesStorage(requireContext())
         ) { it ->
             // navigating to appropriate description screen from day list
+            mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
             if (it is Product) {
-                findNavController().navigate(
-                    R.id.action_placeHolderFragment_to_productDescriptionFragment,
-                    ProductDescriptionFragment.createProduct(it)
-                )
+                mProductViewModel.getAllProducts.observe(
+                    viewLifecycleOwner
+                ) { products ->
+                    for (p in products) {
+                        if (p.id == it.id) {
+                            findNavController().navigate(
+                                R.id.action_placeHolderFragment_to_productDescriptionFragment,
+                                ProductDescriptionFragment.createProduct(p)
+                            )
+                        }
+                    }
+                }
             }
+            mRecipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
             if (it is Recipe) {
-                findNavController().navigate(
-                    R.id.action_placeHolderFragment_to_recipeDescriptionFragment2,
-                    RecipeDescriptionFragment.createRecipe(it)
-                )
+                mRecipeViewModel.getAllRecipes.observe(
+                    viewLifecycleOwner
+                ) { recipes ->
+                    for (r in recipes) {
+                        if (r.id == it.id) {
+                            findNavController().navigate(
+                                R.id.action_placeHolderFragment_to_recipeDescriptionFragment2,
+                                RecipeDescriptionFragment.createRecipe(r)
+                            )
+                        }
+                    }
+                }
             }
         }
 
@@ -132,6 +151,10 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
         val arrIds = sharedPreferencesStorage.loadIDS()?.split(" ")
         val categoriesArr = sharedPreferencesStorage.loadCategories()?.split(" ")
         val typesArr = sharedPreferencesStorage.loadTypes()?.split(" ")
+        val caloriesArr = sharedPreferencesStorage.loadCalories()?.split(" ")
+        val proteinsArr = sharedPreferencesStorage.loadProteins()?.split(" ")
+        val fatsArr = sharedPreferencesStorage.loadFats()?.split(" ")
+        val carbsArr = sharedPreferencesStorage.loadCarbs()?.split(" ")
 
         mRecipeViewModel.getAllRecipes.observe(
             viewLifecycleOwner
@@ -141,12 +164,21 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
                 for (index in arrIds) {
                     val category = categoriesArr?.get(i)
                     val type = typesArr?.get(i)
+                    val calories = caloriesArr?.get(i)
+                    val protein = proteinsArr?.get(i)
+                    val fat = fatsArr?.get(i)
+                    val carb = carbsArr?.get(i)
                     if (!index.isBlank()) {
                         for (recipe in recipes) {
-                            if (!category.isNullOrBlank() && type == "Recipe" && recipe.id == arrIds[i].toInt()) {
+                            if (!calories.isNullOrBlank() && !category.isNullOrBlank() && type == "Recipe" && recipe.id == arrIds[i].toInt()
+                                && !protein.isNullOrBlank() && !fat.isNullOrBlank() && !carb.isNullOrBlank()) {
                                 val recipeItem = recipe.copy()
                                 recipeItem.category = category
                                 recipeItem.type = type
+                                recipeItem.calories = calories.toInt()
+                                recipeItem.proteins = protein.toFloat()
+                                recipeItem.fats = fat.toFloat()
+                                recipeItem.carbohydrates = carb.toFloat()
                                 adapter.addItem(0, recipeItem, binding.root.context)
                             }
                         }
@@ -165,12 +197,21 @@ class ProductsAndRecipesForTheDayFragment : Fragment() {
                 for (index in arrIds) {
                     val category = categoriesArr?.get(i)
                     val type = typesArr?.get(i)
-                    if (index.isNotBlank()) {
+                    val calories = caloriesArr?.get(i)
+                    val protein = proteinsArr?.get(i)
+                    val fat = fatsArr?.get(i)
+                    val carb = carbsArr?.get(i)
+                    if(index.isNotBlank()) {
                         for (product in products) {
-                            if (!category.isNullOrBlank() && type == "Product" && product.id == arrIds[i].toInt()) {
-                                val productItem = products.get(arrIds[i].toInt() - 1).copy()
+                            if (!calories.isNullOrBlank() && !category.isNullOrBlank() && type == "Product" && product.id == arrIds[i].toInt()
+                                && !protein.isNullOrBlank() && !fat.isNullOrBlank() && !carb.isNullOrBlank()) {
+                                val productItem = product.copy()
                                 productItem.category = category
                                 productItem.type = type
+                                productItem.calories = calories.toInt()
+                                productItem.proteins = protein.toFloat()
+                                productItem.fats = fat.toFloat()
+                                productItem.carbohydrates = carb.toFloat()
                                 adapter.addItem(0, productItem, binding.root.context)
                             }
                         }

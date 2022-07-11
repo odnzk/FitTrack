@@ -5,7 +5,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-//TODO: решить проблему дубликатов в бд
 @Entity
 data class Product (
     @PrimaryKey(autoGenerate = true)

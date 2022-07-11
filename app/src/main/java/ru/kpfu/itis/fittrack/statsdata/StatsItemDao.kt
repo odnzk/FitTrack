@@ -7,7 +7,7 @@ import androidx.room.*
 interface StatsItemDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun add(statsItem: StatsItem)
+    fun insert(statsItem: StatsItem)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(statsItem: StatsItem)

@@ -24,7 +24,7 @@ class ProductsAndRecipesFragment : Fragment(R.layout.fragment_products_and_recip
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentProductsAndRecipesBinding.bind(view)
-//            TODO: добавление в список на день по долгому нажатию
+
         val adapter = ProductAdapter(Glide.with(this)) {
             findNavController().navigate(
                 R.id.action_productsAndRecipesFragment_to_productDescriptionFragment,
